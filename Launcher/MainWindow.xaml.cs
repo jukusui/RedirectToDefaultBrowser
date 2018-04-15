@@ -27,5 +27,13 @@ namespace Launcher
             vText.Text = typeof(Launcher).Assembly.GetName().Version.ToString();
 
         }
+
+        private void Link_Clicked(object sender, RequestNavigateEventArgs e)
+        {
+            if (sender is Hyperlink hyperlink && hyperlink.NavigateUri != null)
+            {
+                System.Diagnostics.Process.Start(hyperlink.NavigateUri.AbsoluteUri);
+            }
+        }
     }
 }

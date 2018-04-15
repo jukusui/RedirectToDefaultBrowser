@@ -53,10 +53,6 @@ namespace Launcher
                     }
                     switch (source.Scheme)
                     {
-                        case "http":
-                        case "https":
-                            targets = new[] { source };
-                            break;
                         case "microsoft-edge":
                             var q = source.Query;
                             if (q != null && 1 < q.Length)

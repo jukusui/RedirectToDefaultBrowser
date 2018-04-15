@@ -69,6 +69,7 @@
     <None Include="RedirectToDefaultBrowser_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Dark256.png" />
     <Content Include="Assets\LargeTile.scale-100.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>

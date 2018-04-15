@@ -23,6 +23,7 @@
       <Extensions>
         <uap:Extension Category="windows.protocol">
           <uap:Protocol Name="microsoft-edge">
+            <uap:Logo>Assets\Dark256.png</uap:Logo>
             <uap:DisplayName>RedirectToDefaultBrowser</uap:DisplayName>
           </uap:Protocol>
         </uap:Extension>
