@@ -35,8 +35,8 @@
   <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.props" />
   <PropertyGroup>
     <ProjectGuid>51ad8dcd-3f41-4ae5-8fab-37569313e566</ProjectGuid>
-    <TargetPlatformVersion>10.0.16299.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.14393.0</TargetPlatformMinVersion>
+    <TargetPlatformVersion>10.0.17125.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.17125.0</TargetPlatformMinVersion>
     <DefaultLanguage>ja-JP</DefaultLanguage>
     <PackageCertificateKeyFile>RedirectToDefaultBrowser_StoreKey.pfx</PackageCertificateKeyFile>
     <PackageCertificateThumbprint>3FD18A25EF70687B2541511985F4B507620B8325</PackageCertificateThumbprint>
