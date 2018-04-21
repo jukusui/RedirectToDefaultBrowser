@@ -14,6 +14,7 @@ namespace Launcher
         [STAThread()]
         public static void Main(string[] args)
         {
+            string message = null;
             try
             {
                 switch (args.Length)
@@ -23,37 +24,42 @@ namespace Launcher
                         win.ShowDialog();
                         break;
                     case 1:
-                        Launch(args[0]);
+                        message = Launch(args[0]);
                         break;
                     default:
-                        MessageBox.Show("引数の数は1つでなければなりません", AppName);
+                        message = "起動時の引数の数は1つでなければなりません";
                         break;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"予期せぬエラー\n{ex}", AppName);
+                message = $"予期せぬエラー\n{ex}";
             }
+            if (message != null)
+                if (MessageBox.Show("ブラウザを開けませんでした\n\n" + message + "\nURIをクリップボードに保存しますか?", AppName, MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                    Clipboard.SetText(string.Join("\n", args));
         }
 
-        static void Launch(string arg)
+        static string Launch(string arg)
         {
+            if (!Uri.IsWellFormedUriString(arg, UriKind.Absolute))
+                MessageBox.Show("引数がURIとして認識できませんでした", AppName);
+            else
             {
-                if (!Uri.IsWellFormedUriString(arg, UriKind.Absolute))
-                    MessageBox.Show("引数がURIとして認識できませんでした", AppName);
-                else
+                IEnumerable<Uri> targets = null;
+                if (!Uri.TryCreate(arg, UriKind.Absolute, out Uri source))
                 {
-                    Uri source = null;
-                    IEnumerable<Uri> targets = null;
-                    try { source = new Uri(arg); }
-                    catch
-                    {
-                        MessageBox.Show("引数がURIとして認識できませんでした", AppName);
-                        return;
-                    }
-                    switch (source.Scheme)
-                    {
-                        case "microsoft-edge":
+                    return "引数がURIとして認識できませんでした";
+                }
+                switch (source.Scheme)
+                {
+                    case "microsoft-edge":
+                        if (Uri.TryCreate(arg.Substring("microsoft-edge:".Length), UriKind.Absolute, out Uri oneUri))
+                        {
+                            targets = new Uri[] { oneUri };
+                        }
+                        else
+                        {
                             var q = source.Query;
                             if (q != null && 1 < q.Length)
                             {
@@ -65,27 +71,34 @@ namespace Launcher
                                     where Uri.IsWellFormedUriString(url, UriKind.Absolute)
                                     select new Uri(url);
                             }
-                            break;
-                        default:
-                            MessageBox.Show($"引数のURI Scheme({source.Scheme})が認識できませんでした", AppName);
-                            return;
-                    }
-                    if (targets == null || !targets.Any())
-                        MessageBox.Show("URLがありませんでした", AppName);
-                    else
-                        foreach (var target in targets)
-                        {
-                            try
-                            {
-                                System.Diagnostics.Process.Start(target.ToString());
-                            }
-                            catch
-                            {
-                                MessageBox.Show("ブラウザの起動に失敗しました", AppName);
-                            }
                         }
+                        break;
+                    default:
+                        return $"引数のURI Scheme({source.Scheme})が認識できませんでした";
                 }
+                if (targets == null || !targets.Any())
+                    return "URLがありませんでした";
+                else if (targets.All(uri => uri.Scheme == "http" || uri.Scheme == "https"))
+                {
+                    bool hasError = false;
+                    foreach (var target in targets)
+                    {
+                        try
+                        {
+                            System.Diagnostics.Process.Start(target.ToString());
+                        }
+                        catch
+                        {
+                            hasError = true;
+                        }
+                    }
+                    if (hasError)
+                        return "ブラウザの起動に失敗しました";
+                }
+                else
+                    return "http、https以外のプロトコルが検知されました";
             }
+            return null;
 
         }
     }

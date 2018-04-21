@@ -54,6 +54,9 @@
   <PropertyGroup>
     <ApplicationIcon>Resources\Dark256.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
@@ -90,6 +93,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.manifest" />
     <None Include="Resources\Dark256.ico" />
   </ItemGroup>
   <ItemGroup>
