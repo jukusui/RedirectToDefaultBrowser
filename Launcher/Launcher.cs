@@ -3,28 +3,43 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace Launcher
 {
     public static class Launcher
     {
-        const string AppName = "RedirectToDefaultBrowser";
+        internal const string AppName = "RedirectToDefaultBrowser";
 
         [STAThread()]
         public static void Main(string[] args)
         {
+            var task = MainAsync(args);
+            task.Wait();
+            if (task.Result)
+            {
+                var win = new MainWindow();
+                win.ShowDialog();
+            }
+        }
+
+        public static async Task<bool> MainAsync(string[] args)
+        {
+            bool? showWin = false;
             string message = null;
             try
             {
                 switch (args.Length)
                 {
                     case 0:
-                        var win = new MainWindow();
-                        win.ShowDialog();
+                        showWin = true;
                         break;
                     case 1:
-                        message = Launch(args[0]);
+                        message = await Launch(args[0]);
+                        Properties.Settings.Default.LastURL = args[0];
+                        Properties.Settings.Default.Save();
+                        showWin = null;
                         break;
                     default:
                         message = "起動時の引数の数は1つでなければなりません";
@@ -36,45 +51,36 @@ namespace Launcher
                 message = $"予期せぬエラー\n{ex}";
             }
             if (message != null)
-                if (MessageBox.Show("ブラウザを開けませんでした\n\n" + message + "\nURIをクリップボードに保存しますか?", AppName, MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
-                    Clipboard.SetText(string.Join("\n", args));
+                MessageBox.Show("ブラウザを開けませんでした\n\n" + message, AppName, MessageBoxButton.OK, MessageBoxImage.Warning);
+            return (showWin == true) || (message != null && showWin == null);
         }
 
-        static string Launch(string arg)
+        internal static async Task<string> Launch(string arg)
         {
-            if (!Uri.IsWellFormedUriString(arg, UriKind.Absolute))
-                MessageBox.Show("引数がURIとして認識できませんでした", AppName);
-            else
+            if (arg.StartsWith("microsoft-edge:"))
             {
                 IEnumerable<Uri> targets = null;
-                if (!Uri.TryCreate(arg, UriKind.Absolute, out Uri source))
+                if (Uri.TryCreate(arg.Substring("microsoft-edge:".Length), UriKind.Absolute, out Uri oneUri))
                 {
-                    return "引数がURIとして認識できませんでした";
+                    targets = new Uri[] { oneUri };
                 }
-                switch (source.Scheme)
+                else
                 {
-                    case "microsoft-edge":
-                        if (Uri.TryCreate(arg.Substring("microsoft-edge:".Length), UriKind.Absolute, out Uri oneUri))
-                        {
-                            targets = new Uri[] { oneUri };
-                        }
-                        else
-                        {
-                            var q = source.Query;
-                            if (q != null && 1 < q.Length)
-                            {
-                                q = q.Substring(1);
-                                targets =
-                                    from l in q.Split('&')
-                                    where l.StartsWith("url=", StringComparison.CurrentCultureIgnoreCase)
-                                    let url = Uri.UnescapeDataString(l.Substring(4))
-                                    where Uri.IsWellFormedUriString(url, UriKind.Absolute)
-                                    select new Uri(url);
-                            }
-                        }
-                        break;
-                    default:
-                        return $"引数のURI Scheme({source.Scheme})が認識できませんでした";
+                    if (!Uri.TryCreate(arg, UriKind.Absolute, out Uri source))
+                    {
+                        return "引数がURIとして認識できませんでした";
+                    }
+                    var q = source.Query;
+                    if (q != null && 1 < q.Length)
+                    {
+                        q = q.Substring(1);
+                        targets =
+                            from l in q.Split('&')
+                            where l.StartsWith("url=", StringComparison.CurrentCultureIgnoreCase)
+                            let url = Uri.UnescapeDataString(l.Substring(4))
+                            where Uri.IsWellFormedUriString(url, UriKind.Absolute)
+                            select new Uri(url);
+                    }
                 }
                 if (targets == null || !targets.Any())
                     return "URLがありませんでした";
@@ -85,7 +91,7 @@ namespace Launcher
                     {
                         try
                         {
-                            System.Diagnostics.Process.Start(target.ToString());
+                            hasError = !await Windows.System.Launcher.LaunchUriAsync(target);
                         }
                         catch
                         {
@@ -94,11 +100,13 @@ namespace Launcher
                     }
                     if (hasError)
                         return "ブラウザの起動に失敗しました";
+                    return null;
                 }
                 else
                     return "http、https以外のプロトコルが検知されました";
             }
-            return null;
+            else
+                return "引数がURIとして認識できませんでした";
 
         }
     }

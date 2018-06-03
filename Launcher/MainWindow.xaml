@@ -5,34 +5,62 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
         xmlns:local="clr-namespace:Launcher"
         mc:Ignorable="d" 
+        Width="400"
+        Height="200"
         Title="RedirectToDefaultBrowser"
-        SizeToContent="WidthAndHeight" ResizeMode="NoResize">
-    <Grid Margin="16">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="8"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="4"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="4"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="4"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition/>
-            <RowDefinition Height="8"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
-        <Image Grid.RowSpan="8" Source="Resources/Dark256.png" Height="64" Width="64"/>
-        <TextBlock Grid.Column="2" Grid.ColumnSpan="3" FontSize="24">RedirectToDefaultBrowser</TextBlock>
-        <TextBlock Grid.Column="2" Grid.Row="2" FontSize="14">Version</TextBlock>
-        <TextBlock Grid.Column="4" Grid.Row="2" x:Name="vText" FontSize="14"/>
-        <TextBlock Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="4" FontSize="14" >
+        ResizeMode="NoResize"
+        DataContext="{Binding Mode=OneWay, RelativeSource={RelativeSource Self}}">
+    <TabControl Margin="4">
+        <TabItem Header="History">
+            <Grid Margin="4">
+                <Grid.ColumnDefinitions>
+                    
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="4"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="4"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="前回起動時のURI"/>
+                <TextBox x:Name="UrlBox" Grid.Row="2" TextWrapping="Wrap" IsReadOnly="True" IsEnabled="{Binding HasLastData}"/>
+                <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Content="クリップボードにコピー" Margin="0,0,8,0" Click="Copy_Clicked" IsEnabled="{Binding HasLastData}"/>
+                    <Button Content="デフォルトブラウザで開く" Margin="0,0,8,0" Click="OpenDefault_Clicked" IsEnabled="{Binding HasLastData}"/>
+                    <Button Content="Edgeで開く" Click="OpenEdge_Clicked" IsEnabled="{Binding HasLastData}"/>
+                </StackPanel>
+            </Grid>
+        </TabItem>
+        <TabItem Header="About This App">
+            <Grid Margin="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="8"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="4"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="4"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="4"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="8"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Image Grid.RowSpan="8" Source="Resources/Dark256.png" Height="64" Width="64"/>
+                <TextBlock Grid.Column="2" Grid.ColumnSpan="3" FontSize="24">RedirectToDefaultBrowser</TextBlock>
+                <TextBlock Grid.Column="2" Grid.Row="2" FontSize="14">Version</TextBlock>
+                <TextBlock Grid.Column="4" Grid.Row="2" x:Name="vText" FontSize="14"/>
+                <TextBlock Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="4" FontSize="14" >
             <Hyperlink RequestNavigate="Link_Clicked" NavigateUri="https://jukusui.github.io/Product/R2DB/">https://jukusui.github.io/Product/R2DB/</Hyperlink>
-        </TextBlock>
-        <TextBlock Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="7" FontSize="12" HorizontalAlignment="Right">©Jukusui 2018</TextBlock>
+                </TextBlock>
+                <TextBlock Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="7" FontSize="12" HorizontalAlignment="Right">©Jukusui 2018</TextBlock>
 
-    </Grid>
+            </Grid>
+        </TabItem>
+    </TabControl>
 </Window>

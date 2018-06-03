@@ -22,11 +22,15 @@ namespace Launcher
     {
         public MainWindow()
         {
-            InitializeComponent();
 
+            InitializeComponent();
+            UrlBox.Text = LastURL;
             vText.Text = typeof(Launcher).Assembly.GetName().Version.ToString();
 
         }
+
+        public string LastURL { get; } = Properties.Settings.Default.LastURL;
+        public bool HasLastData { get => !string.IsNullOrWhiteSpace(LastURL); }
 
         private void Link_Clicked(object sender, RequestNavigateEventArgs e)
         {
@@ -34,6 +38,55 @@ namespace Launcher
             {
                 System.Diagnostics.Process.Start(hyperlink.NavigateUri.AbsoluteUri);
             }
+        }
+
+        private async void OpenDefault_Clicked(object sender, RoutedEventArgs e)
+        {
+            var btn = (Button)sender;
+            string message = null;
+            btn.IsEnabled = false;
+            try
+            {
+                message = await Launcher.Launch(LastURL);
+            }
+            catch (Exception ex)
+            {
+                message = $"予期せぬエラー\n{ex}";
+            }
+            finally
+            {
+                btn.IsEnabled = true;
+            }
+            if (message != null)
+                MessageBox.Show("ブラウザを開けませんでした\n\n" + message, Launcher.AppName, MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+
+        private async void OpenEdge_Clicked(object sender, RoutedEventArgs e)
+        {
+            var btn = (Button)sender;
+            btn.IsEnabled = false;
+            try
+            {
+                var uri = new Uri(LastURL);
+                var opt = new Windows.System.LauncherOptions()
+                {
+                    TargetApplicationPackageFamilyName = "Microsoft.MicrosoftEdge_8wekyb3d8bbwe"
+                };
+                await Windows.System.Launcher.LaunchUriAsync(uri, opt);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Edgeを開けませんでした\n\n予期せぬエラー\n{ex}", Launcher.AppName, MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            finally
+            {
+                btn.IsEnabled = true;
+            }
+        }
+
+        private void Copy_Clicked(object sender, RoutedEventArgs e)
+        {
+            Clipboard.SetText(LastURL);
         }
     }
 }
