@@ -34,5 +34,16 @@ namespace Launcher.Properties {
                 this["LastURL"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public RedirectSetting[] Redirects {
+            get {
+                return ((RedirectSetting[])(this["Redirects"]));
+            }
+            set {
+                this["Redirects"] = value;
+            }
+        }
     }
 }

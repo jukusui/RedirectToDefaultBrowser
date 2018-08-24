@@ -1,0 +1,4 @@
+^https?://www\.bing\.com/search\?(|.*&)q=(.*?)(&.*$|$)
+
+https://www.google.com/search?q=$2
+https://search.yahoo.co.jp/search?q=$2

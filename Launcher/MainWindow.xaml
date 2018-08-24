@@ -4,17 +4,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
         xmlns:local="clr-namespace:Launcher"
+        xmlns:Converters="clr-namespace:Launcher.Converters"
         mc:Ignorable="d" 
         Width="400"
         Height="200"
         Title="RedirectToDefaultBrowser"
         ResizeMode="NoResize"
         DataContext="{Binding Mode=OneWay, RelativeSource={RelativeSource Self}}">
+    <Window.Resources>
+        <Converters:IsNotNullConverter x:Key="IsNotNullConverter"/>
+        <Converters:TextSelectConverter x:Key="TextSelectConverter" Splitter="|"/>
+    </Window.Resources>
     <TabControl Margin="4">
         <TabItem Header="History">
             <Grid Margin="4">
                 <Grid.ColumnDefinitions>
-                    
+
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
@@ -30,6 +35,53 @@
                     <Button Content="デフォルトブラウザで開く" Margin="0,0,8,0" Click="OpenDefault_Clicked" IsEnabled="{Binding HasLastData}"/>
                     <Button Content="Edgeで開く" Click="OpenEdge_Clicked" IsEnabled="{Binding HasLastData}"/>
                 </StackPanel>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Redirect">
+            <Grid Margin="4">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="4"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="4"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <ListBox x:Name="RedirectList" ItemsSource="{Binding Redirects, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="4"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding Title}"/>
+                                <TextBlock Grid.Column="2"
+                                    Text="{Binding Enable,ConverterParameter=ON|OFF,Converter={StaticResource TextSelectConverter}}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <StackPanel Grid.Row="2"
+                            HorizontalAlignment="Center"
+                            Orientation="Horizontal"
+                            DataContext="{Binding SelectedItem,ElementName=RedirectList}">
+                    <Button Margin="0,0,8,0" Click="Redirect_Add_Clicked">Add</Button>
+                    <Button Margin="8,0,0,0" Click="Redirect_Up_Clicked" IsEnabled="{Binding Converter={StaticResource IsNotNullConverter}}">⬆</Button>
+                    <Button Margin="8,0,0,0" Click="Redirect_Down_Clicked" IsEnabled="{Binding Converter={StaticResource IsNotNullConverter}}">⬇</Button>
+                    <Button Margin="8,0,0,0" Click="Redirect_Edit_Clicked" IsEnabled="{Binding Converter={StaticResource IsNotNullConverter}}">Edit</Button>
+                    <Button Margin="8,0,0,0" Click="Redirect_Remove_Clicked" IsEnabled="{Binding Converter={StaticResource IsNotNullConverter}}">Remove</Button>
+                    <Button Margin="8,0,0,0" Click="Redirect_Turn_Clicked"
+                            Width="48" HorizontalContentAlignment="Center"
+                            IsEnabled="{Binding Converter={StaticResource IsNotNullConverter}}"
+                            Content="{Binding Enable,ConverterParameter=TurnOFF|TurnON,Converter={StaticResource TextSelectConverter},FallbackValue=TurnON}"></Button>
+                </StackPanel>
+
             </Grid>
         </TabItem>
         <TabItem Header="About This App">
@@ -56,7 +108,7 @@
                 <TextBlock Grid.Column="2" Grid.Row="2" FontSize="14">Version</TextBlock>
                 <TextBlock Grid.Column="4" Grid.Row="2" x:Name="vText" FontSize="14"/>
                 <TextBlock Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="4" FontSize="14" >
-            <Hyperlink RequestNavigate="Link_Clicked" NavigateUri="https://jukusui.github.io/Product/R2DB/">https://jukusui.github.io/Product/R2DB/</Hyperlink>
+                    <Hyperlink RequestNavigate="Link_Clicked" NavigateUri="https://jukusui.github.io/Product/R2DB/">https://jukusui.github.io/Product/R2DB/</Hyperlink>
                 </TextBlock>
                 <TextBlock Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="7" FontSize="12" HorizontalAlignment="Right">©Jukusui 2018</TextBlock>
 

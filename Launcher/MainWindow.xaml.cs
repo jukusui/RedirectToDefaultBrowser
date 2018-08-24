@@ -1,17 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Launcher
 {
@@ -28,7 +20,7 @@ namespace Launcher
             vText.Text = typeof(Launcher).Assembly.GetName().Version.ToString();
 
         }
-
+        #region History
         public string LastURL { get; } = Properties.Settings.Default.LastURL;
         public bool HasLastData { get => !string.IsNullOrWhiteSpace(LastURL); }
 
@@ -87,6 +79,65 @@ namespace Launcher
         private void Copy_Clicked(object sender, RoutedEventArgs e)
         {
             Clipboard.SetText(LastURL);
+        }
+
+        #endregion
+
+        #region Redirect
+        public IList<RedirectSetting> Redirects { get; } = Redirect.Instance.Redirects;
+
+        private void Redirect_Add_Clicked(object sender, RoutedEventArgs e)
+        {
+            var win = new RedirectInputWindow(Redirects);
+            win.ShowDialog();
+        }
+        #endregion
+
+        private void Redirect_Edit_Clicked(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button btn && btn.DataContext != null && btn.DataContext is RedirectSetting target)
+            {
+                var win = new RedirectInputWindow(target);
+                win.ShowDialog();
+            }
+        }
+
+        private void Redirect_Remove_Clicked(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button btn && btn.DataContext != null && btn.DataContext is RedirectSetting target)
+                Redirects.Remove(target);
+        }
+
+        private void Redirect_Turn_Clicked(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button btn && btn.DataContext != null && btn.DataContext is RedirectSetting target)
+                target.Enable ^= true;
+        }
+
+        private void Redirect_Up_Clicked(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button btn && btn.DataContext != null && btn.DataContext is RedirectSetting target)
+            {
+                var index = Redirects.IndexOf(target);
+                Redirects.Remove(target);
+                if (index == 0)
+                    Redirects.Add(target);
+                else
+                    Redirects.Insert(index - 1, target);
+            }
+        }
+
+        private void Redirect_Down_Clicked(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button btn && btn.DataContext != null && btn.DataContext is RedirectSetting target)
+            {
+                var index = Redirects.IndexOf(target);
+                Redirects.Remove(target);
+                if (index == Redirects.Count)
+                    Redirects.Insert(0, target);
+                else
+                    Redirects.Insert(index + 1, target);
+            }
         }
     }
 }
