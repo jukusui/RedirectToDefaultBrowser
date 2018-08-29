@@ -1,9 +1,11 @@
-﻿using Notify;
+﻿using Launcher.Ex;
+using Notify;
 using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Launcher
 {
@@ -77,5 +79,33 @@ namespace Launcher
         public string Input { get => input; set => OnPropertyChanged(ref input, value); }
         private string output = "";
         public string Output { get => output; set => OnPropertyChanged(ref output, value); }
+
+        public Uri Apply(Uri uri)
+        {
+            if (!enable) return uri;
+            var str = uri.AbsoluteUri;
+            try
+            {
+                var strRes = Regex.Replace(str, input, output);
+                if (Uri.TryCreate(strRes, UriKind.Absolute, out Uri res))
+                    return Opener.VaridateUri(res);
+                else
+                    throw new NotUrlException();
+            }
+            catch (Exception ex)
+            {
+                throw new RedirectException(this, ex);
+            }
+        }
+
+    }
+
+    public class RedirectException : Exception
+    {
+        public RedirectException(RedirectSetting setting, Exception innerException) :
+            base(
+                $"{string.Format(Properties.ExResources.ExRedirect, setting.Title)}\n{innerException.Message}",
+                innerException)
+        { }
     }
 }

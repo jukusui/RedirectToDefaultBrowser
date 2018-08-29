@@ -3,8 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:Launcher"
         xmlns:Converters="clr-namespace:Launcher.Converters"
+        xmlns:prop="clr-namespace:Launcher.Properties"
         mc:Ignorable="d" 
         Width="400"
         Height="200"
@@ -16,7 +18,7 @@
         <Converters:TextSelectConverter x:Key="TextSelectConverter" Splitter="|"/>
     </Window.Resources>
     <TabControl Margin="4">
-        <TabItem Header="History">
+        <TabItem Header="{x:Static prop:Resources.History}">
             <Grid Margin="4">
                 <Grid.ColumnDefinitions>
 
@@ -28,25 +30,30 @@
                     <RowDefinition Height="4"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="前回起動時のURI"/>
+                <TextBlock Text="{x:Static prop:Resources.LastURL}"/>
                 <TextBox x:Name="UrlBox" Grid.Row="2" TextWrapping="Wrap" IsReadOnly="True" IsEnabled="{Binding HasLastData}"/>
-                <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button Content="クリップボードにコピー" Margin="0,0,8,0" Click="Copy_Clicked" IsEnabled="{Binding HasLastData}"/>
-                    <Button Content="デフォルトブラウザで開く" Margin="0,0,8,0" Click="OpenDefault_Clicked" IsEnabled="{Binding HasLastData}"/>
-                    <Button Content="Edgeで開く" Click="OpenEdge_Clicked" IsEnabled="{Binding HasLastData}"/>
-                </StackPanel>
+                <WrapPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Content="{x:Static prop:Resources.CopyToClipboard}" Margin="0,0,8,0" Click="Copy_Clicked" IsEnabled="{Binding HasLastData}"/>
+                    <Button Content="{x:Static prop:Resources.OpenWithDefaultBrowser}" Margin="0,0,8,0" Click="OpenDefault_Clicked" IsEnabled="{Binding HasLastData}"/>
+                    <!--<Button Content="Edgeで開く" Margin="0,0,8,0" Click="OpenEdge_Clicked" IsEnabled="{Binding HasLastData}"/>-->
+                    <Button Content="{x:Static prop:Resources.OpenWithEdge}" Click="OpenRaw_Clicked" IsEnabled="{Binding HasLastData}"/>
+                </WrapPanel>
             </Grid>
         </TabItem>
-        <TabItem Header="Redirect">
+        <TabItem Header="{x:Static prop:Resources.Redirect}">
             <Grid Margin="4">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="4"/>
                     <RowDefinition/>
                     <RowDefinition Height="4"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="4"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-                <ListBox x:Name="RedirectList" ItemsSource="{Binding Redirects, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}">
+                <TextBlock Text="{x:Static prop:Resources.UsedRegExesForRedirects}"/>
+                <ListBox x:Name="RedirectList" Grid.Row="2"
+                         ItemsSource="{Binding Redirects, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}">
                     <ListBox.ItemContainerStyle>
                         <Style TargetType="ListBoxItem">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -67,24 +74,48 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-                <StackPanel Grid.Row="2"
+                <StackPanel Grid.Row="4"
                             HorizontalAlignment="Center"
                             Orientation="Horizontal"
                             DataContext="{Binding SelectedItem,ElementName=RedirectList}">
-                    <Button Margin="0,0,8,0" Click="Redirect_Add_Clicked">Add</Button>
-                    <Button Margin="8,0,0,0" Click="Redirect_Up_Clicked" IsEnabled="{Binding Converter={StaticResource IsNotNullConverter}}">⬆</Button>
-                    <Button Margin="8,0,0,0" Click="Redirect_Down_Clicked" IsEnabled="{Binding Converter={StaticResource IsNotNullConverter}}">⬇</Button>
-                    <Button Margin="8,0,0,0" Click="Redirect_Edit_Clicked" IsEnabled="{Binding Converter={StaticResource IsNotNullConverter}}">Edit</Button>
-                    <Button Margin="8,0,0,0" Click="Redirect_Remove_Clicked" IsEnabled="{Binding Converter={StaticResource IsNotNullConverter}}">Remove</Button>
+                    <Button Content="{x:Static prop:Resources.Add}" Margin="0,0,8,0" Click="Redirect_Add_Clicked"/>
+                    <Button Content="⬆" Margin="8,0,0,0" Click="Redirect_Up_Clicked" IsEnabled="{Binding Converter={StaticResource IsNotNullConverter}}"/>
+                    <Button Content="⬇" Margin="8,0,0,0" Click="Redirect_Down_Clicked" IsEnabled="{Binding Converter={StaticResource IsNotNullConverter}}"/>
+                    <Button Content="{x:Static prop:Resources.Edit}" Margin="8,0,0,0" Click="Redirect_Edit_Clicked" IsEnabled="{Binding Converter={StaticResource IsNotNullConverter}}"/>
+                    <Button Content="{x:Static prop:Resources.Remove}" Margin="8,0,0,0" Click="Redirect_Remove_Clicked" IsEnabled="{Binding Converter={StaticResource IsNotNullConverter}}"/>
                     <Button Margin="8,0,0,0" Click="Redirect_Turn_Clicked"
                             Width="48" HorizontalContentAlignment="Center"
-                            IsEnabled="{Binding Converter={StaticResource IsNotNullConverter}}"
-                            Content="{Binding Enable,ConverterParameter=TurnOFF|TurnON,Converter={StaticResource TextSelectConverter},FallbackValue=TurnON}"></Button>
-                </StackPanel>
+                            IsEnabled="{Binding Converter={StaticResource IsNotNullConverter}}">
+                        <Binding Path="Enable"
+                                 Converter="{StaticResource TextSelectConverter}"
+                                 FallbackValue="{x:Static prop:Resources.TurnOn}">
+                            <Binding.ConverterParameter>
+                                <x:Array Type="sys:String">
+                                    <x:Static Member="prop:Resources.TurnOff"></x:Static>
+                                    <x:Static Member="prop:Resources.TurnOn"></x:Static>
+                                </x:Array>
+                            </Binding.ConverterParameter>
 
+                        </Binding>
+                    </Button>
+                </StackPanel>
+                <WrapPanel Grid.Row="6" HorizontalAlignment="Right">
+                    <TextBlock>
+                        <Hyperlink
+                            RequestNavigate="Link_Clicked"
+                            NavigateUri="https://docs.microsoft.com/dotnet/standard/base-types/regular-expression-language-quick-reference#substitutions">
+                            <Run Text="{x:Static prop:Resources.RegExInfo}"/>
+                        </Hyperlink>
+                        <Run Text="/"/>
+                        <Hyperlink RequestNavigate="Link_Clicked" NavigateUri="https://jukusui.github.io/Product/R2DB/">
+                            <Run Text="{x:Static prop:Resources.RegExExample}"/>
+                        </Hyperlink>
+                    </TextBlock>
+                </WrapPanel>
+                
             </Grid>
         </TabItem>
-        <TabItem Header="About This App">
+        <TabItem Header="{x:Static prop:Resources.AboutThisApp}">
             <Grid Margin="4">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"/>

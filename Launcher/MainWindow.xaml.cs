@@ -35,45 +35,28 @@ namespace Launcher
         private async void OpenDefault_Clicked(object sender, RoutedEventArgs e)
         {
             var btn = (Button)sender;
-            string message = null;
             btn.IsEnabled = false;
-            try
-            {
-                message = await Launcher.Launch(LastURL);
-            }
-            catch (Exception ex)
-            {
-                message = $"予期せぬエラー\n{ex}";
-            }
-            finally
-            {
-                btn.IsEnabled = true;
-            }
-            if (message != null)
-                MessageBox.Show("ブラウザを開けませんでした\n\n" + message, Launcher.AppName, MessageBoxButton.OK, MessageBoxImage.Warning);
+            try { await Opener.Open(LastURL); }
+            catch (Exception ex) { Launcher.ShowErrorMsg(ex.Message); }
+            finally { btn.IsEnabled = true; }
         }
 
         private async void OpenEdge_Clicked(object sender, RoutedEventArgs e)
         {
             var btn = (Button)sender;
             btn.IsEnabled = false;
-            try
-            {
-                var uri = new Uri(LastURL);
-                var opt = new Windows.System.LauncherOptions()
-                {
-                    TargetApplicationPackageFamilyName = "Microsoft.MicrosoftEdge_8wekyb3d8bbwe"
-                };
-                await Windows.System.Launcher.LaunchUriAsync(uri, opt);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Edgeを開けませんでした\n\n予期せぬエラー\n{ex}", Launcher.AppName, MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-            finally
-            {
-                btn.IsEnabled = true;
-            }
+            try { await Opener.Open(LastURL, useEdge: true); }
+            catch (Exception ex) { Launcher.ShowErrorMsg(ex.Message); }
+            finally { btn.IsEnabled = true; }
+        }
+
+        private async void OpenRaw_Clicked(object sender, RoutedEventArgs e)
+        {
+            var btn = (Button)sender;
+            btn.IsEnabled = false;
+            try { await Opener.OpenRaw(LastURL); }
+            catch (Exception ex) { Launcher.ShowErrorMsg(ex.Message); }
+            finally { btn.IsEnabled = true; }
         }
 
         private void Copy_Clicked(object sender, RoutedEventArgs e)
