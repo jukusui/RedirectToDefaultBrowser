@@ -25,8 +25,12 @@ namespace Launcher
         {
             if (IsDirty)
             {
+                var toSave = Redirects.ToList();
+                foreach (var redirect in Redirects)
+                    if (redirect.WillRemove)
+                        toSave.Remove(redirect);
                 Properties.Settings.Default.Redirects =
-                    Redirects.ToArray();
+                    toSave.ToArray();
                 Properties.Settings.Default.Save();
             }
         }
@@ -80,9 +84,13 @@ namespace Launcher
         private string output = "";
         public string Output { get => output; set => OnPropertyChanged(ref output, value); }
 
+        [NonSerialized]
+        private bool willRemove = false;
+        public bool WillRemove { get => willRemove; set => OnPropertyChanged(ref willRemove, value); }
+
         public Uri Apply(Uri uri)
         {
-            if (!enable) return uri;
+            if (WillRemove || !enable) return uri;
             var str = uri.AbsoluteUri;
             try
             {

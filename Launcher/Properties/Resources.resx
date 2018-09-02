@@ -142,7 +142,7 @@
     <value>History</value>
   </data>
   <data name="Input" xml:space="preserve">
-    <value>Input</value>
+    <value>Input Pattern</value>
   </data>
   <data name="LastURL" xml:space="preserve">
     <value>Last URL</value>
@@ -154,7 +154,7 @@
     <value>Open With MS Edge</value>
   </data>
   <data name="Output" xml:space="preserve">
-    <value>Output</value>
+    <value>Output Pattern</value>
   </data>
   <data name="Redirect" xml:space="preserve">
     <value>Redirect</value>
@@ -168,11 +168,14 @@
   <data name="Remove" xml:space="preserve">
     <value>Remove</value>
   </data>
+  <data name="Restore" xml:space="preserve">
+    <value>Restore</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
   </data>
   <data name="Test" xml:space="preserve">
-    <value>Test</value>
+    <value>Test Input</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>Title</value>

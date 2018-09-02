@@ -30,9 +30,10 @@ namespace Launcher
                     if (Uri.TryCreate(arg, UriKind.Absolute, out Uri source))
                     {
                         //"?"をスキップ、"&"で分割
+                        if (string.IsNullOrWhiteSpace(source.Query))
+                            yield break;
                         foreach (var query in
-                            source.Query?.Substring(1)?.Split('&') ??
-                            Enumerable.Empty<string>())
+                            source.Query.Substring(1).Split('&'))
                         {
                             if (!query.StartsWith("url=", StringComparison.OrdinalIgnoreCase))
                                 continue;
@@ -106,7 +107,10 @@ namespace Launcher
                         uri = redirect.Apply(uri);
                     return uri;
                 });
-            foreach (var uri in uris)
+            var uriArray = uris.ToArray();
+            if (uriArray.Length == 0)
+                throw new NoUrlException();
+            foreach (var uri in uriArray)
                 if (useEdge)
                     await LaunchEdge(uri);
                 else

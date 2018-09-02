@@ -24,11 +24,11 @@ namespace Launcher
         public string LastURL { get; } = Properties.Settings.Default.LastURL;
         public bool HasLastData { get => !string.IsNullOrWhiteSpace(LastURL); }
 
-        private void Link_Clicked(object sender, RequestNavigateEventArgs e)
+        private async void Link_Clicked(object sender, RequestNavigateEventArgs e)
         {
             if (sender is Hyperlink hyperlink && hyperlink.NavigateUri != null)
             {
-                System.Diagnostics.Process.Start(hyperlink.NavigateUri.AbsoluteUri);
+                await Opener.LaunchDefault(hyperlink.NavigateUri);
             }
         }
 
@@ -37,7 +37,7 @@ namespace Launcher
             var btn = (Button)sender;
             btn.IsEnabled = false;
             try { await Opener.Open(LastURL); }
-            catch (Exception ex) { Launcher.ShowErrorMsg(ex.Message); }
+            catch (Exception ex) { Launcher.ShowErrorMsg(ex); }
             finally { btn.IsEnabled = true; }
         }
 
@@ -46,7 +46,7 @@ namespace Launcher
             var btn = (Button)sender;
             btn.IsEnabled = false;
             try { await Opener.Open(LastURL, useEdge: true); }
-            catch (Exception ex) { Launcher.ShowErrorMsg(ex.Message); }
+            catch (Exception ex) { Launcher.ShowErrorMsg(ex); }
             finally { btn.IsEnabled = true; }
         }
 
@@ -55,7 +55,7 @@ namespace Launcher
             var btn = (Button)sender;
             btn.IsEnabled = false;
             try { await Opener.OpenRaw(LastURL); }
-            catch (Exception ex) { Launcher.ShowErrorMsg(ex.Message); }
+            catch (Exception ex) { Launcher.ShowErrorMsg(ex); }
             finally { btn.IsEnabled = true; }
         }
 
@@ -88,13 +88,13 @@ namespace Launcher
         private void Redirect_Remove_Clicked(object sender, RoutedEventArgs e)
         {
             if (sender is Button btn && btn.DataContext != null && btn.DataContext is RedirectSetting target)
-                Redirects.Remove(target);
+                target.WillRemove ^= true;
         }
 
         private void Redirect_Turn_Clicked(object sender, RoutedEventArgs e)
         {
             if (sender is Button btn && btn.DataContext != null && btn.DataContext is RedirectSetting target)
-                target.Enable ^= true;
+                target.Enable = !target.Enable;
         }
 
         private void Redirect_Up_Clicked(object sender, RoutedEventArgs e)

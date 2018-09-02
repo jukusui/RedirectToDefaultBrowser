@@ -1,7 +1,5 @@
 ﻿using Launcher.Ex;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -14,6 +12,9 @@ namespace Launcher
         [STAThread()]
         public static void Main(string[] args)
         {
+            //System.Globalization.CultureInfo.CurrentCulture =
+            //    System.Globalization.CultureInfo.CurrentUICulture =
+            //    new System.Globalization.CultureInfo("en-us");
             var showWin = true;
             try
             {
@@ -23,7 +24,9 @@ namespace Launcher
             }
             catch (Exception ex)
             {
-                ShowErrorMsg(ex.Message);
+                if (ex is AggregateException aEx)
+                    ex = aEx.InnerException;
+                ShowErrorMsg(ex);
             }
             if (showWin)
             {
@@ -48,9 +51,11 @@ namespace Launcher
             }
         }
 
-        public static void ShowErrorMsg(string message)
+        public static void ShowErrorMsg(Exception ex)
         {
-            MessageBox.Show(message, AppName,
+            if (ex is AggregateException aEx)
+                ex = aEx.InnerException;
+            MessageBox.Show(ex.Message, AppName,
                 MessageBoxButton.OK,
                 MessageBoxImage.Error);
         }

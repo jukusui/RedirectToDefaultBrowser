@@ -133,7 +133,7 @@ namespace Launcher.Properties {
         }
         
         /// <summary>
-        ///   Input に類似しているローカライズされた文字列を検索します。
+        ///   Input Pattern に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Input {
             get {
@@ -169,7 +169,7 @@ namespace Launcher.Properties {
         }
         
         /// <summary>
-        ///   Output に類似しているローカライズされた文字列を検索します。
+        ///   Output Pattern に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Output {
             get {
@@ -214,6 +214,15 @@ namespace Launcher.Properties {
         }
         
         /// <summary>
+        ///   Restore に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Restore {
+            get {
+                return ResourceManager.GetString("Restore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Save に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Save {
@@ -223,7 +232,7 @@ namespace Launcher.Properties {
         }
         
         /// <summary>
-        ///   Test に類似しているローカライズされた文字列を検索します。
+        ///   Test Input に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Test {
             get {

@@ -35,14 +35,17 @@
   <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.props" />
   <PropertyGroup>
     <ProjectGuid>51ad8dcd-3f41-4ae5-8fab-37569313e566</ProjectGuid>
-    <TargetPlatformVersion>10.0.14393.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.14393.0</TargetPlatformMinVersion>
+    <TargetPlatformVersion>10.0.17134.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.17134.0</TargetPlatformMinVersion>
     <DefaultLanguage>ja-JP</DefaultLanguage>
     <PackageCertificateKeyFile>RedirectToDefaultBrowser_StoreKey.pfx</PackageCertificateKeyFile>
     <PackageCertificateThumbprint>3FD18A25EF70687B2541511985F4B507620B8325</PackageCertificateThumbprint>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxBundlePlatforms>neutral</AppxBundlePlatforms>
     <EntryPointProjectUniqueName>..\Launcher\Launcher.csproj</EntryPointProjectUniqueName>
+    <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+    <AppInstallerUpdateFrequency>1</AppInstallerUpdateFrequency>
+    <AppInstallerCheckForUpdateFrequency>OnApplicationRun</AppInstallerCheckForUpdateFrequency>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
     <AppxBundle>Never</AppxBundle>
@@ -205,6 +208,7 @@
     <Content Include="Assets\Wide310x150Logo.scale-400.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
+    <None Include="Package.StoreAssociation.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Package.xml" />

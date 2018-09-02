@@ -8,14 +8,18 @@
         xmlns:Converters="clr-namespace:Launcher.Converters"
         xmlns:prop="clr-namespace:Launcher.Properties"
         mc:Ignorable="d" 
-        Width="400"
+        Width="500"
         Height="200"
         Title="RedirectToDefaultBrowser"
         ResizeMode="NoResize"
         DataContext="{Binding Mode=OneWay, RelativeSource={RelativeSource Self}}">
     <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <Converters:IsNotNullConverter x:Key="IsNotNullConverter"/>
         <Converters:TextSelectConverter x:Key="TextSelectConverter" Splitter="|"/>
+        <Style TargetType="Button">
+            <Setter Property="MinWidth" Value="48"/>
+        </Style>
     </Window.Resources>
     <TabControl Margin="4">
         <TabItem Header="{x:Static prop:Resources.History}">
@@ -70,11 +74,15 @@
                                 <TextBlock Text="{Binding Title}"/>
                                 <TextBlock Grid.Column="2"
                                     Text="{Binding Enable,ConverterParameter=ON|OFF,Converter={StaticResource TextSelectConverter}}"/>
+                                <Rectangle
+                                    Grid.ColumnSpan="3" Height="2" HorizontalAlignment="Stretch" VerticalAlignment="Center"
+                                    Fill="Red" RadiusX="1" RadiusY="1"
+                                    Visibility="{Binding WillRemove, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                             </Grid>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-                <StackPanel Grid.Row="4"
+                <WrapPanel Grid.Row="4"
                             HorizontalAlignment="Center"
                             Orientation="Horizontal"
                             DataContext="{Binding SelectedItem,ElementName=RedirectList}">
@@ -82,9 +90,21 @@
                     <Button Content="⬆" Margin="8,0,0,0" Click="Redirect_Up_Clicked" IsEnabled="{Binding Converter={StaticResource IsNotNullConverter}}"/>
                     <Button Content="⬇" Margin="8,0,0,0" Click="Redirect_Down_Clicked" IsEnabled="{Binding Converter={StaticResource IsNotNullConverter}}"/>
                     <Button Content="{x:Static prop:Resources.Edit}" Margin="8,0,0,0" Click="Redirect_Edit_Clicked" IsEnabled="{Binding Converter={StaticResource IsNotNullConverter}}"/>
-                    <Button Content="{x:Static prop:Resources.Remove}" Margin="8,0,0,0" Click="Redirect_Remove_Clicked" IsEnabled="{Binding Converter={StaticResource IsNotNullConverter}}"/>
+                    <Button Margin="8,0,0,0" Click="Redirect_Remove_Clicked" IsEnabled="{Binding Converter={StaticResource IsNotNullConverter}}">
+                        <Binding Path="WillRemove"
+                                 Converter="{StaticResource TextSelectConverter}"
+                                 FallbackValue="{x:Static prop:Resources.Remove}">
+                            <Binding.ConverterParameter>
+                                <x:Array Type="sys:String">
+                                    <x:Static Member="prop:Resources.Restore"></x:Static>
+                                    <x:Static Member="prop:Resources.Remove"></x:Static>
+                                </x:Array>
+                            </Binding.ConverterParameter>
+
+                        </Binding>
+                    </Button>
                     <Button Margin="8,0,0,0" Click="Redirect_Turn_Clicked"
-                            Width="48" HorizontalContentAlignment="Center"
+                            HorizontalContentAlignment="Center"
                             IsEnabled="{Binding Converter={StaticResource IsNotNullConverter}}">
                         <Binding Path="Enable"
                                  Converter="{StaticResource TextSelectConverter}"
@@ -98,7 +118,7 @@
 
                         </Binding>
                     </Button>
-                </StackPanel>
+                </WrapPanel>
                 <WrapPanel Grid.Row="6" HorizontalAlignment="Right">
                     <TextBlock>
                         <Hyperlink
