@@ -136,9 +136,21 @@
     <value>Unknown Error</value>
   </data>
   <data name="ExMsEdgeScheme" xml:space="preserve">
-    <value>Cannot Recognize This "microsoft-edge" Scheme</value>
+    <value>This URL is Not "microsoft-edge" Scheme</value>
   </data>
   <data name="ExRedirect" xml:space="preserve">
     <value>An Error Occurred When Applying "{0}"</value>
+  </data>
+  <data name="QueryStatusAppNotInstalled" xml:space="preserve">
+    <value>Browser is Not Installed</value>
+  </data>
+  <data name="QueryStatusAppUnavailable" xml:space="preserve">
+    <value>Browser is Unavailable Currently</value>
+  </data>
+  <data name="QueryStatusNotSupported" xml:space="preserve">
+    <value>Browser doesn't Support This URL</value>
+  </data>
+  <data name="QueryStatusUnknown" xml:space="preserve">
+    <value>Unknown Error</value>
   </data>
 </root>

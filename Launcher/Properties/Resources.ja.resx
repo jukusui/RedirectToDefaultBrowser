@@ -132,6 +132,9 @@
   <data name="CopyToClipboard" xml:space="preserve">
     <value>クリップボードにコピー</value>
   </data>
+  <data name="CopyURL" xml:space="preserve">
+    <value>開こうとしたURLをクリップボードにコピーしますか?</value>
+  </data>
   <data name="Edit" xml:space="preserve">
     <value>編集</value>
   </data>

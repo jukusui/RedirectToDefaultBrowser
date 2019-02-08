@@ -24,14 +24,13 @@ namespace Launcher
             }
             catch (Exception ex)
             {
-                if (ex is AggregateException aEx)
-                    ex = aEx.InnerException;
                 ShowErrorMsg(ex);
             }
             if (showWin)
             {
                 var win = new MainWindow();
                 win.ShowDialog();
+                Config.Save();
             }
         }
 
@@ -42,8 +41,8 @@ namespace Launcher
                 case 0:
                     return true;
                 case 1:
-                    Properties.Settings.Default.LastURL = args[0];
-                    Properties.Settings.Default.Save();
+                    Config.LastUrl = args[0];
+                    Config.Save();
                     await Opener.Open(args[0]);
                     return false;
                 default:
@@ -53,11 +52,24 @@ namespace Launcher
 
         public static void ShowErrorMsg(Exception ex)
         {
-            if (ex is AggregateException aEx)
+            if (ex is AggregateException aEx && aEx.InnerException != null)
                 ex = aEx.InnerException;
-            MessageBox.Show(ex.Message, AppName,
-                MessageBoxButton.OK,
-                MessageBoxImage.Error);
+            IUri uri =
+                ex as IUri ?? ex.InnerException as IUri;
+            IText text =
+                ex as IText  ?? ex.InnerException as IText;
+            var value = uri?.Uri?.AbsoluteUri ?? text?.Text;
+            if (value != null)
+            {
+                if (MessageBox.Show(ex.Message + "\n\n" + Properties.Resources.CopyURL, AppName,
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Error) == MessageBoxResult.Yes)
+                    Clipboard.SetText(value);
+            }
+            else
+                MessageBox.Show(ex.Message, AppName,
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Launcher.Ex;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -48,7 +49,7 @@ namespace Launcher
                 }
             }
             else
-                throw new MSEdgeSchemeException();
+                throw new NotMSEdgeSchemeException(arg);
         }
 
         public static Uri VaridateUri(Uri uri)
@@ -59,7 +60,19 @@ namespace Launcher
                 case "https":
                     return uri;
                 default:
-                    throw new SchemeException();
+                    throw new SchemeException(uri);
+            }
+        }
+
+        public static bool CheckUri(Uri uri)
+        {
+            switch (uri.Scheme)
+            {
+                case "http":
+                case "https":
+                    return true;
+                default:
+                    return false;
             }
         }
 
@@ -71,8 +84,16 @@ namespace Launcher
 
         public static async Task LaunchDefault(Uri uri)
         {
-            if (!await Windows.System.Launcher.LaunchUriAsync(uri))
-                throw new BrowserException();
+            var status = await Windows.System.Launcher.QueryUriSupportAsync(
+                uri, Windows.System.LaunchQuerySupportType.Uri);
+            switch (status)
+            {
+                case Windows.System.LaunchQuerySupportStatus.Available:
+                    if (await Windows.System.Launcher.LaunchUriAsync(uri))
+                        return;
+                    break;
+            }
+            throw BrowserException.FromQueryStatus(status, uri);
         }
 
         public static async Task LaunchEdge(Uri uri)
@@ -81,8 +102,17 @@ namespace Launcher
             {
                 TargetApplicationPackageFamilyName = "Microsoft.MicrosoftEdge_8wekyb3d8bbwe"
             };
-            if (!await Windows.System.Launcher.LaunchUriAsync(uri, opt))
-                throw new BrowserException();
+            var status = await Windows.System.Launcher.QueryUriSupportAsync(
+                uri, Windows.System.LaunchQuerySupportType.Uri,
+                opt.TargetApplicationPackageFamilyName);
+            switch (status)
+            {
+                case Windows.System.LaunchQuerySupportStatus.Available:
+                    if (await Windows.System.Launcher.LaunchUriAsync(uri, opt))
+                        return;
+                    break;
+            }
+            throw BrowserException.FromQueryStatus(status, uri);
         }
 
         public static async Task OpenRaw(string arg)
@@ -91,9 +121,9 @@ namespace Launcher
                 if (Uri.TryCreate(arg, UriKind.Absolute, out Uri uri))
                     await LaunchEdge(uri);
                 else
-                    throw new NotUrlException();
+                    throw new NotUrlException(arg);
             else
-                throw new MSEdgeSchemeException();
+                throw new NotMSEdgeSchemeException(arg);
         }
 
         public static async Task Open(
@@ -103,13 +133,13 @@ namespace Launcher
             if (useRedirect)
                 uris = uris.Select(uri =>
                 {
-                    foreach (var redirect in Redirect.Instance.Redirects)
+                    foreach (var redirect in Config.Redirect.Redirects)
                         uri = redirect.Apply(uri);
                     return uri;
                 });
             var uriArray = uris.ToArray();
             if (uriArray.Length == 0)
-                throw new NoUrlException();
+                throw new NoUrlException(arg);
             foreach (var uri in uriArray)
                 if (useEdge)
                     await LaunchEdge(uri);

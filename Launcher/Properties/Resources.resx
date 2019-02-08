@@ -132,6 +132,9 @@
   <data name="CopyToClipboard" xml:space="preserve">
     <value>Copy To Clipboard</value>
   </data>
+  <data name="CopyURL" xml:space="preserve">
+    <value>Do you want to copy the URL to the Clipboard?</value>
+  </data>
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
   </data>

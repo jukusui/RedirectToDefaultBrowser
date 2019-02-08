@@ -136,9 +136,21 @@
     <value>予期せぬエラー</value>
   </data>
   <data name="ExMsEdgeScheme" xml:space="preserve">
-    <value>認識できない"microsoft-edge"スキームのフォーマットです</value>
+    <value>このURLは"microsoft-edge"スキームとして認識できませんでした</value>
   </data>
   <data name="ExRedirect" xml:space="preserve">
     <value>"{0}"の適用時にエラーが発生しました</value>
+  </data>
+  <data name="QueryStatusAppNotInstalled" xml:space="preserve">
+    <value>ブラウザがインストールされていません</value>
+  </data>
+  <data name="QueryStatusAppUnavailable" xml:space="preserve">
+    <value>ブラウザが一時的に使用不可能です</value>
+  </data>
+  <data name="QueryStatusNotSupported" xml:space="preserve">
+    <value>ブラウザがこのURLをサポートしていません</value>
+  </data>
+  <data name="QueryStatusUnknown" xml:space="preserve">
+    <value>不明なエラー</value>
   </data>
 </root>

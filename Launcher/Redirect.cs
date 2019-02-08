@@ -9,64 +9,73 @@ using System.Text.RegularExpressions;
 
 namespace Launcher
 {
-    class Redirect
+    public class Redirect
 
     {
-        private Redirect()
+        public Redirect(RedirectSetting[] settings)
         {
             Redirects = new ObservableCollection<RedirectSetting>(
-                Properties.Settings.Default.Redirects ?? Enumerable.Empty<RedirectSetting>());
-            Redirects.CollectionChanged += RedirectsCahnged;
-            foreach (var redirect in Redirects)
-                redirect.PropertyChanged += RedirectCahnged;
+                settings ?? Enumerable.Empty<RedirectSetting>());
         }
 
         ~Redirect()
         {
-            if (IsDirty)
+
+        }
+
+        public bool Attached { get; private set; }
+        private RedirectSetting[] AttachedItems { get; set; }
+
+        public void Attach()
+        {
+            if (!Attached)
             {
-                var toSave = Redirects.ToList();
-                foreach (var redirect in Redirects)
-                    if (redirect.WillRemove)
-                        toSave.Remove(redirect);
-                Properties.Settings.Default.Redirects =
-                    toSave.ToArray();
-                Properties.Settings.Default.Save();
+                Attached = true;
+                Redirects.CollectionChanged += RedirectsCahnged;
+                AttachedItems = Redirects.ToArray();
+                foreach (var redirect in AttachedItems)
+                    redirect.PropertyChanged += RedirectCahnged;
+                IsDirty = false;
             }
+        }
+
+        public void Detach()
+        {
+            if (Attached)
+            {
+                Redirects.CollectionChanged += RedirectsCahnged;
+                AttachedItems = Redirects.ToArray();
+                foreach (var redirect in AttachedItems)
+                    redirect.PropertyChanged += RedirectCahnged;
+                AttachedItems = null;
+                Attached = false;
+            }
+        }
+        
+        public void Refresh()
+        {
+            Detach();
+            foreach (var redirect in Redirects.ToList())
+            {
+                if (redirect.WillRemove)
+                    Redirects.Remove(redirect);
+            }
+            Attach();
         }
 
         private void RedirectCahnged(object sender, PropertyChangedEventArgs e)
         {
-            Redirects.CollectionChanged -= RedirectsCahnged;
-            foreach (var redirect in Redirects)
-                redirect.PropertyChanged -= RedirectCahnged;
+            Detach();
             IsDirty = true;
         }
 
         private void RedirectsCahnged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            Redirects.CollectionChanged -= RedirectsCahnged;
-            foreach (var redirect in Redirects)
-                redirect.PropertyChanged -= RedirectCahnged;
-            switch (e.Action)
-            {
-                case NotifyCollectionChangedAction.Remove:
-                case NotifyCollectionChangedAction.Replace:
-                case NotifyCollectionChangedAction.Reset:
-                    foreach (var redirect in e.OldItems)
-                        ((RedirectSetting)redirect).PropertyChanged -= RedirectCahnged;
-                    break;
-            }
+            Detach();
             IsDirty = true;
         }
 
-        private bool IsDirty { get; set; } = false;
-
-        private static Redirect instance = null;
-        public static Redirect Instance
-        {
-            get => instance ?? (instance = new Redirect());
-        }
+        public bool IsDirty { get; set; } = false;
 
         public ObservableCollection<RedirectSetting> Redirects { get; }
 
@@ -98,7 +107,7 @@ namespace Launcher
                 if (Uri.TryCreate(strRes, UriKind.Absolute, out Uri res))
                     return Opener.VaridateUri(res);
                 else
-                    throw new NotUrlException();
+                    throw new NotUrlException(strRes);
             }
             catch (Exception ex)
             {

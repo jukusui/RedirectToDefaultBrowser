@@ -106,6 +106,15 @@ namespace Launcher.Properties {
         }
         
         /// <summary>
+        ///   Do you want to copy the URL to the Clipboard? に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string CopyURL {
+            get {
+                return ResourceManager.GetString("CopyURL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Edit に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Edit {

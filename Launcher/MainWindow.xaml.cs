@@ -21,14 +21,16 @@ namespace Launcher
 
         }
         #region History
-        public string LastURL { get; } = Properties.Settings.Default.LastURL;
+
+        public string LastURL { get; } = Config.LastUrl;
         public bool HasLastData { get => !string.IsNullOrWhiteSpace(LastURL); }
 
         private async void Link_Clicked(object sender, RequestNavigateEventArgs e)
         {
             if (sender is Hyperlink hyperlink && hyperlink.NavigateUri != null)
             {
-                await Opener.LaunchDefault(hyperlink.NavigateUri);
+                try { await Opener.LaunchDefault(hyperlink.NavigateUri); }
+                catch (Exception ex) { Launcher.ShowErrorMsg(ex); }
             }
         }
 
@@ -67,7 +69,7 @@ namespace Launcher
         #endregion
 
         #region Redirect
-        public IList<RedirectSetting> Redirects { get; } = Redirect.Instance.Redirects;
+        public IList<RedirectSetting> Redirects { get; } = Config.Redirect.Redirects;
 
         private void Redirect_Add_Clicked(object sender, RoutedEventArgs e)
         {

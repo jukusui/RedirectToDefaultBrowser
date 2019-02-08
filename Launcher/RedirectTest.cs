@@ -80,7 +80,13 @@ namespace Launcher
 
 
         private bool hasErrors;
-        public bool HasErrors { get => hasErrors; set => OnPropertyChanged(ref hasErrors, value); }
+        public bool HasErrors {
+            get => hasErrors;
+            set {
+                if (OnPropertyChanged(ref hasErrors, value))
+                    ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(null));
+            }
+        }
 
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
 

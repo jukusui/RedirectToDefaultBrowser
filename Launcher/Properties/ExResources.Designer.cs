@@ -79,7 +79,7 @@ namespace Launcher.Properties {
         }
         
         /// <summary>
-        ///   Cannot Recognize This &quot;microsoft-edge&quot; Scheme に類似しているローカライズされた文字列を検索します。
+        ///   This URL is Not &quot;microsoft-edge&quot; Scheme に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string ExMsEdgeScheme {
             get {
@@ -129,6 +129,42 @@ namespace Launcher.Properties {
         public static string ExUnknown {
             get {
                 return ResourceManager.GetString("ExUnknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Browser is Not Installed に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string QueryStatusAppNotInstalled {
+            get {
+                return ResourceManager.GetString("QueryStatusAppNotInstalled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Browser is Unavailable Currently に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string QueryStatusAppUnavailable {
+            get {
+                return ResourceManager.GetString("QueryStatusAppUnavailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Browser doesn&apos;t Support This URL に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string QueryStatusNotSupported {
+            get {
+                return ResourceManager.GetString("QueryStatusNotSupported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Unknown Error に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string QueryStatusUnknown {
+            get {
+                return ResourceManager.GetString("QueryStatusUnknown", resourceCulture);
             }
         }
     }

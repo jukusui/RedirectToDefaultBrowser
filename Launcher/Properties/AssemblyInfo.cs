@@ -7,9 +7,9 @@ using System.Runtime.InteropServices;
 // アセンブリに関連付けられている情報を変更するには、
 // これらの属性値を変更してください。
 [assembly: AssemblyTitle("RedirectToDefaultBrowser")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Redirects ms-edge scheme uri to your default browser")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Jukusui")]
 [assembly: AssemblyProduct("RedirectToDefaultBrowser/Launcher")]
 [assembly: AssemblyCopyright("Jukusui Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
@@ -30,7 +30,7 @@ using System.Runtime.InteropServices;
 //      ビルド番号
 //      Revision
 //
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.1.0.0")]
+[assembly: AssemblyFileVersion("1.1.0.0")]
 [assembly: NeutralResourcesLanguage("en")]
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using Windows.System;
 
 namespace Launcher.Ex
 {
@@ -8,33 +9,93 @@ namespace Launcher.Ex
         internal OpenException(string message) : base(message) { }
     }
 
-    public class UnknownException : OpenException
+    //public class UnknownException : OpenException
+    //{
+    //    public UnknownException() : base(Properties.ExResources.ExUnknown) { }
+    //}
+
+    public class NotUrlException : OpenException, IText
     {
-        public UnknownException() : base(Properties.ExResources.ExUnknown) { }
+        private NotUrlException() : base(Properties.ExResources.ExNotUrl) { }
+
+        public NotUrlException(string text) : this()
+            => Text = text;
+
+        public NotUrlException(string text, string message) : base(Properties.ExResources.ExNotUrl + "\r\n" + message)
+        => Text = text;
+
+        public string Text { get; }
     }
 
-    public class NotUrlException : OpenException
+    public class NoUrlException : OpenException, IText
     {
-        public NotUrlException() : base(Properties.ExResources.ExNotUrl) { }
+        private NoUrlException() : base(Properties.ExResources.ExNoUrl) { }
+
+        public NoUrlException(string text) : this()
+            => Text = text;
+
+        public string Text { get; }
     }
 
-    public class NoUrlException : OpenException
+    public class BrowserException : OpenException, IUri
     {
-        public NoUrlException() : base(Properties.ExResources.ExNoUrl) { }
+        private BrowserException() : base(Properties.ExResources.ExBrowser) { }
+
+        public BrowserException(Uri uri) : this()
+            => Uri = uri;
+
+        public BrowserException(string message) : base(Properties.ExResources.ExBrowser + "\r\n" + message) { }
+
+        public BrowserException(Uri uri, string message) : this(message)
+            => Uri = uri;
+
+        public static BrowserException FromQueryStatus(LaunchQuerySupportStatus status, Uri uri = null)
+        {
+            switch (status)
+            {
+                case LaunchQuerySupportStatus.AppNotInstalled:
+                    return new BrowserException(uri, Properties.ExResources.QueryStatusAppNotInstalled);
+                case LaunchQuerySupportStatus.AppUnavailable:
+                    return new BrowserException(uri, Properties.ExResources.QueryStatusAppUnavailable);
+                case LaunchQuerySupportStatus.NotSupported:
+                    return new BrowserException(uri, Properties.ExResources.QueryStatusNotSupported);
+                case LaunchQuerySupportStatus.Available:
+                case LaunchQuerySupportStatus.Unknown:
+                default:
+                    return new BrowserException(uri, Properties.ExResources.QueryStatusUnknown);
+            }
+        }
+
+        public Uri Uri { get; }
     }
 
-    public class BrowserException : OpenException
+    public class SchemeException : OpenException, IUri
     {
-        public BrowserException() : base(Properties.ExResources.ExBrowser) { }
+        private SchemeException() : base(Properties.ExResources.ExScheme) { }
+
+        public SchemeException(Uri uri) : this()
+            => Uri = uri;
+
+        public Uri Uri { get; }
     }
 
-    public class SchemeException : OpenException
+    public class NotMSEdgeSchemeException : OpenException, IText
     {
-        public SchemeException() : base(Properties.ExResources.ExScheme) { }
+        private NotMSEdgeSchemeException() : base(Properties.ExResources.ExMsEdgeScheme) { }
+
+        public NotMSEdgeSchemeException(string text) : this()
+            => Text = text;
+
+        public string Text { get; }
     }
 
-    public class MSEdgeSchemeException : OpenException
+    public interface IUri
     {
-        public MSEdgeSchemeException() : base(Properties.ExResources.ExMsEdgeScheme) { }
+        Uri Uri { get; }
+    }
+
+    public interface IText
+    {
+        string Text { get; }
     }
 }
