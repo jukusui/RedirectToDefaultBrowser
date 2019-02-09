@@ -13,7 +13,15 @@ namespace Launcher
 
         static Config()
         {
-            ReadConfig();
+            try
+            {
+                ReadConfig();
+            }
+            catch (Exception)
+            {
+                if(Redirect==null)
+                    Redirect = new Redirect(null);
+            }
         }
 
         public static string LastUrl { get; set; }
@@ -56,6 +64,8 @@ namespace Launcher
                 foreach (var file in FindOldConfig())
                     if (ReadOldConfig(file))
                     {
+                        if (Redirect == null)
+                            Redirect = new Redirect(null);
                         Save();
                         load = true;
                         break;
@@ -63,7 +73,7 @@ namespace Launcher
             }
             if (!load)
             {
-                Redirect = new Redirect(Array.Empty<RedirectSetting>());
+                Redirect = new Redirect(null);
                 Save();
             }
 
@@ -90,25 +100,32 @@ namespace Launcher
 
         private static bool ReadOldConfig(FileInfo file)
         {
-            const string settings = "/configuration/userSettings/Launcher.Properties.Settings/";
-            var result = false;
-            var xml = new XmlDocument();
-            using (var stream = file.OpenRead())
-                xml.Load(stream);
-            var lastUrlNodes = xml.SelectNodes(settings + "setting[@name='LastURL']/value");
-            if (lastUrlNodes.Count == 1)
+            try
             {
-                LastUrl = lastUrlNodes[0].InnerText;
-                result = true;
+                var result = false;
+                const string settings = "/configuration/userSettings/Launcher.Properties.Settings/";
+                var xml = new XmlDocument();
+                using (var stream = file.OpenRead())
+                    xml.Load(stream);
+                var lastUrlNodes = xml.SelectNodes(settings + "setting[@name='LastURL']/value");
+                if (lastUrlNodes.Count == 1)
+                {
+                    LastUrl = lastUrlNodes[0].InnerText;
+                    result = true;
+                }
+                var redirectsNodes = xml.SelectNodes(settings + "setting[@name='Redirects']/value");
+                if (redirectsNodes.Count == 1)
+                {
+                    Redirect = new Redirect(
+                        DeserializeRedirectSettings(redirectsNodes[0].InnerXml));
+                    result = true;
+                }
+                return result;
             }
-            var redirectsNodes = xml.SelectNodes(settings + "setting[@name='Redirects']/value");
-            if (redirectsNodes.Count == 1)
+            catch (Exception)
             {
-                Redirect = new Redirect(
-                    DeserializeRedirectSettings(redirectsNodes[0].InnerXml));
-                result = true;
+                return false;
             }
-            return result;
         }
 
         public static void Save()
