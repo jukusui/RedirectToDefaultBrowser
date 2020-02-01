@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Shared;
+using System.Collections.Generic;
 using System.Windows;
 
 namespace Launcher

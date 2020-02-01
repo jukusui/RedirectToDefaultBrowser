@@ -1,0 +1,97 @@
+﻿<Page
+    x:Class="UserInterface.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UserInterface"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:prop="using:Shared.Properties"
+    xmlns:controls="using:UwpControls"
+    mc:Ignorable="d"
+    Background="{ThemeResource SystemControlAcrylicWindowBrush}"
+    RequestedTheme="Dark"
+    >
+    <Grid x:Name="LayoutRoot" VerticalAlignment="Top">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="WindowFocusStates">
+                <VisualState x:Name="WindowFocused"/>
+                <VisualState x:Name="WindowNotFocused">
+                    <VisualState.Setters>
+                        <Setter Target="AppName.Foreground" Value="{ThemeResource SystemControlForegroundChromeDisabledLowBrush}"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Height="{x:Bind TitleBar.Height,Mode=OneWay}">
+            <TextBlock x:Name="AppName"
+                       Text="{x:Bind prop:Resources.AppName}"
+                       Margin="12,0,12,0"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
+                       FontSize="12"
+                       TextAlignment="Left"
+                       TextTrimming="CharacterEllipsis">
+            </TextBlock>
+        </Grid>
+        <!--<Grid Grid.Row="2" Margin="16,0" Padding="8,16,8,8" CornerRadius="8" MinHeight="100">
+            <Grid.Background>
+                <SolidColorBrush Color="{ThemeResource SystemAltHighColor}" Opacity="0.4"/>
+            </Grid.Background>
+            <TextBlock Text="hogehoge"/>
+        </Grid>
+        <Grid Grid.Row="1" Margin="32,8,32,-8" CornerRadius="8"
+              HorizontalAlignment="Left" Padding="12,4">
+            <Grid.Background>
+                <SolidColorBrush Color="{ThemeResource SystemAltHighColor}" Opacity="0.7"/>
+            </Grid.Background>
+            <TextBlock Text="{x:Bind prop:Resources.History}" Style="{ThemeResource SubtitleTextBlockStyle}"/>
+        </Grid>-->
+
+        <StackPanel Grid.Row="1">
+            <StackPanel.Resources>
+                <Style TargetType="controls:GroupBox">
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <SolidColorBrush Color="{ThemeResource SystemAltHighColor}" Opacity="0.4"/>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="HeaderBackground" Value="{ThemeResource SystemControlAltHighAcrylicElementBrush }"/>
+                    <Setter Property="Margin" Value="8,8,8,0"/>
+                    
+                    <Setter Property="HeaderMargin" Value="16,0,0,0"/>
+                    <Setter Property="HeaderCornerRadius" Value="8"/>
+                    <Setter Property="HeaderInset" Value="4,-4"/>
+                    <Setter Property="HeaderBorderBrush" Value="{ThemeResource SystemControlBackgroundBaseHighBrush}"/>
+                    <Setter Property="HeaderBorderThickness" Value="1.5"/>
+
+                    <Setter Property="CornerRadius" Value="8"/>
+                    <Setter Property="Inset" Value="4"/>
+                    <Setter Property="BorderBrush" Value="{ThemeResource SystemControlBackgroundBaseHighBrush}"/>
+                    <Setter Property="BorderThickness" Value="1.5"/>
+                </Style>
+            </StackPanel.Resources>
+            <controls:GroupBox>
+                <controls:GroupBox.Header>
+                    <TextBlock Text="{x:Bind prop:Resources.History}" Style="{ThemeResource SubtitleTextBlockStyle}"/>
+                </controls:GroupBox.Header>
+                <controls:GroupBox.Content>
+                    <TextBlock Text="foovar"/>
+                </controls:GroupBox.Content>
+            </controls:GroupBox>
+            <controls:GroupBox>
+                <controls:GroupBox.Header>
+                    <TextBlock Text="{x:Bind prop:Resources.History}" Style="{ThemeResource SubtitleTextBlockStyle}"/>
+                </controls:GroupBox.Header>
+                <controls:GroupBox.Content>
+                    <TextBlock Text="hogehoge"/>
+                </controls:GroupBox.Content>
+            </controls:GroupBox>
+
+        </StackPanel>
+    </Grid>
+</Page>

@@ -1,7 +1,7 @@
 ﻿using System;
 using Windows.System;
 
-namespace Launcher.Ex
+namespace Shared.Ex
 {
 
     public abstract class OpenException : Exception

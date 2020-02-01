@@ -1,17 +1,23 @@
-﻿using Launcher.Ex;
+﻿using Shared.Ex;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Launcher
+namespace Shared
 {
-    class Opener
+    public class Opener
     {
 
         const string MSEdgeScheme = "microsoft-edge:";
 
+        public enum OpenerAppMode
+        {
+            DefaultBrowser,
+            EdgeLegacy,
+            PickWithUI
+        }
 
 
         public static IEnumerable<Uri> RecognizeArg(string arg)
@@ -96,6 +102,28 @@ namespace Launcher
             throw BrowserException.FromQueryStatus(status, uri);
         }
 
+        public static async Task LaunchWithUI(Uri uri)
+        {
+            var opt = new Windows.System.LauncherOptions
+            {
+                DisplayApplicationPicker = true
+            };
+            opt.UI.InvocationPoint = new Windows.Foundation.Point(0, 0);
+            opt.UI.PreferredPlacement = Windows.UI.Popups.Placement.Below;
+            var status = await Windows.System.Launcher.QueryUriSupportAsync(
+                uri, Windows.System.LaunchQuerySupportType.Uri);
+            switch (status)
+            {
+                case Windows.System.LaunchQuerySupportStatus.Available:
+                    if (await Windows.System.Launcher.LaunchUriAsync(uri, opt))
+                        return;
+                    break;
+            }
+            throw BrowserException.FromQueryStatus(status, uri);
+        }
+
+
+
         public static async Task LaunchEdge(Uri uri)
         {
             var opt = new Windows.System.LauncherOptions()
@@ -119,7 +147,7 @@ namespace Launcher
         {
             if (arg.StartsWith(MSEdgeScheme))
                 if (Uri.TryCreate(arg, UriKind.Absolute, out Uri uri))
-                    await LaunchEdge(uri);
+                    await LaunchWithUI(uri);
                 else
                     throw new NotUrlException(arg);
             else
@@ -127,7 +155,7 @@ namespace Launcher
         }
 
         public static async Task Open(
-            string arg, bool useRedirect = true, bool useEdge = false)
+            string arg, bool useRedirect = true, OpenerAppMode appMode = OpenerAppMode.DefaultBrowser)
         {
             var uris = VaridateUri(RecognizeArg(arg));
             if (useRedirect)
@@ -141,10 +169,18 @@ namespace Launcher
             if (uriArray.Length == 0)
                 throw new NoUrlException(arg);
             foreach (var uri in uriArray)
-                if (useEdge)
-                    await LaunchEdge(uri);
-                else
-                    await LaunchDefault(uri);
+                switch (appMode)
+                {
+                    case OpenerAppMode.DefaultBrowser:
+                        await LaunchDefault(uri);
+                        break;
+                    case OpenerAppMode.EdgeLegacy:
+                        await LaunchEdge(uri);
+                        break;
+                    case OpenerAppMode.PickWithUI:
+                        await LaunchWithUI(uri);
+                        break;
+                }
         }
     }
 }

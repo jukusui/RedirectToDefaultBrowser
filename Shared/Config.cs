@@ -6,7 +6,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using Windows.Storage;
 
-namespace Launcher
+namespace Shared
 {
     public static class Config
     {
@@ -17,11 +17,9 @@ namespace Launcher
             {
                 ReadConfig();
             }
-            catch (Exception)
-            {
-                if(Redirect==null)
-                    Redirect = new Redirect(null);
-            }
+            catch (Exception) { }
+            if (Redirect == null)
+                Redirect = new Redirect(null);
         }
 
         public static string LastUrl { get; set; }
@@ -130,11 +128,15 @@ namespace Launcher
 
         public static void Save()
         {
-            var local = ApplicationData.Current.LocalSettings;
-            local.Values[VerKey] = 1;
-            local.Values[nameof(LastUrl)] = LastUrl;
-            Redirect.Refresh();
-            local.Values[nameof(Redirect)] = SerializeRedirectSettings(Redirect.Redirects.ToArray());
+            try
+            {
+                var local = ApplicationData.Current.LocalSettings;
+                local.Values[VerKey] = 1;
+                local.Values[nameof(LastUrl)] = LastUrl;
+                Redirect.Refresh();
+                local.Values[nameof(Redirect)] = SerializeRedirectSettings(Redirect.Redirects.ToArray());
+            }
+            catch (InvalidOperationException) { }
         }
 
         private static string SerializeRedirectSettings(RedirectSetting[] redirectSettings)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shared;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -47,7 +48,7 @@ namespace Launcher
         {
             var btn = (Button)sender;
             btn.IsEnabled = false;
-            try { await Opener.Open(LastURL, useEdge: true); }
+            try { await Opener.Open(LastURL, appMode: Opener.OpenerAppMode.PickWithUI); }
             catch (Exception ex) { Launcher.ShowErrorMsg(ex); }
             finally { btn.IsEnabled = true; }
         }

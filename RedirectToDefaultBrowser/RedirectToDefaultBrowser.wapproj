@@ -240,6 +240,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Launcher\Launcher.csproj" />
+    <ProjectReference Include="..\UserInterface\UserInterface.csproj" />
   </ItemGroup>
   <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" />
 </Project>

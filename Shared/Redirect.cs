@@ -1,4 +1,4 @@
-﻿using Launcher.Ex;
+﻿using Shared.Ex;
 using Notify;
 using System;
 using System.Collections.ObjectModel;
@@ -7,7 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace Launcher
+namespace Shared
 {
     public class Redirect
 
@@ -51,7 +51,7 @@ namespace Launcher
                 Attached = false;
             }
         }
-        
+
         public void Refresh()
         {
             Detach();

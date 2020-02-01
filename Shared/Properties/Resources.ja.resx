@@ -126,6 +126,12 @@
   <data name="AddRedirect" xml:space="preserve">
     <value>リダイレクトの追加</value>
   </data>
+  <data name="AppName" xml:space="preserve">
+    <value>RedirectToDefaultBrowser</value>
+  </data>
+  <data name="AppName_SP" xml:space="preserve">
+    <value>Redirect to Default Browser</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>キャンセル</value>
   </data>

@@ -6,7 +6,7 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:Launcher"
         xmlns:Converters="clr-namespace:Launcher.Converters"
-        xmlns:prop="clr-namespace:Launcher.Properties"
+        xmlns:prop="clr-namespace:Shared.Properties;assembly=Shared"
         mc:Ignorable="d" 
         Width="500"
         Height="200"

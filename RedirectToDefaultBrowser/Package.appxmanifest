@@ -1,5 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3" IgnorableNamespaces="uap mp rescap uap3">
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"
+  xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
+  IgnorableNamespaces="uap mp rescap uap3">
   <Identity Name="14065Jukusui.RedirectToDefaultBrowser" Publisher="CN=CE542B20-F99F-4D41-B21D-24231B95EEA3" Version="1.1.1.0" />
   <Properties>
     <DisplayName>RedirectToDefaultBrowser</DisplayName>
@@ -25,6 +31,12 @@
           <uap:Protocol Name="microsoft-edge">
             <uap:Logo>Assets\Dark256.png</uap:Logo>
             <uap:DisplayName>RedirectToDefaultBrowser</uap:DisplayName>
+          </uap:Protocol>
+        </uap:Extension>
+        <uap:Extension Category="windows.protocol"  EntryPoint="App" Executable="UserInterface.exe">
+          <uap:Protocol Name="redirecttodefaultbrowser-ui">
+            <uap:Logo>Assets\Dark256.png</uap:Logo>
+            <uap:DisplayName>RedirectToDefaultBrowser_UI</uap:DisplayName>
           </uap:Protocol>
         </uap:Extension>
       </Extensions>
