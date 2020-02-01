@@ -147,7 +147,7 @@ namespace Shared
         {
             if (arg.StartsWith(MSEdgeScheme))
                 if (Uri.TryCreate(arg, UriKind.Absolute, out Uri uri))
-                    await LaunchWithUI(uri);
+                    await LaunchEdge(uri);
                 else
                     throw new NotUrlException(arg);
             else
