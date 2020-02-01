@@ -42,10 +42,10 @@
     <PackageCertificateThumbprint>3FD18A25EF70687B2541511985F4B507620B8325</PackageCertificateThumbprint>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxBundlePlatforms>neutral</AppxBundlePlatforms>
-    <EntryPointProjectUniqueName>..\Launcher\Launcher.csproj</EntryPointProjectUniqueName>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppInstallerUpdateFrequency>1</AppInstallerUpdateFrequency>
     <AppInstallerCheckForUpdateFrequency>OnApplicationRun</AppInstallerCheckForUpdateFrequency>
+    <EntryPointProjectUniqueName>..\AppLauncher\AppLauncher.csproj</EntryPointProjectUniqueName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
     <AppxBundle>Never</AppxBundle>
@@ -239,7 +239,9 @@
     <None Include="RedirectToDefaultBrowser_StoreKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Launcher\Launcher.csproj" />
+    <ProjectReference Include="..\AppLauncher\AppLauncher.csproj">
+      <SkipGetTargetFrameworkProperties>True</SkipGetTargetFrameworkProperties>
+    </ProjectReference>
     <ProjectReference Include="..\UserInterface\UserInterface.csproj" />
   </ItemGroup>
   <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" />

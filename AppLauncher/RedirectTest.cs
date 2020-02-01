@@ -3,7 +3,7 @@ using System.Collections;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
 
-namespace Launcher
+namespace AppLauncher
 {
     public class RedirectTest : Notify.NotifyBase, INotifyDataErrorInfo
     {

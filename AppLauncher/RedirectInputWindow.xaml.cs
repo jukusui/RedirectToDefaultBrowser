@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows;
 
-namespace Launcher
+namespace AppLauncher
 {
     /// <summary>
     /// RedirectInputWindow.xaml の相互作用ロジック

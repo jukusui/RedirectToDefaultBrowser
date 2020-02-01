@@ -6,7 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Navigation;
 
-namespace Launcher
+namespace AppLauncher
 {
     /// <summary>
     /// MainWindow.xaml の相互作用ロジック

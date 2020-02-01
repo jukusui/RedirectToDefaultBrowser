@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <StartupObject>AppLauncher.Launcher</StartupObject>
+    <ApplicationIcon>Resources\Dark256.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <NeutralLanguage>en-001</NeutralLanguage>
+    <PackageId>RedirectToDefaultBrowser</PackageId>
+    <AssemblyVersion>1.1.1.0</AssemblyVersion>
+    <FileVersion>1.1.1.0</FileVersion>
+    <Version>1.1.0</Version>
+    <Authors>Jukusui</Authors>
+    <Company>Jukusui</Company>
+    <Product>RedirectToDefaultBrowser</Product>
+    <Description>Redirects microsoft-edge scheme uri to your default browser</Description>
+    <Copyright>Jukusui Copyright ©  2018</Copyright>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Dark256.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Dark256.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Windows.SDK.Contracts" Version="10.0.17134.1000" />
+    <PackageReference Include="Notify" Version="1.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj" />
+  </ItemGroup>
+
+</Project>

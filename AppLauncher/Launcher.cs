@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Launcher
+namespace AppLauncher
 {
     public static class Launcher
     {
@@ -34,10 +34,13 @@ namespace Launcher
             }
             if (showWin)
             {
-                bool modernMode;
-                var task = UiTask();
-                task.Wait();
-                modernMode = task.Result;
+                bool modernMode = true;
+                if (modernMode)
+                {
+                    var task = UiTask();
+                    task.Wait();
+                    modernMode = task.Result;
+                }
                 if (!modernMode)
                 {
                     //モダンUIの起動不良

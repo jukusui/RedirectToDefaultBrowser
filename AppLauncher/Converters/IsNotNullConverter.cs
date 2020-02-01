@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows.Data;
 
-namespace Launcher.Converters
+namespace AppLauncher.Converters
 {
     class IsNotNullConverter : IValueConverter
     {
