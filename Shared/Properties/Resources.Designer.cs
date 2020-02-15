@@ -115,6 +115,24 @@ namespace Shared.Properties {
         }
         
         /// <summary>
+        ///   Close に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Close {
+            get {
+                return ResourceManager.GetString("Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Copied! に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Copied {
+            get {
+                return ResourceManager.GetString("Copied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Copy To Clipboard に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string CopyToClipboard {
@@ -129,6 +147,24 @@ namespace Shared.Properties {
         public static string CopyURL {
             get {
                 return ResourceManager.GetString("CopyURL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Don&apos;t Save に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string DontSave {
+            get {
+                return ResourceManager.GetString("DontSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   You can reorder redirects by drag &amp; drop に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string DragAndDropReorder {
+            get {
+                return ResourceManager.GetString("DragAndDropReorder", resourceCulture);
             }
         }
         
@@ -151,6 +187,15 @@ namespace Shared.Properties {
         }
         
         /// <summary>
+        ///   Error has occurred に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string ExceptionOccurred {
+            get {
+                return ResourceManager.GetString("ExceptionOccurred", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   History に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string History {
@@ -169,11 +214,74 @@ namespace Shared.Properties {
         }
         
         /// <summary>
+        ///   Last URI に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string LastURI {
+            get {
+                return ResourceManager.GetString("LastURI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Last URL に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string LastURL {
             get {
                 return ResourceManager.GetString("LastURL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   If you close the window before save the setting, it will be discarded に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string NoticeCloseText {
+            get {
+                return ResourceManager.GetString("NoticeCloseText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Are You Sure Discarding Changes? に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string NoticeMove {
+            get {
+                return ResourceManager.GetString("NoticeMove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Will You Save Your Changes? に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string NoticeSave {
+            get {
+                return ResourceManager.GetString("NoticeSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   If you continue to move, the changes will be discarded に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string NoticeSaveText {
+            get {
+                return ResourceManager.GetString("NoticeSaveText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   OFF に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Off {
+            get {
+                return ResourceManager.GetString("Off", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ON に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string On {
+            get {
+                return ResourceManager.GetString("On", resourceCulture);
             }
         }
         
@@ -205,11 +313,29 @@ namespace Shared.Properties {
         }
         
         /// <summary>
+        ///   Recognized URL に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string RecognizedURL {
+            get {
+                return ResourceManager.GetString("RecognizedURL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Redirect に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Redirect {
             get {
                 return ResourceManager.GetString("Redirect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Test of Redirect に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string RedirectTest {
+            get {
+                return ResourceManager.GetString("RedirectTest", resourceCulture);
             }
         }
         
@@ -259,6 +385,24 @@ namespace Shared.Properties {
         }
         
         /// <summary>
+        ///   Select Browser に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SelectBrowser {
+            get {
+                return ResourceManager.GetString("SelectBrowser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Select MS Edge に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SelectEdge {
+            get {
+                return ResourceManager.GetString("SelectEdge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Test Input に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Test {
@@ -295,11 +439,29 @@ namespace Shared.Properties {
         }
         
         /// <summary>
+        ///   Setting of URL Redirect に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string UrlRedirectSetting {
+            get {
+                return ResourceManager.GetString("UrlRedirectSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Used RegExes For Redirects に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string UsedRegExesForRedirects {
             get {
                 return ResourceManager.GetString("UsedRegExesForRedirects", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Version に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Version {
+            get {
+                return ResourceManager.GetString("Version", resourceCulture);
             }
         }
     }

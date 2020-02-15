@@ -17,6 +17,9 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.Xaml.Resources;
+using _Frame = //Windows.UI.Xaml.Controls.Frame;
+    UserInterface.MainFrame;
 
 namespace UserInterface
 {
@@ -31,6 +34,11 @@ namespace UserInterface
         /// </summary>
         public App()
         {
+            System.Globalization.CultureInfo.DefaultThreadCurrentCulture =
+                System.Globalization.CultureInfo.CurrentCulture;
+            System.Globalization.CultureInfo.DefaultThreadCurrentUICulture =
+                System.Globalization.CultureInfo.CurrentUICulture;
+            CustomXamlResourceLoader.Current = new SharedResourceLoader();
             this.InitializeComponent();
             this.Suspending += OnSuspending;
         }
@@ -49,7 +57,7 @@ namespace UserInterface
             if (rootFrame == null)
             {
                 // ナビゲーション コンテキストとして動作するフレームを作成し、最初のページに移動します
-                rootFrame = new Frame();
+                rootFrame = new _Frame();
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
@@ -88,7 +96,7 @@ namespace UserInterface
                 if (rootFrame == null)
                 {
                     // ナビゲーション コンテキストとして動作するフレームを作成し、最初のページに移動します
-                    rootFrame = new Frame();
+                    rootFrame = new _Frame();
 
                     rootFrame.NavigationFailed += OnNavigationFailed;
 
@@ -140,6 +148,7 @@ namespace UserInterface
         {
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: アプリケーションの状態を保存してバックグラウンドの動作があれば停止します
+            Shared.Config.Save();
             deferral.Complete();
         }
     }

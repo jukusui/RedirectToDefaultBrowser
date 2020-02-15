@@ -70,7 +70,7 @@ namespace Shared
             }
         }
 
-        public static bool CheckUri(Uri uri)
+        private static bool CheckUri(Uri uri)
         {
             switch (uri.Scheme)
             {
@@ -82,7 +82,7 @@ namespace Shared
             }
         }
 
-        public static IEnumerable<Uri> VaridateUri(IEnumerable<Uri> uris)
+        private static IEnumerable<Uri> VaridateUri(IEnumerable<Uri> uris)
         {
             foreach (var uri in uris)
                 yield return VaridateUri(uri);
@@ -124,7 +124,7 @@ namespace Shared
 
 
 
-        public static async Task LaunchEdge(Uri uri)
+        private static async Task LaunchEdge(Uri uri)
         {
             var opt = new Windows.System.LauncherOptions()
             {
@@ -143,11 +143,15 @@ namespace Shared
             throw BrowserException.FromQueryStatus(status, uri);
         }
 
-        public static async Task OpenRaw(string arg)
+        public static async Task OpenRaw(string arg,
+            bool useEdgeHTML = true)
         {
             if (arg.StartsWith(MSEdgeScheme))
                 if (Uri.TryCreate(arg, UriKind.Absolute, out Uri uri))
-                    await LaunchEdge(uri);
+                    if (useEdgeHTML)
+                        await LaunchEdge(uri);
+                    else
+                        await LaunchWithUI(uri);
                 else
                     throw new NotUrlException(arg);
             else

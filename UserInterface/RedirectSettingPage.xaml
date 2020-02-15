@@ -1,0 +1,114 @@
+﻿<local:NavigatablePage
+    x:Class="UserInterface.RedirectSettingPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UserInterface"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:prop="using:Shared.Properties"
+    xmlns:conv="using:UserInterface.Converter"
+    xmlns:shared="using:Shared"
+    xmlns:controls="using:UwpControls"
+    mc:Ignorable="d"
+    Background="{ThemeResource SystemControlAcrylicWindowBrush}">
+
+    <ScrollViewer>
+        <StackPanel x:Name="LayoutRoot" Margin="0,0,0,24">
+
+            <controls:GroupBox>
+                <controls:GroupBox.Header>
+                    <TextBlock Text="{x:Bind local:MainPage.SelectIf(IsAddMode,prop:Resources.AddRedirect,prop:Resources.EditRedirect)}"
+                               Style="{ThemeResource TitleTextBlockStyle}"/>
+                </controls:GroupBox.Header>
+                <controls:GroupBox.Content>
+                    <StackPanel>
+                        <Grid Margin="0,8,0,0">
+                            <Grid.Resources>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                </Style>
+                            </Grid.Resources>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="16"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="8"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="16"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="8"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="8"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="8"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="{local:Resource Name=Title}"/>
+                            <TextBox x:Name="TitleInput" Grid.Column="2" />
+
+                            <TextBlock Text="{local:Resource Name=Input}" Grid.Row="2"/>
+                            <TextBox Text="{x:Bind EditingSetting.Input,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Grid.Column="2" Grid.Row="2"
+                                     TextWrapping="Wrap"/>
+
+                            <TextBlock Text="{local:Resource Name=Output}" Grid.Row="4"/>
+                            <TextBox Text="{x:Bind EditingSetting.Output,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Grid.Column="2" Grid.Row="4"
+                                     TextWrapping="Wrap"/>
+
+                            <TextBlock Text="{local:Resource Name=Test}" Grid.Row="6"/>
+                            <TextBox Text="{x:Bind EditingSetting.Test,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                     Grid.Column="2" Grid.Row="6" TextWrapping="Wrap"/>
+                            <FontIcon Grid.Column="2" Grid.Row="8" Glyph="&#xE74B;"/>
+                            <FontIcon Grid.Column="2" Grid.Row="8" Glyph="&#xEA39;"
+                                      Visibility="{x:Bind HasEditError,Mode=OneWay}"
+                                      Foreground="Red" RenderTransformOrigin="0.5,0.5">
+                                <FontIcon.RenderTransform>
+                                    <CompositeTransform ScaleX="0.7" ScaleY="0.7"/>
+                                </FontIcon.RenderTransform>
+                            </FontIcon>
+                            <TextBox Text="{x:Bind EditingSetting.TestRes,Mode=OneWay}"
+                                     Grid.Column="2" Grid.Row="10" IsReadOnly="True" TextWrapping="Wrap"/>
+                        </Grid>
+                        <ItemsControl ItemsSource="{x:Bind ErrorInfos,Mode=OneWay}" Margin="0,4,0,0"
+                                      Visibility="{x:Bind HasEditError,Mode=OneWay}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Foreground="Red" Text="{Binding}" TextWrapping="Wrap" Margin="0,4,0,0"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <controls:WrapPanel HorizontalAlignment="Center"
+                                            Margin="0,16,0,0" ContentMargin="8,8">
+                            <Button Content="{local:Resource Name=Cancel}" Click="OnCancel_Click"/>
+                            <Button Content="{x:Bind local:MainPage.SelectIf(IsAddMode,prop:Resources.Add,prop:Resources.Save)}"
+                                    IsEnabled="{x:Bind conv:Op.Not(HasEditError),Mode=OneWay}"
+                                    Click="OnSave_Click"/>
+                        </controls:WrapPanel>
+                        <Rectangle Style="{StaticResource HorizontalBar}"/>
+                        <TextBlock Style="{ThemeResource CaptionTextBlockStyle}"
+                                   HorizontalAlignment="Right"
+                                   Text="{local:Resource Name=NoticeCloseText}" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </controls:GroupBox.Content>
+            </controls:GroupBox>
+            <ContentDialog x:Name="SaveRedirectDialog"
+                       Title="{local:Resource Name=NoticeSave}"
+                       PrimaryButtonText="{local:Resource Name=Save}"
+                       SecondaryButtonText="{local:Resource Name=DontSave}"
+                       CloseButtonText="{local:Resource Name=Cancel}"
+                       DefaultButton="Close">
+                <TextBlock Text="{local:Resource Name=NoticeSaveText}" TextWrapping="Wrap"/>
+            </ContentDialog>
+            <ContentDialog x:Name="MoveRedirectDialog"
+                       Title="{local:Resource Name=NoticeMove}"
+                       SecondaryButtonText="{local:Resource Name=DontSave}"
+                       CloseButtonText="{local:Resource Name=Cancel}"
+                       DefaultButton="Close">
+                <TextBlock Text="{local:Resource Name=NoticeSaveText}" TextWrapping="Wrap"/>
+            </ContentDialog>
+        </StackPanel>
+    </ScrollViewer>
+</local:NavigatablePage>

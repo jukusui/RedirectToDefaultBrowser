@@ -10,6 +10,20 @@ namespace UserInterface.Converter
     public static class Op
     {
 
+        public static bool And(object item1, object item2) =>
+            IsAny(item1) && IsAny(item2);
+
+        public static bool IsAny(object item) =>
+            item switch
+            {
+                bool flag => flag,
+                string str => !string.IsNullOrEmpty(str),
+                _ => item != null
+            };
+
+        public static bool Not(bool item) =>
+            !item;
+
         public static T Add<T>(T left, T right) =>
             LambdaCache2<T>.GetLambda(Expression.Add)(left, right);
 

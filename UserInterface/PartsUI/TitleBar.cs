@@ -43,6 +43,9 @@ namespace UserInterface.PartsUI
         private void TitleBarLayoutUpdate()
         {
             Height = TitleBarView.Height;
+            InsetMargin = new Thickness(
+                TitleBarView.SystemOverlayLeftInset, 0,
+                TitleBarView.SystemOverlayRightInset, 0);
         }
 
         private static Dictionary<CoreApplicationViewTitleBar, TitleBar> Dict = new Dictionary<CoreApplicationViewTitleBar, TitleBar>();
@@ -58,6 +61,19 @@ namespace UserInterface.PartsUI
             get => (double)GetValue(HeightProperty);
             private set => SetValue(HeightProperty, value);
         }
+
+
+        public static DependencyProperty InsetMarginProperty =
+        DependencyProperty.Register(
+            nameof(InsetMargin), typeof(Thickness), typeof(TitleBar),
+            new PropertyMetadata(new Thickness(0, 0, 0, 0)));
+
+        public Thickness InsetMargin
+        {
+            get => (Thickness)GetValue(InsetMarginProperty);
+            set => SetValue(InsetMarginProperty, value);
+        }
+
 
 
         public CoreApplicationViewTitleBar TitleBarView { get; }

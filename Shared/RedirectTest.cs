@@ -3,9 +3,9 @@ using System.Collections;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
 
-namespace AppLauncher
+namespace Shared
 {
-    public class RedirectTest : Notify.NotifyBase, INotifyDataErrorInfo
+    public class RedirectTest : Jukusui.Notify.NotifyBase, INotifyDataErrorInfo
     {
 
         public RedirectTest()
@@ -22,21 +22,23 @@ namespace AppLauncher
                 if (OnPropertyChanged(ref input, value))
                 {
                     if (string.IsNullOrEmpty(input))
-                        HasErrors = true;
+                    {
+                        inputRegex = null;
+                        InputErrorText = Properties.ExResources.RExInputEmpty;
+                    }
                     else
                     {
                         try
                         {
                             inputRegex = new Regex(value);
-                            HasErrors = false;
+                            InputErrorText = "";
                         }
-                        catch
+                        catch (Exception ex)
                         {
-                            HasErrors = true;
+                            inputRegex = null;
+                            InputErrorText = ex.Message;
                         }
                     }
-                    if (HasErrors)
-                        inputRegex = null;
                     RunTest();
                 }
             }
@@ -80,11 +82,33 @@ namespace AppLauncher
 
 
         private bool hasErrors;
-        public bool HasErrors {
+
+        public bool HasErrors
+        {
             get => hasErrors;
-            set {
-                if (OnPropertyChanged(ref hasErrors, value))
-                    ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(null));
+        }
+
+        private void UpdateErrorState()
+        {
+            var newState = inputErrorText != "";
+            if (newState != hasErrors)
+            {
+                hasErrors = newState;
+                ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(null));
+            }
+        }
+
+        private string inputErrorText = "";
+        string InputErrorText
+        {
+            get => inputErrorText;
+            set
+            {
+                if (OnPropertyChanged(ref inputErrorText, value))
+                {
+                    UpdateErrorState();
+                    ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(nameof(Input)));
+                }
             }
         }
 
@@ -95,7 +119,7 @@ namespace AppLauncher
             if ((propertyName == null || propertyName == nameof(Input)) &&
                 HasErrors)
             {
-                yield return $"{nameof(Input)} Error";
+                yield return InputErrorText;
             }
         }
     }

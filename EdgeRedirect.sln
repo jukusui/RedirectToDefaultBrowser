@@ -9,7 +9,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserInterface", "UserInterf
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{0826A44C-5690-4516-AFCC-8A837C88AFFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppLauncher", "AppLauncher\AppLauncher.csproj", "{5E54DAE7-F4E2-4F54-9B15-F929FC17B932}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppLauncher", "AppLauncher\AppLauncher.csproj", "{5E54DAE7-F4E2-4F54-9B15-F929FC17B932}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1A42C0A7-04AE-4749-89C5-B1E796264D8B}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

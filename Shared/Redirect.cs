@@ -1,5 +1,5 @@
 ﻿using Shared.Ex;
-using Notify;
+using Jukusui.Notify;
 using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;

@@ -153,4 +153,7 @@
   <data name="QueryStatusUnknown" xml:space="preserve">
     <value>不明なエラー</value>
   </data>
+  <data name="RExInputEmpty" xml:space="preserve">
+    <value>入力パターンが空です</value>
+  </data>
 </root>

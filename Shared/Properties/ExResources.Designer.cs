@@ -167,5 +167,14 @@ namespace Shared.Properties {
                 return ResourceManager.GetString("QueryStatusUnknown", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Input Pattern is Empty に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string RExInputEmpty {
+            get {
+                return ResourceManager.GetString("RExInputEmpty", resourceCulture);
+            }
+        }
     }
 }

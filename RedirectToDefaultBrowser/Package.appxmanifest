@@ -34,7 +34,7 @@
           </uap:Protocol>
         </uap:Extension>
         <uap:Extension Category="windows.protocol"  EntryPoint="App" Executable="UserInterface.exe">
-          <uap:Protocol Name="redirecttodefaultbrowser-ui">
+          <uap:Protocol Name="redirecttodefaultbrowser-ui" DesiredView="useMinimum">
             <uap:Logo>Assets\Dark256.png</uap:Logo>
             <uap:DisplayName>RedirectToDefaultBrowser_UI</uap:DisplayName>
           </uap:Protocol>

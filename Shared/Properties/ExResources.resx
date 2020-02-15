@@ -153,4 +153,7 @@
   <data name="QueryStatusUnknown" xml:space="preserve">
     <value>Unknown Error</value>
   </data>
+  <data name="RExInputEmpty" xml:space="preserve">
+    <value>Input Pattern is Empty</value>
+  </data>
 </root>

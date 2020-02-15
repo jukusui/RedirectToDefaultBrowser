@@ -135,11 +135,23 @@
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>Copied!</value>
+  </data>
   <data name="CopyToClipboard" xml:space="preserve">
     <value>Copy To Clipboard</value>
   </data>
   <data name="CopyURL" xml:space="preserve">
     <value>Do you want to copy the URL to the Clipboard?</value>
+  </data>
+  <data name="DontSave" xml:space="preserve">
+    <value>Don't Save</value>
+  </data>
+  <data name="DragAndDropReorder" xml:space="preserve">
+    <value>You can reorder redirects by drag &amp; drop</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
@@ -147,14 +159,38 @@
   <data name="EditRedirect" xml:space="preserve">
     <value>EditRedirect</value>
   </data>
+  <data name="ExceptionOccurred" xml:space="preserve">
+    <value>Error has occurred</value>
+  </data>
   <data name="History" xml:space="preserve">
     <value>History</value>
   </data>
   <data name="Input" xml:space="preserve">
     <value>Input Pattern</value>
   </data>
+  <data name="LastURI" xml:space="preserve">
+    <value>Last URI</value>
+  </data>
   <data name="LastURL" xml:space="preserve">
     <value>Last URL</value>
+  </data>
+  <data name="NoticeCloseText" xml:space="preserve">
+    <value>If you close the window before save the setting, it will be discarded</value>
+  </data>
+  <data name="NoticeMove" xml:space="preserve">
+    <value>Are You Sure Discarding Changes?</value>
+  </data>
+  <data name="NoticeSave" xml:space="preserve">
+    <value>Will You Save Your Changes?</value>
+  </data>
+  <data name="NoticeSaveText" xml:space="preserve">
+    <value>If you continue to move, the changes will be discarded</value>
+  </data>
+  <data name="Off" xml:space="preserve">
+    <value>OFF</value>
+  </data>
+  <data name="On" xml:space="preserve">
+    <value>ON</value>
   </data>
   <data name="OpenWithDefaultBrowser" xml:space="preserve">
     <value>Open With Default Browser</value>
@@ -165,8 +201,14 @@
   <data name="Output" xml:space="preserve">
     <value>Output Pattern</value>
   </data>
+  <data name="RecognizedURL" xml:space="preserve">
+    <value>Recognized URL</value>
+  </data>
   <data name="Redirect" xml:space="preserve">
     <value>Redirect</value>
+  </data>
+  <data name="RedirectTest" xml:space="preserve">
+    <value>Test of Redirect</value>
   </data>
   <data name="RegExExample" xml:space="preserve">
     <value>Example of Redirect Settings</value>
@@ -183,6 +225,12 @@
   <data name="Save" xml:space="preserve">
     <value>Save</value>
   </data>
+  <data name="SelectBrowser" xml:space="preserve">
+    <value>Select Browser</value>
+  </data>
+  <data name="SelectEdge" xml:space="preserve">
+    <value>Select MS Edge</value>
+  </data>
   <data name="Test" xml:space="preserve">
     <value>Test Input</value>
   </data>
@@ -195,7 +243,13 @@
   <data name="TurnOn" xml:space="preserve">
     <value>Turn ON</value>
   </data>
+  <data name="UrlRedirectSetting" xml:space="preserve">
+    <value>Setting of URL Redirect</value>
+  </data>
   <data name="UsedRegExesForRedirects" xml:space="preserve">
     <value>Used RegExes For Redirects</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version</value>
   </data>
 </root>
