@@ -118,153 +118,25 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutEdgeScheme" xml:space="preserve">
-    <value>About "microsoft-edge" Scheme</value>
+    <value>On this app, two types of "microsoft-edge" scheme URIs are supported.
+One is one URL is directly  written type(eg:"[microsoft-edge:http://example.com](*microsoft-edge:http://example.com)"). The other is URL parametered URI(eg:"[microsoft-edge:?url=https%3A%2F%2Fexample.com](*microsoft-edge:?url=https%3A%2F%2Fexample.com)"). If you found other type of "microsoft-edge" scheme, please tell me!</value>
   </data>
   <data name="AboutRedirectSetting" xml:space="preserve">
-    <value>About Redirect Setting</value>
+    <value>On redirect program, multiple replaces are applied by order(up-to-down), and URL format validation will be applied per redirect replace. So, if you remove http[s] first("https?"→""), and insert https after the replace("^"→"https"), the result will valid url but rejects the replace on the first replace(by empty scheme error). This behavior is design for detecting such destructively replace.</value>
   </data>
-  <data name="AboutThisApp" xml:space="preserve">
-    <value>About This App</value>
+  <data name="AboutRegex" xml:space="preserve">
+    <value>The replace will be applied according to RegEx(Regular Expression).  RegEx is a string expression for search or replace multiple character or long character(and so on). For more information, you can see [microsoft's documentation](https://docs.microsoft.com/dotnet/standard/base-types/regular-expressions)</value>
   </data>
-  <data name="Add" xml:space="preserve">
-    <value>Add</value>
+  <data name="AppList" xml:space="preserve">
+    <value>[Open app list of this computer](ms-settings:appsfeatures-app). You can remove or reset this app.</value>
   </data>
-  <data name="AddRedirect" xml:space="preserve">
-    <value>AddRedirect</value>
+  <data name="DefaultApp" xml:space="preserve">
+    <value>If the redirect dosen't work, you can chose the default app of "microsoft-edge" scheme. You need configure this default app to this app "RedirectToDefaultBrowser". If you want to configure, [open selector](*microsoft-edge:) and chose this app with "always use" setting.  If it doesn't work, [open settings](ms-settings:defaultapps), select "default app of protocol", and chose "MICROSOFT-EDGE" 's app to this app.</value>
   </data>
-  <data name="AppName" xml:space="preserve">
-    <value>RedirectToDefaultBrowser</value>
+  <data name="Issue" xml:space="preserve">
+    <value>If you encounter some issue, you can report it on [GitHub](https://github.com/jukusui/RedirectToDefaultBrowser/issues).  Basically please use GitHub on reporting issues. But I accepts other means such as Windows Store.</value>
   </data>
-  <data name="AppName_SP" xml:space="preserve">
-    <value>Redirect to Default Browser</value>
-  </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
-  <data name="Close" xml:space="preserve">
-    <value>Close</value>
-  </data>
-  <data name="Copied" xml:space="preserve">
-    <value>Copied!</value>
-  </data>
-  <data name="CopyToClipboard" xml:space="preserve">
-    <value>Copy To Clipboard</value>
-  </data>
-  <data name="CopyURL" xml:space="preserve">
-    <value>Do you want to copy the URL to the Clipboard?</value>
-  </data>
-  <data name="Credit" xml:space="preserve">
-    <value>Developed by Jukusui💤</value>
-  </data>
-  <data name="DontSave" xml:space="preserve">
-    <value>Don't Save</value>
-  </data>
-  <data name="DragAndDropReorder" xml:space="preserve">
-    <value>You can reorder redirects by drag &amp; drop</value>
-  </data>
-  <data name="Edit" xml:space="preserve">
-    <value>Edit</value>
-  </data>
-  <data name="EditRedirect" xml:space="preserve">
-    <value>EditRedirect</value>
-  </data>
-  <data name="ExceptionOccurred" xml:space="preserve">
-    <value>Error has occurred</value>
-  </data>
-  <data name="History" xml:space="preserve">
-    <value>History</value>
-  </data>
-  <data name="Input" xml:space="preserve">
-    <value>Input Pattern</value>
-  </data>
-  <data name="LastURI" xml:space="preserve">
-    <value>Last URI</value>
-  </data>
-  <data name="LastURL" xml:space="preserve">
-    <value>Last URL</value>
-  </data>
-  <data name="NoticeCloseText" xml:space="preserve">
-    <value>If you close the window before save the setting, it will be discarded</value>
-  </data>
-  <data name="NoticeMove" xml:space="preserve">
-    <value>Are You Sure Discarding Changes?</value>
-  </data>
-  <data name="NoticeSave" xml:space="preserve">
-    <value>Will You Save Your Changes?</value>
-  </data>
-  <data name="NoticeSaveText" xml:space="preserve">
-    <value>If you continue to move, the changes will be discarded</value>
-  </data>
-  <data name="Off" xml:space="preserve">
-    <value>OFF</value>
-  </data>
-  <data name="On" xml:space="preserve">
-    <value>ON</value>
-  </data>
-  <data name="OpenWithDefaultBrowser" xml:space="preserve">
-    <value>Open With Default Browser</value>
-  </data>
-  <data name="OpenWithEdge" xml:space="preserve">
-    <value>Open With MS Edge</value>
-  </data>
-  <data name="Output" xml:space="preserve">
-    <value>Output Pattern</value>
-  </data>
-  <data name="RecognizedURL" xml:space="preserve">
-    <value>Recognized URL</value>
-  </data>
-  <data name="Redirect" xml:space="preserve">
-    <value>Redirect</value>
-  </data>
-  <data name="RedirectTest" xml:space="preserve">
-    <value>Test of Redirect</value>
-  </data>
-  <data name="RegExExample" xml:space="preserve">
-    <value>Example of Redirect Settings</value>
-  </data>
-  <data name="RegExInfo" xml:space="preserve">
-    <value>Additional Info of RegEx</value>
-  </data>
-  <data name="Remove" xml:space="preserve">
-    <value>Remove</value>
-  </data>
-  <data name="Restore" xml:space="preserve">
-    <value>Restore</value>
-  </data>
-  <data name="Save" xml:space="preserve">
-    <value>Save</value>
-  </data>
-  <data name="SelectBrowser" xml:space="preserve">
-    <value>Select Browser</value>
-  </data>
-  <data name="SelectEdge" xml:space="preserve">
-    <value>Select MS Edge</value>
-  </data>
-  <data name="SomeProblem" xml:space="preserve">
-    <value>When Encountered Issue</value>
-  </data>
-  <data name="Test" xml:space="preserve">
-    <value>Test Input</value>
-  </data>
-  <data name="Tips" xml:space="preserve">
-    <value>Tips</value>
-  </data>
-  <data name="Title" xml:space="preserve">
-    <value>Title</value>
-  </data>
-  <data name="TurnOff" xml:space="preserve">
-    <value>Turn OFF</value>
-  </data>
-  <data name="TurnOn" xml:space="preserve">
-    <value>Turn ON</value>
-  </data>
-  <data name="UrlRedirectSetting" xml:space="preserve">
-    <value>Setting of URL Redirect</value>
-  </data>
-  <data name="UsedRegExesForRedirects" xml:space="preserve">
-    <value>Used RegExes For Redirects</value>
-  </data>
-  <data name="Version" xml:space="preserve">
-    <value>Version</value>
+  <data name="StoreApp" xml:space="preserve">
+    <value>[Open this app's Windows Store Page](ms-windows-store://pdp/?ProductId=9N86NDB1C3MP).</value>
   </data>
 </root>

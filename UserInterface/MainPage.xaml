@@ -33,7 +33,7 @@
             <TextBlock Text="{local:Resource Name=History}" Style="{ThemeResource SubtitleTextBlockStyle}"/>
         </Grid>-->
 
-        <ScrollViewer Grid.Row="1" HorizontalScrollMode="Disabled">
+        <ScrollViewer Grid.Row="1" HorizontalScrollMode="Disabled" TabIndex="0" IsTabStop="True">
             <StackPanel Margin="0,0,0,24">
                 <controls:GroupBox>
                     <controls:GroupBox.Header>
@@ -196,6 +196,50 @@
                 </controls:GroupBox>
                 <controls:GroupBox>
                     <controls:GroupBox.Header>
+                        <TextBlock Text="{local:Resource Name=Tips}" Style="{ThemeResource SubtitleTextBlockStyle}"/>
+                    </controls:GroupBox.Header>
+                    <controls:GroupBox.Content>
+                        <StackPanel>
+                            <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}"
+                                       Text="{local:Resource Name=AboutEdgeScheme}"/>
+                            <RichTextBlock Margin="8,0,0,0" TextIndent="8" TextWrapping="Wrap" IsTextSelectionEnabled="False">
+                                <Paragraph>
+                                    <Span parts:SimpleMarkdown.MarkdownProperty="{local:Resource Name=AboutEdgeScheme,GroupName=DocumentResources}"/>
+                                </Paragraph>
+                            </RichTextBlock>
+                            <Rectangle Style="{StaticResource HorizontalBar}"/>
+
+                            <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}"
+                                       Text="{local:Resource Name=AboutRedirectSetting}"/>
+                            <RichTextBlock Margin="8,0,0,0" TextIndent="8" TextWrapping="Wrap" IsTextSelectionEnabled="False">
+                                <Paragraph>
+                                    <Span parts:SimpleMarkdown.MarkdownProperty="{local:Resource Name=AboutRedirectSetting,GroupName=DocumentResources}"/>
+                                </Paragraph>
+                                <Paragraph>
+                                    <Span parts:SimpleMarkdown.MarkdownProperty="{local:Resource Name=AboutRegex,GroupName=DocumentResources}"/>
+                                </Paragraph>
+                            </RichTextBlock>
+                            <Rectangle Style="{StaticResource HorizontalBar}"/>
+
+                            <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}"
+                                       Text="{local:Resource Name=SomeProblem}"/>
+                            <RichTextBlock Margin="8,0,0,0" TextIndent="8" TextWrapping="Wrap" IsTextSelectionEnabled="False">
+                                <Paragraph>
+                                    <Span parts:SimpleMarkdown.MarkdownProperty="{local:Resource Name=DefaultApp,GroupName=DocumentResources}"/>
+                                </Paragraph>
+                                <Paragraph>
+                                    <Span parts:SimpleMarkdown.MarkdownProperty="{local:Resource Name=AppList,GroupName=DocumentResources}"/>
+                                </Paragraph>
+                                <Paragraph>
+                                    <Span parts:SimpleMarkdown.MarkdownProperty="{local:Resource Name=Issue,GroupName=DocumentResources}"/>
+                                    <Span parts:SimpleMarkdown.MarkdownProperty="{local:Resource Name=StoreApp,GroupName=DocumentResources}"/>
+                                </Paragraph>
+                            </RichTextBlock>
+                        </StackPanel>
+                    </controls:GroupBox.Content>
+                </controls:GroupBox>
+                <controls:GroupBox>
+                    <controls:GroupBox.Header>
                         <TextBlock Text="{local:Resource Name=AboutThisApp}" Style="{ThemeResource SubtitleTextBlockStyle}"/>
                     </controls:GroupBox.Header>
                     <controls:GroupBox.Content>
@@ -237,29 +281,9 @@
                                 </Grid>
                             </Grid>
                             <Rectangle Style="{StaticResource HorizontalBar}"/>
-                            <Grid Grid.Row="4">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="auto" />
-                                    <RowDefinition Height="auto" />
-                                </Grid.RowDefinitions>
-                                <TextBlock TextWrapping="Wrap">
-                                    <Run/>
-                                    <Hyperlink NavigateUri="ms-settings:appsfeatures-app">
-                                        <Run Text="設定のアプリ一覧を開く"/></Hyperlink>
-                                    <Run Text="このアプリのリセットなど" FontSize="11"/>
-                                    <LineBreak/>
-                                    <Hyperlink NavigateUri="ms-settings:defaultapps">
-                                        <Run Text="既定のアプリの設定を開く"/></Hyperlink>
-                                    <Run Text="リダイレクトが起こらなくなった場合に。" FontSize="11"/>
-                                    <LineBreak/>
-                                    <Hyperlink NavigateUri="{x:Bind prop:UniversalResources.StoreUri}">
-                                        <Run Text="ストアアプリで開く"/></Hyperlink>
-                                </TextBlock>
-                            </Grid>
-                            <Rectangle Style="{StaticResource HorizontalBar}"/>
-                            <TextBlock Grid.Row="8" HorizontalTextAlignment="Right"
+                            <TextBlock HorizontalTextAlignment="Right"
                                        Style="{ThemeResource CaptionTextBlockStyle}"
-                                       Text="Developed by Jukusui💤">
+                                       Text="{local:Resource Name=Credit}">
                             </TextBlock>
                         </StackPanel>
                     </controls:GroupBox.Content>

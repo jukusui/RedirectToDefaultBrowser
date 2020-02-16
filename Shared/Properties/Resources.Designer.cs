@@ -61,6 +61,24 @@ namespace Shared.Properties {
         }
         
         /// <summary>
+        ///   About &quot;microsoft-edge&quot; Scheme に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string AboutEdgeScheme {
+            get {
+                return ResourceManager.GetString("AboutEdgeScheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   About Redirect Setting に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string AboutRedirectSetting {
+            get {
+                return ResourceManager.GetString("AboutRedirectSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   About This App に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string AboutThisApp {
@@ -147,6 +165,15 @@ namespace Shared.Properties {
         public static string CopyURL {
             get {
                 return ResourceManager.GetString("CopyURL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Developed by Jukusui💤 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Credit {
+            get {
+                return ResourceManager.GetString("Credit", resourceCulture);
             }
         }
         
@@ -403,11 +430,29 @@ namespace Shared.Properties {
         }
         
         /// <summary>
+        ///   When Encountered Issue に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string SomeProblem {
+            get {
+                return ResourceManager.GetString("SomeProblem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Test Input に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Test {
             get {
                 return ResourceManager.GetString("Test", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Tips に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Tips {
+            get {
+                return ResourceManager.GetString("Tips", resourceCulture);
             }
         }
         

@@ -126,7 +126,9 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PartsUI\AppSelectorBehavior.cs" />
     <Compile Include="PartsUI\AsyncCommand.cs" />
+    <Compile Include="PartsUI\SimpleMarkdown.cs" />
     <Compile Include="PartsUI\TitleBar.cs" />
     <Compile Include="PartsUI\TypedTemplateSelecter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
