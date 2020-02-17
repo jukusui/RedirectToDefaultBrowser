@@ -63,7 +63,7 @@ namespace UserInterface
             set => SetValue(IsAddModeProperty, value);
         }
 
-        public object Target { get; private set; }
+        public object? Target { get; private set; }
 
         public static DependencyProperty EditingSettingProperty =
         DependencyProperty.Register(

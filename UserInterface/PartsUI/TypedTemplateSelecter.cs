@@ -20,13 +20,13 @@ namespace UserInterface.PartsUI
                 "TargetType", typeof(string), typeof(TypedTemplateSelecter),
                 new PropertyMetadata(null));
 
-        public static void SetTargetType(DependencyObject target, string value) =>
+        public static void SetTargetType(DependencyObject target, string? value) =>
             target.SetValue(TargetTypeProperty, value);
 
-        public static string GetTargetType(DependencyObject target) =>
+        public static string? GetTargetType(DependencyObject target) =>
             target.GetValue(TargetTypeProperty) as string;
 
-        public static Type GetTargetTypeT(DependencyObject target) =>
+        public static Type? GetTargetTypeT(DependencyObject target) =>
             Type.GetType(GetTargetType(target));
 
 

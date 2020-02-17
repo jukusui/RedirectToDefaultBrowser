@@ -15,14 +15,14 @@ namespace Shared
 
 
         private bool hasErrors;
-        private string test;
-        private Uri testUri;
-        private string inputError;
-        private string testingError;
-        private IList<RedirectSetting> redirects;
-        private string output;
+        private string? test;
+        private Uri? testUri;
+        private string? inputError;
+        private string? testingError;
+        private IList<RedirectSetting>? redirects;
+        private string? output;
 
-        public string Test
+        public string? Test
         {
             get => test;
             set
@@ -41,7 +41,7 @@ namespace Shared
             }
         }
 
-        public Uri TestUri
+        public Uri? TestUri
         {
             get => testUri; private set
             {
@@ -50,11 +50,12 @@ namespace Shared
             }
         }
 
-        public string Output { get => output; private set => OnPropertyChanged(ref output, value); }
+        public string? Output { get => output; private set => OnPropertyChanged(ref output, value); }
 
-        public IList<RedirectSetting> Redirects
+        public IList<RedirectSetting>? Redirects
         {
-            get => redirects; set
+            get => redirects;
+            set
             {
                 var old = redirects;
                 if (OnPropertyChanged(ref redirects, value))
@@ -110,7 +111,7 @@ namespace Shared
 
         public bool HasErrors { get => hasErrors; }
 
-        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
+        public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
 
         private void RunTest()
         {
@@ -124,13 +125,10 @@ namespace Shared
                 var uri = TestUri;
                 try
                 {
-                    foreach (var item in Redirects)
-                    {
-                        if (item.Enable && !item.WillRemove)
-                        {
-                            uri = item.Apply(uri);
-                        }
-                    }
+                    if (Redirects != null)
+                        foreach (var item in Redirects)
+                            if (item.Enable && !item.WillRemove)
+                                uri = item.Apply(uri);
                     Output = uri.ToString();
                     TestingError = "";
                 }
@@ -154,7 +152,7 @@ namespace Shared
             }
         }
 
-        public string InputError
+        public string? InputError
         {
             get => inputError;
             set
@@ -167,7 +165,7 @@ namespace Shared
             }
         }
 
-        public string TestingError
+        public string? TestingError
         {
             get => testingError;
             set

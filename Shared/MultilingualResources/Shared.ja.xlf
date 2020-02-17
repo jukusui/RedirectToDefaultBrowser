@@ -292,6 +292,26 @@
           <source>About Redirect Setting</source>
           <target state="final">リダイレクトの設定について</target>
         </trans-unit>
+        <trans-unit id="InputPlaceholder" translate="yes" xml:space="preserve">
+          <source>Input pattern using Regular Expression</source>
+          <target state="final">正規表現を用いた入力パターン</target>
+        </trans-unit>
+        <trans-unit id="OutputPlaceholder" translate="yes" xml:space="preserve">
+          <source>Output pattern using Regular Expression</source>
+          <target state="final">正規表現を用いた出力パターン</target>
+        </trans-unit>
+        <trans-unit id="TestInputPlaceholder" translate="yes" xml:space="preserve">
+          <source>Replace target URL that starts with http or https</source>
+          <target state="final">置き換え対象になるhttpから始まるURL</target>
+        </trans-unit>
+        <trans-unit id="TestOutputPlaceholder" translate="yes" xml:space="preserve">
+          <source>Replaced URL that starts with http or https</source>
+          <target state="final">置き換えされたhttpから始まるURL</target>
+        </trans-unit>
+        <trans-unit id="TitlePlaceholder" translate="yes" xml:space="preserve">
+          <source>Identifiable free name</source>
+          <target state="final">判別用の自由な名前</target>
+        </trans-unit>
       </group>
     </body>
   </file>

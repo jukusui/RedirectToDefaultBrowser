@@ -128,6 +128,7 @@
     </Compile>
     <Compile Include="PartsUI\AppSelectorBehavior.cs" />
     <Compile Include="PartsUI\AsyncCommand.cs" />
+    <Compile Include="PartsUI\ExceptionDialog.cs" />
     <Compile Include="PartsUI\SimpleMarkdown.cs" />
     <Compile Include="PartsUI\TitleBar.cs" />
     <Compile Include="PartsUI\TypedTemplateSelecter.cs" />

@@ -17,7 +17,7 @@ namespace UserInterface
         public ResourceExtension(string name) { Name = name; }
 
 
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         public string GroupName { get; set; } = "Resources";
 
@@ -35,9 +35,9 @@ namespace UserInterface
             return getter();
         }
 
-        public static string GetString(string group, string name)
+        public static string? GetString(string group, string name)
         {
-            string result;
+            string? result;
             try
             {
                 if (name == null)

@@ -66,9 +66,10 @@
                     </VisualStateGroup>
                 </VisualStateManager.VisualStateGroups>
                 <Grid Height="{Binding TitleBar.Height, RelativeSource={RelativeSource Mode=TemplatedParent}}"
-                      Margin="{Binding TitleBar.InsetMargin, RelativeSource={RelativeSource Mode=TemplatedParent}}">
+                      Margin="{Binding TitleBar.InsetMargin, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                      Visibility="{Binding TitleBar.Visibility, RelativeSource={RelativeSource Mode=TemplatedParent}}">
                     <TextBlock x:Name="AppName"
-                               Text="{CustomResource AppName}"
+                               Text="{local:Resource Name=AppName}"
                                Margin="12,0,12,0"
                                HorizontalAlignment="Left"
                                VerticalAlignment="Center"

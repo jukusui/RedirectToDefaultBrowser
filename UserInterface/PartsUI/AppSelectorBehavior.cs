@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.System;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Documents;
 
 namespace UserInterface.PartsUI
@@ -18,10 +20,10 @@ namespace UserInterface.PartsUI
             "DestUri", typeof(Uri), typeof(AppSelectorBehavior),
             new PropertyMetadata(null, OnDestUriChanged));
 
-        public static void SetDestUri(DependencyObject d, Uri value) =>
+        public static void SetDestUri(DependencyObject d, Uri? value) =>
             d.SetValue(DestUriProperty, value);
 
-        public static Uri GetDestUri(DependencyObject d) =>
+        public static Uri? GetDestUri(DependencyObject d) =>
             d.GetValue(DestUriProperty) as Uri;
 
         private static void OnDestUriChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -51,14 +53,21 @@ namespace UserInterface.PartsUI
 
         private static async void Hyperlink_Click(Hyperlink sender, HyperlinkClickEventArgs args)
         {
-            var uri = GetDestUri(sender);
-            if (uri == null)
-                return;
-            var option = new LauncherOptions();
-            if (GetSelectMode(sender))
-                option.DisplayApplicationPicker = true;
+            try
+            {
+                var uri = GetDestUri(sender);
+                if (uri == null)
+                    return;
+                var option = new LauncherOptions();
+                if (GetSelectMode(sender))
+                    option.DisplayApplicationPicker = true;
 
-            await Launcher.LaunchUriAsync(uri, option);
+                await Launcher.LaunchUriAsync(uri, option);
+            }
+            catch (Exception ex)
+            {
+                await new ExceptionDialog(ex).ShowAsync();
+            }
         }
     }
 }

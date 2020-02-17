@@ -18,38 +18,38 @@ namespace Shared.Ex
     {
         private NotUrlException() : base(Properties.ExResources.ExNotUrl) { }
 
-        public NotUrlException(string text) : this()
+        public NotUrlException(string? text) : this()
             => Text = text;
 
-        public NotUrlException(string text, string message) : base(Properties.ExResources.ExNotUrl + "\r\n" + message)
+        public NotUrlException(string? text, string message) : base(Properties.ExResources.ExNotUrl + "\r\n" + message)
         => Text = text;
 
-        public string Text { get; }
+        public string? Text { get; }
     }
 
     public class NoUrlException : OpenException, IText
     {
         private NoUrlException() : base(Properties.ExResources.ExNoUrl) { }
 
-        public NoUrlException(string text) : this()
+        public NoUrlException(string? text) : this()
             => Text = text;
 
-        public string Text { get; }
+        public string? Text { get; }
     }
 
     public class BrowserException : OpenException, IUri
     {
         private BrowserException() : base(Properties.ExResources.ExBrowser) { }
 
-        public BrowserException(Uri uri) : this()
+        public BrowserException(Uri? uri) : this()
             => Uri = uri;
 
         public BrowserException(string message) : base(Properties.ExResources.ExBrowser + "\r\n" + message) { }
 
-        public BrowserException(Uri uri, string message) : this(message)
+        public BrowserException(Uri? uri, string message) : this(message)
             => Uri = uri;
 
-        public static BrowserException FromQueryStatus(LaunchQuerySupportStatus status, Uri uri = null)
+        public static BrowserException FromQueryStatus(LaunchQuerySupportStatus status, Uri? uri = null)
         {
             switch (status)
             {
@@ -66,17 +66,17 @@ namespace Shared.Ex
             }
         }
 
-        public Uri Uri { get; }
+        public Uri? Uri { get; }
     }
 
     public class SchemeException : OpenException, IUri
     {
         private SchemeException() : base(Properties.ExResources.ExScheme) { }
 
-        public SchemeException(Uri uri) : this()
+        public SchemeException(Uri? uri) : this()
             => Uri = uri;
 
-        public Uri Uri { get; }
+        public Uri? Uri { get; }
     }
 
     public class NotMSEdgeSchemeException : OpenException, IText
@@ -86,16 +86,16 @@ namespace Shared.Ex
         public NotMSEdgeSchemeException(string text) : this()
             => Text = text;
 
-        public string Text { get; }
+        public string? Text { get; }
     }
 
     public interface IUri
     {
-        Uri Uri { get; }
+        Uri? Uri { get; }
     }
 
     public interface IText
     {
-        string Text { get; }
+        string? Text { get; }
     }
 }

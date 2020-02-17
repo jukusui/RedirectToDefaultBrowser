@@ -39,16 +39,16 @@ namespace UserInterface.PartsUI
                 "Markdown", typeof(string), typeof(SimpleMarkdown),
                 new PropertyMetadata(null, OnPropertyChanged));
 
-        public static string GetMarkdownProperty(DependencyObject d) =>
+        public static string? GetMarkdownProperty(DependencyObject d) =>
             d.GetValue(MarkdownProperty) as string;
 
-        public static void SetMarkdownProperty(DependencyObject d, string value) =>
+        public static void SetMarkdownProperty(DependencyObject d, string? value) =>
             d.SetValue(MarkdownProperty, value);
 
 
         private static void OnPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            InlineCollection inline = null;
+            InlineCollection? inline = null;
             if (d is TextBlock textBlock)
                 inline = textBlock.Inlines;
             else if (d is Span span)

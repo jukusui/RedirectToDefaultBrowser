@@ -32,8 +32,12 @@ namespace UserInterface.PartsUI
         {
             TitleBarView = titleBar;
             TitleBarLayoutUpdate();
-            titleBar.LayoutMetricsChanged += (s, e) => TitleBarLayoutUpdate();
+            titleBar.LayoutMetricsChanged += OnUpdate;
+            titleBar.IsVisibleChanged += OnUpdate;
         }
+
+        private void OnUpdate(CoreApplicationViewTitleBar sender, object args) =>
+            TitleBarLayoutUpdate();
 
         private TitleBar(double height)
         {
@@ -42,13 +46,26 @@ namespace UserInterface.PartsUI
 
         private void TitleBarLayoutUpdate()
         {
-            Height = TitleBarView.Height;
-            InsetMargin = new Thickness(
-                TitleBarView.SystemOverlayLeftInset, 0,
-                TitleBarView.SystemOverlayRightInset, 0);
+            if (TitleBarView == null)
+                return;
+            if (TitleBarView.IsVisible)
+            {
+                Height = TitleBarView.Height;
+                InsetMargin = new Thickness(
+                    TitleBarView.SystemOverlayLeftInset, 0,
+                    TitleBarView.SystemOverlayRightInset, 0);
+                Visibility = Visibility.Visible;
+            }
+            else
+            {
+                Visibility = Visibility.Collapsed;
+                Height = 0;
+                InsetMargin = new Thickness(0, 0, 0, 0);
+            }
         }
 
-        private static Dictionary<CoreApplicationViewTitleBar, TitleBar> Dict = new Dictionary<CoreApplicationViewTitleBar, TitleBar>();
+        private static readonly Dictionary<CoreApplicationViewTitleBar, TitleBar> Dict =
+            new Dictionary<CoreApplicationViewTitleBar, TitleBar>();
 
 
         public static DependencyProperty HeightProperty =
@@ -75,7 +92,19 @@ namespace UserInterface.PartsUI
         }
 
 
+        public static DependencyProperty VisibilityProperty =
+        DependencyProperty.Register(
+            nameof(Visibility), typeof(Visibility), typeof(TitleBar),
+            new PropertyMetadata(Visibility.Visible));
 
-        public CoreApplicationViewTitleBar TitleBarView { get; }
+        public Visibility Visibility
+        {
+            get => (Visibility)GetValue(VisibilityProperty);
+            set => SetValue(VisibilityProperty, value);
+        }
+
+
+
+        public CoreApplicationViewTitleBar? TitleBarView { get; }
     }
 }

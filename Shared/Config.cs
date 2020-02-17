@@ -8,6 +8,7 @@ using Windows.Storage;
 
 namespace Shared
 {
+
     public static class Config
     {
 
@@ -18,11 +19,11 @@ namespace Shared
                 ReadConfig();
             }
             catch (Exception) { }
-            if (Redirect == null)
-                Redirect = new Redirect(null);
+
+            Redirect = Redirect ?? new Redirect(null);
         }
 
-        public static string LastUrl { get; set; }
+        public static string? LastUrl { get; set; }
 
         public static Redirect Redirect { get; private set; }
 
@@ -46,7 +47,7 @@ namespace Shared
                         else
                             LastUrl = null;
 
-                        RedirectSetting[] redirectSettings = null;
+                        RedirectSetting[]? redirectSettings = null;
                         if (local.Values.ContainsKey(nameof(Redirect)) &&
                             local.Values[nameof(Redirect)] is string redirect)
                             redirectSettings =
@@ -126,15 +127,19 @@ namespace Shared
             }
         }
 
-        public static void Save()
+        public static void Save(bool skipLastUrl = false)
         {
             try
             {
                 var local = ApplicationData.Current.LocalSettings;
                 local.Values[VerKey] = 1;
-                local.Values[nameof(LastUrl)] = LastUrl;
-                Redirect.Refresh();
-                local.Values[nameof(Redirect)] = SerializeRedirectSettings(Redirect.Redirects.ToArray());
+                if (skipLastUrl)
+                    local.Values[nameof(LastUrl)] = LastUrl;
+                if (Redirect != null)
+                {
+                    Redirect.Refresh();
+                    local.Values[nameof(Redirect)] = SerializeRedirectSettings(Redirect.Redirects.ToArray());
+                }
             }
             catch (InvalidOperationException) { }
         }
@@ -149,7 +154,7 @@ namespace Shared
             }
         }
 
-        private static RedirectSetting[] DeserializeRedirectSettings(string xml)
+        private static RedirectSetting[]? DeserializeRedirectSettings(string xml)
         {
             var deserializer = new XmlSerializer(typeof(RedirectSetting[]));
             try

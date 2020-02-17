@@ -18,12 +18,12 @@ namespace AppLauncher
 
             InitializeComponent();
             UrlBox.Text = LastURL;
-            vText.Text = typeof(Launcher).Assembly.GetName().Version.ToString();
+            vText.Text = typeof(Launcher).Assembly.GetName().Version?.ToString() ?? "?.?.?.?";
 
         }
         #region History
 
-        public string LastURL { get; } = Config.LastUrl;
+        public string? LastURL { get; } = Config.LastUrl;
         public bool HasLastData { get => !string.IsNullOrWhiteSpace(LastURL); }
 
         private async void Link_Clicked(object sender, RequestNavigateEventArgs e)
@@ -37,6 +37,8 @@ namespace AppLauncher
 
         private async void OpenDefault_Clicked(object sender, RoutedEventArgs e)
         {
+            if (LastURL == null) return;
+
             var btn = (Button)sender;
             btn.IsEnabled = false;
             try { await Opener.Open(LastURL); }
@@ -46,6 +48,8 @@ namespace AppLauncher
 
         private async void OpenEdge_Clicked(object sender, RoutedEventArgs e)
         {
+            if (LastURL == null) return;
+
             var btn = (Button)sender;
             btn.IsEnabled = false;
             try { await Opener.Open(LastURL, appMode: Opener.OpenerAppMode.PickWithUI); }
@@ -55,6 +59,8 @@ namespace AppLauncher
 
         private async void OpenRaw_Clicked(object sender, RoutedEventArgs e)
         {
+            if (LastURL == null) return;
+
             var btn = (Button)sender;
             btn.IsEnabled = false;
             try { await Opener.OpenRaw(LastURL); }
@@ -64,6 +70,8 @@ namespace AppLauncher
 
         private void Copy_Clicked(object sender, RoutedEventArgs e)
         {
+            if (LastURL == null) return;
+
             Clipboard.SetText(LastURL);
         }
 

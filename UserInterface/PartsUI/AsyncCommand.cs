@@ -10,9 +10,9 @@ namespace UserInterface.PartsUI
     public class AsyncCommand : ICommand
     {
 
-        public AsyncCommand(Func<object, Task> func, ExecutableKey key = null) : this(func, null, key) { }
+        public AsyncCommand(Func<object, Task> func, ExecutableKey? key = null) : this(func, null, key) { }
 
-        public AsyncCommand(Func<object, Task> command, Func<object, bool> checker, ExecutableKey key = null)
+        public AsyncCommand(Func<object, Task> command, Func<object, bool>? checker, ExecutableKey? key = null)
         {
             Command = command;
             Checker = checker;
@@ -20,14 +20,14 @@ namespace UserInterface.PartsUI
                 Key = new ExecutableKey();
             else
                 Key = key;
-            key.StateChanged += Key_StateChanged;
+            Key.StateChanged += Key_StateChanged;
         }
         
         private void Key_StateChanged(ExecutableKey arg1, bool arg2) =>
             CanExecuteChanged(this, new EventArgs());
 
         public Func<object, Task> Command { get; }
-        public Func<object, bool> Checker { get; }
+        public Func<object, bool>? Checker { get; }
         public ExecutableKey Key { get; }
 
         public event EventHandler CanExecuteChanged;

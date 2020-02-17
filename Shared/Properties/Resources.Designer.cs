@@ -241,6 +241,15 @@ namespace Shared.Properties {
         }
         
         /// <summary>
+        ///   Input pattern using Regular Expression に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string InputPlaceholder {
+            get {
+                return ResourceManager.GetString("InputPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Last URI に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string LastURI {
@@ -336,6 +345,15 @@ namespace Shared.Properties {
         public static string Output {
             get {
                 return ResourceManager.GetString("Output", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Output pattern using Regular Expression に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string OutputPlaceholder {
+            get {
+                return ResourceManager.GetString("OutputPlaceholder", resourceCulture);
             }
         }
         
@@ -448,6 +466,24 @@ namespace Shared.Properties {
         }
         
         /// <summary>
+        ///   Replace target URL that starts with http or https に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string TestInputPlaceholder {
+            get {
+                return ResourceManager.GetString("TestInputPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Replaced URL that starts with http or https に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string TestOutputPlaceholder {
+            get {
+                return ResourceManager.GetString("TestOutputPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Tips に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Tips {
@@ -462,6 +498,15 @@ namespace Shared.Properties {
         public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Identifiable free name に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string TitlePlaceholder {
+            get {
+                return ResourceManager.GetString("TitlePlaceholder", resourceCulture);
             }
         }
         

@@ -113,9 +113,9 @@ namespace AppLauncher
         {
             if (ex is AggregateException aEx && aEx.InnerException != null)
                 ex = aEx.InnerException;
-            IUri uri =
+            IUri? uri =
                 ex as IUri ?? ex.InnerException as IUri;
-            IText text =
+            IText? text =
                 ex as IText ?? ex.InnerException as IText;
             var value = uri?.Uri?.AbsoluteUri ?? text?.Text;
             if (value != null)

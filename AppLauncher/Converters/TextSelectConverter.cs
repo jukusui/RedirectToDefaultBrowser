@@ -6,9 +6,9 @@ namespace AppLauncher.Converters
 {
     class TextSelectConverter : IValueConverter
     {
-        public string Splitter { get; set; }
+        public string? Splitter { get; set; }
 
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object? Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string sTrue, sFalse;
             if(parameter is string[] arr)
@@ -28,9 +28,9 @@ namespace AppLauncher.Converters
             else
             {
                 var p = parameter?.ToString() ?? "";
-                var i = p.IndexOf(Splitter);
+                var i = Splitter == null ? p.Length : p.IndexOf(Splitter);
                 sTrue = i < 0 ? p : p.Substring(0, i);
-                sFalse = i < 0 ? "" : p.Substring(i + Splitter.Length);
+                sFalse = i < 0 ? "" : p.Substring(i + (Splitter?.Length ?? 0));
             }
             if ((value is bool b) && b)
                 return sTrue;

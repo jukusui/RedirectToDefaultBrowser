@@ -50,7 +50,7 @@ namespace UserInterface
         /// <param name="e">起動の要求とプロセスの詳細を表示します。</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-            Frame rootFrame = Window.Current.Content as Frame;
+            Frame? rootFrame = Window.Current?.Content as Frame;
 
             // ウィンドウに既にコンテンツが表示されている場合は、アプリケーションの初期化を繰り返さずに、
             // ウィンドウがアクティブであることだけを確認してください
@@ -67,7 +67,8 @@ namespace UserInterface
                 }
 
                 // フレームを現在のウィンドウに配置します
-                Window.Current.Content = rootFrame;
+                if (Window.Current != null)
+                    Window.Current.Content = rootFrame;
                 ExtendAcrylicIntoTitleBar();
             }
 
@@ -81,7 +82,7 @@ namespace UserInterface
                     rootFrame.Navigate(typeof(MainPage), e.Arguments);
                 }
                 // 現在のウィンドウがアクティブであることを確認します
-                Window.Current.Activate();
+                Window.Current?.Activate();
             }
         }
 
@@ -90,7 +91,7 @@ namespace UserInterface
             if (args.Kind == ActivationKind.Protocol &&
                 args is ProtocolActivatedEventArgs protocol)
             {
-                Frame rootFrame = Window.Current.Content as Frame;
+                Frame? rootFrame = Window.Current?.Content as Frame;
                 // ウィンドウに既にコンテンツが表示されている場合は、アプリケーションの初期化を繰り返さずに、
                 // ウィンドウがアクティブであることだけを確認してください
                 if (rootFrame == null)
@@ -101,7 +102,8 @@ namespace UserInterface
                     rootFrame.NavigationFailed += OnNavigationFailed;
 
                     // フレームを現在のウィンドウに配置します
-                    Window.Current.Content = rootFrame;
+                    if (Window.Current != null)
+                        Window.Current.Content = rootFrame;
                     ExtendAcrylicIntoTitleBar();
                 }
 
@@ -113,7 +115,7 @@ namespace UserInterface
                     rootFrame.Navigate(typeof(MainPage), args);
                 }
                 // 現在のウィンドウがアクティブであることを確認します
-                Window.Current.Activate();
+                Window.Current?.Activate();
             }
             else
                 base.OnActivated(args);
@@ -148,7 +150,7 @@ namespace UserInterface
         {
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: アプリケーションの状態を保存してバックグラウンドの動作があれば停止します
-            Shared.Config.Save();
+            Shared.Config.Save(true);
             deferral.Complete();
         }
     }

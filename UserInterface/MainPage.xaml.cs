@@ -57,9 +57,9 @@ namespace UserInterface
             nameof(LastUrl), typeof(string), typeof(MainPage),
             new PropertyMetadata(null));
 
-        public string LastUrl
+        public string? LastUrl
         {
-            get => (string)GetValue(LastUrlProperty);
+            get => (string?)GetValue(LastUrlProperty);
             set => SetValue(LastUrlProperty, value);
         }
 
@@ -136,7 +136,7 @@ namespace UserInterface
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex);
+                await new ExceptionDialog(ex).ShowAsync();
                 return;
             }
 
@@ -164,7 +164,7 @@ namespace UserInterface
 
         #region Open(edge scheme)
 
-        private AsyncCommand _OpenWithDefaultBrowser;
+        private AsyncCommand? _OpenWithDefaultBrowser;
         private AsyncCommand OpenWithDefaultBrowser
         {
             get =>
@@ -181,12 +181,11 @@ namespace UserInterface
             }
             catch (Exception ex)
             {
-                ErrorDialog.DataContext = ex.Message;
-                await ErrorDialog.ShowAsync();
+                await new ExceptionDialog(ex).ShowAsync();
             }
         }
 
-        private AsyncCommand _OpenWithSelectedEdge;
+        private AsyncCommand? _OpenWithSelectedEdge;
         private AsyncCommand OpenWithSelectedEdge
         {
             get =>
@@ -203,15 +202,14 @@ namespace UserInterface
             }
             catch (Exception ex)
             {
-                ErrorDialog.DataContext = ex.Message;
-                await ErrorDialog.ShowAsync();
+                await new ExceptionDialog(ex).ShowAsync();
             }
         }
 
         #endregion
         #region Launch(http scheme)
 
-        private AsyncCommand _LaunchWithDefaultBrowser;
+        private AsyncCommand? _LaunchWithDefaultBrowser;
         public AsyncCommand LaunchWithDefaultBrowser
         {
             get =>
@@ -228,12 +226,11 @@ namespace UserInterface
             }
             catch (Exception ex)
             {
-                ErrorDialog.DataContext = ex.Message;
-                await ErrorDialog.ShowAsync();
+                await new ExceptionDialog(ex).ShowAsync();
             }
         }
 
-        private AsyncCommand _LaunchWithSelectedBrowser;
+        private AsyncCommand? _LaunchWithSelectedBrowser;
         public AsyncCommand LaunchWithSelectedBrowser
         {
             get =>
@@ -250,8 +247,7 @@ namespace UserInterface
             }
             catch (Exception ex)
             {
-                ErrorDialog.DataContext = ex.Message;
-                await ErrorDialog.ShowAsync();
+                await new ExceptionDialog(ex).ShowAsync();
             }
         }
 
@@ -333,7 +329,7 @@ namespace UserInterface
 
         class SwitchRedirectEnableCommand : ICommand
         {
-            public event EventHandler CanExecuteChanged;
+            event EventHandler ICommand.CanExecuteChanged { add { } remove { } }
 
             public bool CanExecute(object parameter)
                 => parameter is RedirectSetting;
@@ -343,6 +339,7 @@ namespace UserInterface
                 if (parameter is RedirectSetting setting)
                     setting.Enable = !setting.Enable;
             }
+
         }
 
         private void AddRedirect_Click(object sender, RoutedEventArgs e)

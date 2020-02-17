@@ -50,7 +50,7 @@ namespace AppLauncher
 
 
         public RedirectSetting TargetSetting { get; }
-        public IList<RedirectSetting> TargetList { get; }
+        public IList<RedirectSetting>? TargetList { get; }
 
         private void OnCancel(object sender, RoutedEventArgs e)
         {
@@ -63,7 +63,7 @@ namespace AppLauncher
             TargetSetting.Output = Setting.Output;
             TargetSetting.Title = TitleInput.Text;
             if (!IsEdit)
-                TargetList.Add(TargetSetting);
+                TargetList?.Add(TargetSetting);
             Close();
         }
     }

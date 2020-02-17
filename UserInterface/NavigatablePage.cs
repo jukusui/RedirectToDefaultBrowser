@@ -28,7 +28,7 @@ namespace UserInterface
     public class NavigatablePage : Page
     {
 
-        protected virtual ContentDialog GetAskDialog() => null;
+        protected virtual ContentDialog? GetAskDialog() => null;
 
         protected virtual void DialogPrimary() { }
         protected virtual void DialogCancel() { }

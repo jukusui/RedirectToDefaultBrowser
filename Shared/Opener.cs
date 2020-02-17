@@ -165,8 +165,9 @@ namespace Shared
             if (useRedirect)
                 uris = uris.Select(uri =>
                 {
-                    foreach (var redirect in Config.Redirect.Redirects)
-                        uri = redirect.Apply(uri);
+                    if (Config.Redirect?.Redirects != null)
+                        foreach (var redirect in Config.Redirect.Redirects)
+                            uri = redirect.Apply(uri);
                     return uri;
                 });
             var uriArray = uris.ToArray();

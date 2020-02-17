@@ -33,7 +33,7 @@
             <TextBlock Text="{local:Resource Name=History}" Style="{ThemeResource SubtitleTextBlockStyle}"/>
         </Grid>-->
 
-        <ScrollViewer Grid.Row="1" HorizontalScrollMode="Disabled" TabIndex="0" IsTabStop="True">
+        <ScrollViewer Grid.Row="1" HorizontalScrollMode="Disabled" IsTabStop="True">
             <StackPanel Margin="0,0,0,24">
                 <controls:GroupBox>
                     <controls:GroupBox.Header>
@@ -288,13 +288,6 @@
                         </StackPanel>
                     </controls:GroupBox.Content>
                 </controls:GroupBox>
-
-                <ContentDialog x:Name="ErrorDialog"
-                               Title="{local:Resource Name=ExceptionOccurred}"
-                               CloseButtonText="{local:Resource Name=Close}"
-                               DefaultButton="Close">
-                    <TextBlock Text="{Binding}" TextWrapping="Wrap"/>
-                </ContentDialog>
             </StackPanel>
         </ScrollViewer>
     </Grid>

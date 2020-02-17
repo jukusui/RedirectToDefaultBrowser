@@ -12,7 +12,7 @@ namespace Shared
     public class Redirect
 
     {
-        public Redirect(RedirectSetting[] settings)
+        public Redirect(RedirectSetting[]? settings)
         {
             Redirects = new ObservableCollection<RedirectSetting>(
                 settings ?? Enumerable.Empty<RedirectSetting>());
@@ -20,11 +20,11 @@ namespace Shared
 
         ~Redirect()
         {
-
+            Detach();
         }
 
         public bool Attached { get; private set; }
-        private RedirectSetting[] AttachedItems { get; set; }
+        private RedirectSetting[]? AttachedItems { get; set; }
 
         public void Attach()
         {
@@ -84,14 +84,18 @@ namespace Shared
     [Serializable]
     public class RedirectSetting : NotifyBase
     {
+        [NonSerialized]
         private bool enable = true;
         public bool Enable { get => enable; set => OnPropertyChanged(ref enable, value); }
-        private string title = "";
-        public string Title { get => title; set => OnPropertyChanged(ref title, value); }
-        private string input = "";
-        public string Input { get => input; set => OnPropertyChanged(ref input, value); }
-        private string output = "";
-        public string Output { get => output; set => OnPropertyChanged(ref output, value); }
+
+        private string? title = "";
+        public string? Title { get => title; set => OnPropertyChanged(ref title, value); }
+       
+        private string? input = "";
+        public string? Input { get => input; set => OnPropertyChanged(ref input, value); }
+        
+        private string? output = "";
+        public string? Output { get => output; set => OnPropertyChanged(ref output, value); }
 
         [NonSerialized]
         private bool willRemove = false;

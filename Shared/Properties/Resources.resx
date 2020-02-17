@@ -177,6 +177,9 @@
   <data name="Input" xml:space="preserve">
     <value>Input Pattern</value>
   </data>
+  <data name="InputPlaceholder" xml:space="preserve">
+    <value>Input pattern using Regular Expression</value>
+  </data>
   <data name="LastURI" xml:space="preserve">
     <value>Last URI</value>
   </data>
@@ -209,6 +212,9 @@
   </data>
   <data name="Output" xml:space="preserve">
     <value>Output Pattern</value>
+  </data>
+  <data name="OutputPlaceholder" xml:space="preserve">
+    <value>Output pattern using Regular Expression</value>
   </data>
   <data name="RecognizedURL" xml:space="preserve">
     <value>Recognized URL</value>
@@ -246,11 +252,20 @@
   <data name="Test" xml:space="preserve">
     <value>Test Input</value>
   </data>
+  <data name="TestInputPlaceholder" xml:space="preserve">
+    <value>Replace target URL that starts with http or https</value>
+  </data>
+  <data name="TestOutputPlaceholder" xml:space="preserve">
+    <value>Replaced URL that starts with http or https</value>
+  </data>
   <data name="Tips" xml:space="preserve">
     <value>Tips</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>Title</value>
+  </data>
+  <data name="TitlePlaceholder" xml:space="preserve">
+    <value>Identifiable free name</value>
   </data>
   <data name="TurnOff" xml:space="preserve">
     <value>Turn OFF</value>

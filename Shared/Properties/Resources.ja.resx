@@ -162,4 +162,19 @@
   <data name="AboutRedirectSetting" xml:space="preserve">
     <value>リダイレクトの設定について</value>
   </data>
+  <data name="InputPlaceholder" xml:space="preserve">
+    <value>正規表現を用いた入力パターン</value>
+  </data>
+  <data name="OutputPlaceholder" xml:space="preserve">
+    <value>正規表現を用いた出力パターン</value>
+  </data>
+  <data name="TestInputPlaceholder" xml:space="preserve">
+    <value>置き換え対象になるhttpから始まるURL</value>
+  </data>
+  <data name="TestOutputPlaceholder" xml:space="preserve">
+    <value>置き換えされたhttpから始まるURL</value>
+  </data>
+  <data name="TitlePlaceholder" xml:space="preserve">
+    <value>判別用の自由な名前</value>
+  </data>
 </root>

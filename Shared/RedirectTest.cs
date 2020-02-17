@@ -13,8 +13,8 @@ namespace Shared
             Input = Output = Test = "";
         }
 
-        private string input;
-        public string Input
+        private string? input;
+        public string? Input
         {
             get => input;
             set
@@ -43,10 +43,10 @@ namespace Shared
                 }
             }
         }
-        private Regex inputRegex = null;
+        private Regex? inputRegex = null;
 
-        private string output;
-        public string Output
+        private string? output;
+        public string? Output
         {
             get => output;
             set
@@ -55,8 +55,8 @@ namespace Shared
                     RunTest();
             }
         }
-        private string test;
-        public string Test
+        private string? test;
+        public string? Test
         {
             get => test;
             set
@@ -66,8 +66,8 @@ namespace Shared
             }
         }
 
-        private string testRes;
-        public string TestRes { get => testRes; private set => OnPropertyChanged(ref testRes, value); }
+        private string? testRes;
+        public string? TestRes { get => testRes; private set => OnPropertyChanged(ref testRes, value); }
 
 
         private void RunTest()
@@ -112,9 +112,9 @@ namespace Shared
             }
         }
 
-        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
+        public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
 
-        public IEnumerable GetErrors(string propertyName)
+        public IEnumerable GetErrors(string? propertyName)
         {
             if ((propertyName == null || propertyName == nameof(Input)) &&
                 HasErrors)
