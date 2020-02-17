@@ -9,14 +9,15 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <NeutralLanguage>en-001</NeutralLanguage>
     <PackageId>RedirectToDefaultBrowser</PackageId>
-    <AssemblyVersion>1.1.1.0</AssemblyVersion>
-    <FileVersion>1.1.1.0</FileVersion>
-    <Version>1.1.0</Version>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <FileVersion>2.0.0.0</FileVersion>
+    <Version>2.0.0</Version>
     <Authors>Jukusui</Authors>
     <Company>Jukusui</Company>
     <Product>RedirectToDefaultBrowser</Product>
     <Description>Redirects microsoft-edge scheme uri to your default browser</Description>
     <Copyright>Jukusui Copyright ©  2018</Copyright>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
 
   <ItemGroup>
