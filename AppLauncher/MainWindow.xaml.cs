@@ -24,7 +24,7 @@ namespace AppLauncher
         #region History
 
         public string? LastURL { get; } = Config.LastUrl;
-        public bool HasLastData { get => !string.IsNullOrWhiteSpace(LastURL); }
+        public bool HasLastData { get => !string.IsNullOrEmpty(LastURL); }
 
         private async void Link_Clicked(object sender, RequestNavigateEventArgs e)
         {

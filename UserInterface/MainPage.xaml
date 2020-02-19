@@ -138,7 +138,8 @@
                                                 <ColumnDefinition Width="4" />
                                                 <ColumnDefinition Width="auto" />
                                             </Grid.ColumnDefinitions>
-                                            <TextBlock Text="{x:Bind Title,Mode=OneWay}" VerticalAlignment="Center"/>
+                                            <TextBlock Text="{x:Bind Title,Mode=OneWay}" VerticalAlignment="Center"
+                                                       TextTrimming="CharacterEllipsis"/>
 
                                             <Button Grid.Column="2" Style="{ThemeResource TextBlockButtonStyle}"
                                                     ToolTipService.ToolTip="{local:Resource Name=Edit}"
@@ -232,7 +233,6 @@
                                 </Paragraph>
                                 <Paragraph>
                                     <Span parts:SimpleMarkdown.MarkdownProperty="{local:Resource Name=Issue,GroupName=DocumentResources}"/>
-                                    <Span parts:SimpleMarkdown.MarkdownProperty="{local:Resource Name=StoreApp,GroupName=DocumentResources}"/>
                                 </Paragraph>
                             </RichTextBlock>
                         </StackPanel>
@@ -264,20 +264,61 @@
                                         <RowDefinition Height="4" />
                                         <RowDefinition Height="auto" />
                                         <RowDefinition Height="4" />
-                                        <RowDefinition Height="1*" />
+                                        <RowDefinition Height="auto" />
                                     </Grid.RowDefinitions>
                                     <TextBlock Style="{ThemeResource TitleTextBlockStyle}"
                                                Text="{local:Resource Name=AppName}"/>
                                     <TextBlock Grid.Row="2">
-                                            <Run Text="{local:Resource Name=Version}"/>
-                                            <Run Text=" "/>
-                                            <Run Text="{x:Bind AppVersion}"/>
+                                        <Run Text="{local:Resource Name=Version}"/>
+                                        <Run Text="{x:Bind AppVersion}"/>
                                     </TextBlock>
-                                    <TextBlock Grid.Row="4" HorizontalAlignment="Left">
-                                        <Hyperlink NavigateUri="{x:Bind prop:UniversalResources.R2DBUri}" >
-                                            <Run Text="{x:Bind prop:UniversalResources.R2DBUri}"/>
-                                        </Hyperlink>
-                                    </TextBlock>
+                                    <controls:WrapPanel Grid.Row="4" Margin="0,4,0,0"
+                                                        ContentMargin="12,4"
+                                                        HorizontalAlignment="Left" HorizontalContentsAlignment="Left">
+                                        <TextBlock>
+                                            <Hyperlink ToolTipService.ToolTip="{local:Resource Name=R2DBUri,GroupName=UniversalResources}"
+                                                       NavigateUri="{x:Bind prop:UniversalResources.R2DBUri,Mode=OneWay}">
+                                                <Run Text="&#xE909;" FontFamily="Segoe MDL2 Assets"/>
+                                                <Run Text="{local:Resource Name=WebPage}"/>
+                                            </Hyperlink>
+                                        </TextBlock>
+                                        <TextBlock>
+                                            <Hyperlink ToolTipService.ToolTip="{local:Resource Name=FeedbackHub,GroupName=UniversalResources}"
+                                                       Click="FeedbackHub_Click">
+                                                <Run Text="&#xE939;" FontFamily="Segoe MDL2 Assets"/>
+                                                <Run Text="{local:Resource Name=Feedback}"/>
+                                            </Hyperlink>
+                                        </TextBlock>
+                                        <TextBlock>
+                                            <Hyperlink ToolTipService.ToolTip="{local:Resource Name=GitHub,GroupName=UniversalResources}"
+                                                       NavigateUri="{x:Bind prop:UniversalResources.GitHubUri,Mode=OneWay}">
+                                                <Run Text="G" FontFamily="Assets/Fonts/Icon.ttf#R2DB_IconSets"/>
+                                                <Run Text="{local:Resource Name=GitHub,GroupName=UniversalResources}"/>
+                                            </Hyperlink>
+                                        </TextBlock>
+                                        <TextBlock>
+                                            <Hyperlink ToolTipService.ToolTip="{local:Resource Name=MSStore,GroupName=UniversalResources}"
+                                                       NavigateUri="{x:Bind prop:UniversalResources.StoreUri,Mode=OneWay}">
+                                                <Run Text="S" FontFamily="Assets/Fonts/Icon.ttf#R2DB_IconSets"/>
+                                                <Run Text="{local:Resource Name=Store}"/>
+                                            </Hyperlink>
+                                        </TextBlock>
+                                        <TextBlock>
+                                            <Hyperlink ToolTipService.ToolTip="{local:Resource Name=Mastodon,GroupName=UniversalResources}"
+                                                       NavigateUri="{x:Bind prop:UniversalResources.MastodonUri,Mode=OneWay}">
+                                                <Run Text="M" FontFamily="Assets/Fonts/Icon.ttf#R2DB_IconSets"/>
+                                                <Run Text="{local:Resource Name=MastodonName,GroupName=UniversalResources}"/>
+                                            </Hyperlink>
+                                        </TextBlock>
+
+                                        <TextBlock>
+                                            <Hyperlink ToolTipService.ToolTip="{local:Resource Name=TwitterName,GroupName=UniversalResources}"
+                                                       NavigateUri="{x:Bind prop:UniversalResources.TwitterUri,Mode=OneWay}">
+                                                <Run Text="T" FontFamily="Assets/Fonts/Icon.ttf#R2DB_IconSets"/>
+                                                <Run Text="{local:Resource Name=TwitterName,GroupName=UniversalResources}"/>
+                                            </Hyperlink>
+                                        </TextBlock>
+                                    </controls:WrapPanel>
                                 </Grid>
                             </Grid>
                             <Rectangle Style="{StaticResource HorizontalBar}"/>

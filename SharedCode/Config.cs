@@ -133,7 +133,7 @@ namespace Shared
             {
                 var local = ApplicationData.Current.LocalSettings;
                 local.Values[VerKey] = 1;
-                if (skipLastUrl)
+                if (!skipLastUrl)
                     local.Values[nameof(LastUrl)] = LastUrl;
                 if (Redirect != null)
                 {

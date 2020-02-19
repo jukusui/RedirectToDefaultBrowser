@@ -79,6 +79,78 @@ namespace Shared.Properties {
         }
         
         /// <summary>
+        ///   Feedback Hub に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string FeedbackHub {
+            get {
+                return ResourceManager.GetString("FeedbackHub", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   feedback-hub: に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string FeedbackHubUri {
+            get {
+                return ResourceManager.GetString("FeedbackHubUri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   GitHub に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string GitHub {
+            get {
+                return ResourceManager.GetString("GitHub", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   https://github.com/jukusui/RedirectToDefaultBrowser に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string GitHubUri {
+            get {
+                return ResourceManager.GetString("GitHubUri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Mastodon に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Mastodon {
+            get {
+                return ResourceManager.GetString("Mastodon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   @jukusui@mstdn.jp に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MastodonName {
+            get {
+                return ResourceManager.GetString("MastodonName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   https://mstdn.jp/@jukusui に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MastodonUri {
+            get {
+                return ResourceManager.GetString("MastodonUri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Microsoft Store に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string MSStore {
+            get {
+                return ResourceManager.GetString("MSStore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   https://jukusui.github.io/Product/R2DB/ に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string R2DBUri {
@@ -93,6 +165,33 @@ namespace Shared.Properties {
         public static string StoreUri {
             get {
                 return ResourceManager.GetString("StoreUri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Twitter に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Twitter {
+            get {
+                return ResourceManager.GetString("Twitter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   @jukusui_zzz に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string TwitterName {
+            get {
+                return ResourceManager.GetString("TwitterName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   https://twitter.com/jukusui_zzz に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string TwitterUri {
+            get {
+                return ResourceManager.GetString("TwitterUri", resourceCulture);
             }
         }
     }

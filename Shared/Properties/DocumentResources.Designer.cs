@@ -61,8 +61,7 @@ namespace Shared.Properties {
         }
         
         /// <summary>
-        ///   On this app, two types of &quot;microsoft-edge&quot; scheme URIs are supported.
-        ///One is one URL is directly  written type(eg:&quot;[microsoft-edge:http://example.com](*microsoft-edge:http://example.com)&quot;). The other is URL parametered URI(eg:&quot;[microsoft-edge:?url=https%3A%2F%2Fexample.com](*microsoft-edge:?url=https%3A%2F%2Fexample.com)&quot;). If you found other type of &quot;microsoft-edge&quot; scheme, please tell me! に類似しているローカライズされた文字列を検索します。
+        ///   On this app, two types of &quot;microsoft-edge&quot; scheme URIs are supported.  One is one URL is directly written type(eg:&quot;[microsoft-edge:http://example.com](*microsoft-edge:http://example.com)&quot;).  The other is URL parametered URI(eg:&quot;[microsoft-edge:?url=https%3A%2F%2Fexample.com](*microsoft-edge:?url=https%3A%2F%2Fexample.com)&quot;).  If you found other type of &quot;microsoft-edge&quot; scheme, please tell me! に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string AboutEdgeScheme {
             get {
@@ -71,7 +70,7 @@ namespace Shared.Properties {
         }
         
         /// <summary>
-        ///   On redirect program, multiple replaces are applied by order(up-to-down), and URL format validation will be applied per redirect replace. So, if you remove http[s] first(&quot;https?&quot;→&quot;&quot;), and insert https after the replace(&quot;^&quot;→&quot;https&quot;), the result will valid url but rejects the replace on the first replace(by empty scheme error). This behavior is design for detecting such destructively replace. に類似しているローカライズされた文字列を検索します。
+        ///   On redirect program, multiple replaces are applied by order(up-to-down), and URL format validation will be applied per redirect replace.  So, if you remove http[s] first(&quot;https?&quot;→&quot;&quot;), and insert https after the replace(&quot;^&quot;→&quot;https&quot;), the result will valid URL but rejects the replace on the first replace(by empty scheme error).  This behavior is design for detecting such destructively replace. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string AboutRedirectSetting {
             get {
@@ -80,7 +79,7 @@ namespace Shared.Properties {
         }
         
         /// <summary>
-        ///   The replace will be applied according to RegEx(Regular Expression).  RegEx is a string expression for search or replace multiple character or long character(and so on). For more information, you can see [microsoft&apos;s documentation](https://docs.microsoft.com/dotnet/standard/base-types/regular-expressions) に類似しているローカライズされた文字列を検索します。
+        ///   The replace will be applied according to RegEx(Regular Expression).  RegEx is a string expression for search or replace multiple character or long character (and so on).  For more information, you can see [microsoft&apos;s documentation](https://docs.microsoft.com/dotnet/standard/base-types/regular-expressions). に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string AboutRegex {
             get {
@@ -89,7 +88,7 @@ namespace Shared.Properties {
         }
         
         /// <summary>
-        ///   [Open app list of this computer](ms-settings:appsfeatures-app). You can remove or reset this app. に類似しているローカライズされた文字列を検索します。
+        ///   [Open app list of this computer](ms-settings:appsfeatures-app).  You can remove or reset this app. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string AppList {
             get {
@@ -98,7 +97,7 @@ namespace Shared.Properties {
         }
         
         /// <summary>
-        ///   If the redirect dosen&apos;t work, you can chose the default app of &quot;microsoft-edge&quot; scheme. You need configure this default app to this app &quot;RedirectToDefaultBrowser&quot;. If you want to configure, [open selector](*microsoft-edge:) and chose this app with &quot;always use&quot; setting.  If it doesn&apos;t work, [open settings](ms-settings:defaultapps), select &quot;default app of protocol&quot;, and chose &quot;MICROSOFT-EDGE&quot; &apos;s app to this app. に類似しているローカライズされた文字列を検索します。
+        ///   If the redirect doesn’t work, you can chose the default app of &quot;microsoft-edge&quot; scheme.  You need configure this default app to this app &quot;RedirectToDefaultBrowser&quot;.  If you want to configure, [open selector](*microsoft-edge:) and chose this app with &quot;always use&quot; setting.  If it doesn&apos;t work, [open settings](ms-settings:defaultapps), select &quot;default app of protocol&quot;, and chose &quot;MICROSOFT-EDGE&quot; &apos;s app to this app.  In some launcher app (eg: old version of Cortana), default app setting won’t change until machi [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string DefaultApp {
             get {
@@ -107,7 +106,7 @@ namespace Shared.Properties {
         }
         
         /// <summary>
-        ///   If you encounter some issue, you can report it on [GitHub](https://github.com/jukusui/RedirectToDefaultBrowser/issues).  Basically please use GitHub on reporting issues. But I accepts other means such as Windows Store. に類似しているローカライズされた文字列を検索します。
+        ///   If you encounter some issue, you can report it on GitHub.  Basically, please use GitHub or Feedback Hub on reporting issues.  But I accept other means such as my SNS accounts and Windows Store. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Issue {
             get {

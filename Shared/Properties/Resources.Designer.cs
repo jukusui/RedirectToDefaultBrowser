@@ -223,6 +223,15 @@ namespace Shared.Properties {
         }
         
         /// <summary>
+        ///   Feedback に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Feedback {
+            get {
+                return ResourceManager.GetString("Feedback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   History に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string History {
@@ -457,6 +466,15 @@ namespace Shared.Properties {
         }
         
         /// <summary>
+        ///   Store に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Store {
+            get {
+                return ResourceManager.GetString("Store", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Test Input に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Test {
@@ -552,6 +570,15 @@ namespace Shared.Properties {
         public static string Version {
             get {
                 return ResourceManager.GetString("Version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Web Page に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string WebPage {
+            get {
+                return ResourceManager.GetString("WebPage", resourceCulture);
             }
         }
     }

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
-  <file datatype="xml" source-language="en" target-language="ja" original="SHARED/PROPERTIES/UNIVERSALRESOURCES.RESX" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
+  <file datatype="xml" source-language="en" target-language="ja-JP" original="SHARED/PROPERTIES/UNIVERSALRESOURCES.RESX" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
     <header>
       <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.6915.0" tool-company="Microsoft" />
     </header>
@@ -22,10 +22,54 @@
           <source>ms-windows-store://pdp/?ProductId=9N86NDB1C3MP</source>
           <target state="final">ms-windows-store://pdp/?ProductId=9N86NDB1C3MP</target>
         </trans-unit>
+        <trans-unit id="MastodonName" translate="yes" xml:space="preserve">
+          <source>@jukusui@mstdn.jp</source>
+          <target state="final">@jukusui@mstdn.jp</target>
+        </trans-unit>
+        <trans-unit id="MastodonUri" translate="yes" xml:space="preserve">
+          <source>https://mstdn.jp/@jukusui</source>
+          <target state="final">https://mstdn.jp/@jukusui</target>
+        </trans-unit>
+        <trans-unit id="TwitterName" translate="yes" xml:space="preserve">
+          <source>@jukusui_zzz</source>
+          <target state="final">@jukusui_zzz</target>
+        </trans-unit>
+        <trans-unit id="TwitterUri" translate="yes" xml:space="preserve">
+          <source>https://twitter.com/jukusui_zzz</source>
+          <target state="final">https://twitter.com/jukusui_zzz</target>
+        </trans-unit>
+        <trans-unit id="FeedbackHub" translate="yes" xml:space="preserve">
+          <source>Feedback Hub</source>
+          <target state="final">Feedback Hub</target>
+        </trans-unit>
+        <trans-unit id="GitHub" translate="yes" xml:space="preserve">
+          <source>GitHub</source>
+          <target state="final">GitHub</target>
+        </trans-unit>
+        <trans-unit id="Mastodon" translate="yes" xml:space="preserve">
+          <source>Mastodon</source>
+          <target state="final">Mastodon</target>
+        </trans-unit>
+        <trans-unit id="MSStore" translate="yes" xml:space="preserve">
+          <source>Microsoft Store</source>
+          <target state="final">Microsoft Store</target>
+        </trans-unit>
+        <trans-unit id="Twitter" translate="yes" xml:space="preserve">
+          <source>Twitter</source>
+          <target state="final">Twitter</target>
+        </trans-unit>
+        <trans-unit id="GitHubUri" translate="yes" xml:space="preserve">
+          <source>https://github.com/jukusui/RedirectToDefaultBrowser</source>
+          <target state="final">https://github.com/jukusui/RedirectToDefaultBrowser</target>
+        </trans-unit>
+        <trans-unit id="FeedbackHubUri" translate="yes" xml:space="preserve">
+          <source>feedback-hub:</source>
+          <target state="final">feedback-hub:</target>
+        </trans-unit>
       </group>
     </body>
   </file>
-  <file datatype="xml" source-language="en" target-language="ja" original="SHARED/PROPERTIES/EXRESOURCES.RESX" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
+  <file datatype="xml" source-language="en" target-language="ja-JP" original="SHARED/PROPERTIES/EXRESOURCES.RESX" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
     <header>
       <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.6915.0" tool-company="Microsoft" />
     </header>
@@ -86,7 +130,7 @@
       </group>
     </body>
   </file>
-  <file datatype="xml" source-language="en" target-language="ja" original="SHARED/PROPERTIES/RESOURCES.RESX" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
+  <file datatype="xml" source-language="en" target-language="ja-JP" original="SHARED/PROPERTIES/RESOURCES.RESX" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
     <header>
       <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.6915.0" tool-company="Microsoft" />
     </header>
@@ -312,10 +356,22 @@
           <source>Identifiable free name</source>
           <target state="final">判別用の自由な名前</target>
         </trans-unit>
+        <trans-unit id="Feedback" translate="yes" xml:space="preserve">
+          <source>Feedback</source>
+          <target state="final">フィードバック</target>
+        </trans-unit>
+        <trans-unit id="Store" translate="yes" xml:space="preserve">
+          <source>Store</source>
+          <target state="final">ストア</target>
+        </trans-unit>
+        <trans-unit id="WebPage" translate="yes" xml:space="preserve">
+          <source>Web Page</source>
+          <target state="final">ウェブページ</target>
+        </trans-unit>
       </group>
     </body>
   </file>
-  <file datatype="xml" source-language="en" target-language="ja" original="SHARED/PROPERTIES/DOCUMENTRESOURCES.RESX" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
+  <file datatype="xml" source-language="en" target-language="ja-JP" original="SHARED/PROPERTIES/DOCUMENTRESOURCES.RESX" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
     <header>
       <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.6915.0" tool-company="Microsoft" />
     </header>
@@ -326,28 +382,27 @@
           <target state="final">このアプリのストアページは[ここから](ms-windows-store://pdp/?ProductId=9N86NDB1C3MP)開けます。</target>
         </trans-unit>
         <trans-unit id="AppList" translate="yes" xml:space="preserve">
-          <source>[Open app list of this computer](ms-settings:appsfeatures-app). You can remove or reset this app.</source>
+          <source>[Open app list of this computer](ms-settings:appsfeatures-app).  You can remove or reset this app.</source>
           <target state="final">このパソコンのアプリの一覧は[ここから](ms-settings:appsfeatures-app)開けます。アプリの設定リセットやアンインストールなどのもろもろの操作ができます。</target>
         </trans-unit>
         <trans-unit id="DefaultApp" translate="yes" xml:space="preserve">
-          <source>If the redirect dosen't work, you can chose the default app of "microsoft-edge" scheme. You need configure this default app to this app "RedirectToDefaultBrowser". If you want to configure, [open selector](*microsoft-edge:) and chose this app with "always use" setting.  If it doesn't work, [open settings](ms-settings:defaultapps), select "default app of protocol", and chose "MICROSOFT-EDGE" 's app to this app.</source>
-          <target state="final">もしもリダイレクトが動いていない場合、「microsoft-edge」スキーム(プロトコル)の既定のアプリをこのアプリにすることで治るはずです。この設定を行うには、アプリの選択画面を[開いて](*microsoft-edge:)、「常に使う」アプリとしてこのアプリを選択してください。そのチェックボックスがないなどしてそれができない場合は、設定アプリを[開いて](ms-settings:defaultapps)「プロトコルごとにアプリを選ぶ」から、「MICROSOFT-EDGE」をこのアプリに選び直して下さい。</target>
+          <source>If the redirect doesn’t work, you can chose the default app of "microsoft-edge" scheme.  You need configure this default app to this app "RedirectToDefaultBrowser".  If you want to configure, [open selector](*microsoft-edge:) and chose this app with "always use" setting.  If it doesn't work, [open settings](ms-settings:defaultapps), select "default app of protocol", and chose "MICROSOFT-EDGE" 's app to this app.  In some launcher app (eg: old version of Cortana), default app setting won’t change until machine has rebooted.</source>
+          <target state="final">もしもリダイレクトが動いていない場合、「microsoft-edge」スキーム(プロトコル)の既定のアプリをこのアプリにすることで治るはずです。この設定を行うには、アプリの選択画面を[開いて](*microsoft-edge:)、「常に使う」アプリとしてこのアプリを選択してください。そのチェックボックスがないなどでそれができない場合は、設定アプリを[開いて](ms-settings:defaultapps)「プロトコルごとにアプリを選ぶ」から、「MICROSOFT-EDGE」をこのアプリに選び直して下さい。また、一部の起動元アプリではPCの再起動がされるまでこの設定が反映されないことを確認しています(古いバージョンのCortana)。</target>
         </trans-unit>
         <trans-unit id="Issue" translate="yes" xml:space="preserve">
-          <source>If you encounter some issue, you can report it on [GitHub](https://github.com/jukusui/RedirectToDefaultBrowser/issues).  Basically please use GitHub on reporting issues. But I accepts other means such as Windows Store.</source>
-          <target state="final">問題点の報告は[GitHub](https://github.com/jukusui/RedirectToDefaultBrowser/issues)からどうぞ。基本はGitHubがありがたいですが、ストアなどでも問題ありません。</target>
+          <source>If you encounter some issue, you can report it on GitHub.  Basically, please use GitHub or Feedback Hub on reporting issues.  But I accept other means such as my SNS accounts and Windows Store.</source>
+          <target state="final">問題点の報告はGitHubからどうぞ。基本はGitHubやFeedbackHubがありがたいですが、ストアやSNS経由でも問題ありません。それぞれ最下部のリンクから飛べます。</target>
         </trans-unit>
         <trans-unit id="AboutEdgeScheme" translate="yes" xml:space="preserve">
-          <source>On this app, two types of "microsoft-edge" scheme URIs are supported.
-One is one URL is directly  written type(eg:"[microsoft-edge:http://example.com](*microsoft-edge:http://example.com)"). The other is URL parametered URI(eg:"[microsoft-edge:?url=https%3A%2F%2Fexample.com](*microsoft-edge:?url=https%3A%2F%2Fexample.com)"). If you found other type of "microsoft-edge" scheme, please tell me!</source>
+          <source>On this app, two types of "microsoft-edge" scheme URIs are supported.  One is one URL is directly written type(eg:"[microsoft-edge:http://example.com](*microsoft-edge:http://example.com)").  The other is URL parametered URI(eg:"[microsoft-edge:?url=https%3A%2F%2Fexample.com](*microsoft-edge:?url=https%3A%2F%2Fexample.com)").  If you found other type of "microsoft-edge" scheme, please tell me!</source>
           <target state="final">このアプリでは二つの種類の「microsoft-edge」スキームURIをサポートしています。一つ目が、直接URLがURIに書かれているタイプ(例:"[microsoft-edge:http://example.com](*microsoft-edge:http://example.com)")。もうひとつがURIのパラメータにURLが書かれているタイプ(例:"[microsoft-edge:?url=https%3A%2F%2Fexample.com](*microsoft-edge:?url=https%3A%2F%2Fexample.com)")。もしも他の使われ方を見つけたらぜひお教えください。</target>
         </trans-unit>
         <trans-unit id="AboutRedirectSetting" translate="yes" xml:space="preserve">
-          <source>On redirect program, multiple replaces are applied by order(up-to-down), and URL format validation will be applied per redirect replace. So, if you remove http[s] first("https?"→""), and insert https after the replace("^"→"https"), the result will valid url but rejects the replace on the first replace(by empty scheme error). This behavior is design for detecting such destructively replace.</source>
+          <source>On redirect program, multiple replaces are applied by order(up-to-down), and URL format validation will be applied per redirect replace.  So, if you remove http[s] first("https?"→""), and insert https after the replace("^"→"https"), the result will valid URL but rejects the replace on the first replace(by empty scheme error).  This behavior is design for detecting such destructively replace.</source>
           <target state="final">リダイレクトのプログラムでは、複数のリダイレクトが上から順に適応されていきます。その際、URLのフォーマットに適応しているかのチェックが置き換えごとに行われます。なので、http[s]を最初に除去("https?"→"")して、次のリダイレクトの設定で最初にhttpsを挿入する("^"→"https")といった連続した置き換えがあった場合、最終的には正常なURLに戻るものの一つ目の置き換え時点でプログラムは停止します(URIスキームが空になる)。この挙動は破壊的な置き換えを見つけやすくするための"仕様です"。</target>
         </trans-unit>
         <trans-unit id="AboutRegex" translate="yes" xml:space="preserve">
-          <source>The replace will be applied according to RegEx(Regular Expression).  RegEx is a string expression for search or replace multiple character or long character(and so on). For more information, you can see [microsoft's documentation](https://docs.microsoft.com/dotnet/standard/base-types/regular-expressions)</source>
+          <source>The replace will be applied according to RegEx(Regular Expression).  RegEx is a string expression for search or replace multiple character or long character (and so on).  For more information, you can see [microsoft's documentation](https://docs.microsoft.com/dotnet/standard/base-types/regular-expressions).</source>
           <target state="final">置き換えはRegEx(正規表現)によって行われます。正規表現は検索や置き換えのプログラムに使用される特殊な文字列のことで、長かったり多かったりする文字をちょっとした文字列で検索できます。詳しい情報は[マイクロソフトのドキュメント](https://docs.microsoft.com/dotnet/standard/base-types/regular-expressions)を参照してください。</target>
         </trans-unit>
       </group>

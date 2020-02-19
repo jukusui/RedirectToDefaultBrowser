@@ -171,6 +171,9 @@
   <data name="ExceptionOccurred" xml:space="preserve">
     <value>Error has occurred</value>
   </data>
+  <data name="Feedback" xml:space="preserve">
+    <value>Feedback</value>
+  </data>
   <data name="History" xml:space="preserve">
     <value>History</value>
   </data>
@@ -249,6 +252,9 @@
   <data name="SomeProblem" xml:space="preserve">
     <value>When Encountered Issue</value>
   </data>
+  <data name="Store" xml:space="preserve">
+    <value>Store</value>
+  </data>
   <data name="Test" xml:space="preserve">
     <value>Test Input</value>
   </data>
@@ -281,5 +287,8 @@
   </data>
   <data name="Version" xml:space="preserve">
     <value>Version</value>
+  </data>
+  <data name="WebPage" xml:space="preserve">
+    <value>Web Page</value>
   </data>
 </root>

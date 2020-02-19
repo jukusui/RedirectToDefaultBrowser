@@ -5,9 +5,21 @@
     xmlns:local="using:UserInterface"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:parts="using:UserInterface.PartsUI"
+    xmlns:conv="using:UserInterface.Converter"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     VerticalContentAlignment="Stretch" HorizontalAlignment="Stretch">
+    <Frame.Resources>
+        <conv:NullableConverter x:Key="Nullable"/>
+        <parts:TitleBar x:Name="titleBar"
+                        ButtonForeground="{ThemeResource SystemBaseHighColor}"
+                        InactiveForeground="{ThemeResource SystemColorButtonTextColor}"
+                        ButtonHoverBackground="{ThemeResource SystemListLowColor}"
+                        ButtonHoverForeground="{ThemeResource SystemBaseHighColor}"
+                        ButtonPressedBackground="{ThemeResource SystemListMediumColor}"
+                        ButtonPressedForeground="{ThemeResource SystemBaseHighColor}"/>
+    </Frame.Resources>
     <!--<Frame.Template>
         <ControlTemplate TargetType="Frame">
             <ContentPresenter x:Name="Presenter" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentTransitions="{TemplateBinding ContentTransitions}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>

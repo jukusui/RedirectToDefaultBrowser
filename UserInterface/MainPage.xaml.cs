@@ -1,4 +1,5 @@
-﻿using Shared;
+﻿using Microsoft.Services.Store.Engagement;
+using Shared;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ using Windows.ApplicationModel.Core;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.System;
 using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -170,7 +172,9 @@ namespace UserInterface
             get =>
                 _OpenWithDefaultBrowser ??
                 (_OpenWithDefaultBrowser =
-                new AsyncCommand(OnOpenWithDefaultBrowser, LaunchKey));
+                new AsyncCommand(OnOpenWithDefaultBrowser,
+                    (param) => !string.IsNullOrEmpty(param as string),
+                    LaunchKey));
         }
 
         private async Task OnOpenWithDefaultBrowser(object param)
@@ -191,7 +195,9 @@ namespace UserInterface
             get =>
                 _OpenWithSelectedEdge ??
                 (_OpenWithSelectedEdge =
-                new AsyncCommand(OnOpenWithSelectedEdge, LaunchKey));
+                new AsyncCommand(OnOpenWithSelectedEdge,
+                    (param) => !string.IsNullOrEmpty(param as string),
+                    LaunchKey));
         }
 
         private async Task OnOpenWithSelectedEdge(object param)
@@ -215,7 +221,9 @@ namespace UserInterface
             get =>
                 _LaunchWithDefaultBrowser ??
                 (_LaunchWithDefaultBrowser =
-                new AsyncCommand(OnLaunchWithDefaultBrowser, LaunchKey));
+                new AsyncCommand(OnLaunchWithDefaultBrowser,
+                    (param) => (param as UriWrapper)?.Uri != null,
+                    LaunchKey));
         }
 
         private async Task OnLaunchWithDefaultBrowser(object param)
@@ -236,7 +244,9 @@ namespace UserInterface
             get =>
                 _LaunchWithSelectedBrowser ??
                 (_LaunchWithSelectedBrowser =
-                new AsyncCommand(OnLaunchWithSelectedBrowser, LaunchKey));
+                new AsyncCommand(OnLaunchWithSelectedBrowser,
+                    (param) => (param as UriWrapper)?.Uri != null,
+                    LaunchKey));
         }
 
         private async Task OnLaunchWithSelectedBrowser(object param)
@@ -256,6 +266,8 @@ namespace UserInterface
 
         private IEnumerable GetUrlList(string lastUrl)
         {
+            if (string.IsNullOrEmpty(lastUrl))
+                return Array.Empty<string>();
             var result = new List<object>();
             try
             {
@@ -385,6 +397,20 @@ namespace UserInterface
         static public string SelectTurnOnOff(bool state) =>
             state ? Shared.Properties.Resources.TurnOff : Shared.Properties.Resources.TurnOn;
         #endregion
+
+        private async void FeedbackHub_Click(Windows.UI.Xaml.Documents.Hyperlink sender, Windows.UI.Xaml.Documents.HyperlinkClickEventArgs args)
+        {
+            if (StoreServicesFeedbackLauncher.IsSupported())
+            {
+                var launcher = StoreServicesFeedbackLauncher.GetDefault();
+                await launcher.LaunchAsync();
+            }
+            else
+            {
+                if (Uri.TryCreate(Shared.Properties.UniversalResources.FeedbackHubUri, UriKind.Absolute, out var uri))
+                    await Launcher.LaunchUriAsync(uri);
+            }
+        }
     }
 
 

@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Author" xml:space="preserve">
+    <value>Jukusui</value>
+  </data>
+  <data name="AuthorWithEmoji" xml:space="preserve">
+    <value>Jukusui💤</value>
+  </data>
+  <data name="R2DBUri" xml:space="preserve">
+    <value>https://jukusui.github.io/Product/R2DB/</value>
+  </data>
+  <data name="StoreUri" xml:space="preserve">
+    <value>ms-windows-store://pdp/?ProductId=9N86NDB1C3MP</value>
+  </data>
+  <data name="MastodonName" xml:space="preserve">
+    <value>@jukusui@mstdn.jp</value>
+  </data>
+  <data name="MastodonUri" xml:space="preserve">
+    <value>https://mstdn.jp/@jukusui</value>
+  </data>
+  <data name="TwitterName" xml:space="preserve">
+    <value>@jukusui_zzz</value>
+  </data>
+  <data name="TwitterUri" xml:space="preserve">
+    <value>https://twitter.com/jukusui_zzz</value>
+  </data>
+  <data name="FeedbackHub" xml:space="preserve">
+    <value>Feedback Hub</value>
+  </data>
+  <data name="GitHub" xml:space="preserve">
+    <value>GitHub</value>
+  </data>
+  <data name="Mastodon" xml:space="preserve">
+    <value>Mastodon</value>
+  </data>
+  <data name="MSStore" xml:space="preserve">
+    <value>Microsoft Store</value>
+  </data>
+  <data name="Twitter" xml:space="preserve">
+    <value>Twitter</value>
+  </data>
+  <data name="GitHubUri" xml:space="preserve">
+    <value>https://github.com/jukusui/RedirectToDefaultBrowser</value>
+  </data>
+  <data name="FeedbackHubUri" xml:space="preserve">
+    <value>feedback-hub:</value>
+  </data>
+</root>

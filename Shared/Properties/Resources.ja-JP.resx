@@ -177,4 +177,13 @@
   <data name="TitlePlaceholder" xml:space="preserve">
     <value>判別用の自由な名前</value>
   </data>
+  <data name="Feedback" xml:space="preserve">
+    <value>フィードバック</value>
+  </data>
+  <data name="Store" xml:space="preserve">
+    <value>ストア</value>
+  </data>
+  <data name="WebPage" xml:space="preserve">
+    <value>ウェブページ</value>
+  </data>
 </root>

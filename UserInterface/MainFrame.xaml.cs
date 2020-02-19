@@ -42,7 +42,7 @@ namespace UserInterface
         {
             UpdateActiveState(CoreWindow.GetForCurrentThread().ActivationMode != CoreWindowActivationMode.Deactivated);
             Window.Current.Activated += Current_Activated;
-            TitleBar = TitleBar.GetCurrent();
+            //TitleBar = TitleBar.GetCurrent();
         }
 
         private void UpdateActiveState(bool isActive) =>
@@ -54,15 +54,6 @@ namespace UserInterface
         private void Current_Activated(object sender, Windows.UI.Core.WindowActivatedEventArgs e)
             => UpdateActiveState(e.WindowActivationState != Windows.UI.Core.CoreWindowActivationState.Deactivated);
 
-        public static DependencyProperty TitleBarProperty =
-        DependencyProperty.Register(
-            nameof(TitleBar), typeof(TitleBar), typeof(MainFrame),
-            new PropertyMetadata(null));
-
-        public TitleBar TitleBar
-        {
-            get => (TitleBar)GetValue(TitleBarProperty);
-            private set => SetValue(TitleBarProperty, value);
-        }
+        public TitleBar TitleBar { get => titleBar; }
     }
 }
