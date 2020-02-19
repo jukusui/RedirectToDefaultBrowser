@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="StoreApp" xml:space="preserve">
+    <value>このアプリのストアページは[ここから](ms-windows-store://pdp/?ProductId=9N86NDB1C3MP)開けます。</value>
+  </data>
+  <data name="AppList" xml:space="preserve">
+    <value>このパソコンのアプリの一覧は[ここから](ms-settings:appsfeatures-app)開けます。アプリの設定リセットやアンインストールなどのもろもろの操作ができます。</value>
+  </data>
+  <data name="DefaultApp" xml:space="preserve">
+    <value>もしもリダイレクトが動いていない場合、「microsoft-edge」スキーム(プロトコル)の既定のアプリをこのアプリにすることで治るはずです。この設定を行うには、アプリの選択画面を[開いて](*microsoft-edge:)、「常に使う」アプリとしてこのアプリを選択してください。そのチェックボックスがないなどでそれができない場合は、設定アプリを[開いて](ms-settings:defaultapps)「プロトコルごとにアプリを選ぶ」から、「MICROSOFT-EDGE」をこのアプリに選び直して下さい。また、一部の起動元アプリではPCの再起動がされるまでこの設定が反映されないことを確認しています(古いバージョンのCortana)。</value>
+  </data>
+  <data name="Issue" xml:space="preserve">
+    <value>問題点の報告はGitHubからどうぞ。基本はGitHubやFeedbackHubがありがたいですが、ストアやSNS経由でも問題ありません。それぞれ最下部のリンクから飛べます。</value>
+  </data>
+  <data name="AboutEdgeScheme" xml:space="preserve">
+    <value>このアプリでは二つの種類の「microsoft-edge」スキームURIをサポートしています。一つ目が、直接URLがURIに書かれているタイプ(例:"[microsoft-edge:http://example.com](*microsoft-edge:http://example.com)")。もうひとつがURIのパラメータにURLが書かれているタイプ(例:"[microsoft-edge:?url=https%3A%2F%2Fexample.com](*microsoft-edge:?url=https%3A%2F%2Fexample.com)")。もしも他の使われ方を見つけたらぜひお教えください。</value>
+  </data>
+  <data name="AboutRedirectSetting" xml:space="preserve">
+    <value>リダイレクトのプログラムでは、複数のリダイレクトが上から順に適応されていきます。その際、URLのフォーマットに適応しているかのチェックが置き換えごとに行われます。なので、http[s]を最初に除去("https?"→"")して、次のリダイレクトの設定で最初にhttpsを挿入する("^"→"https")といった連続した置き換えがあった場合、最終的には正常なURLに戻るものの一つ目の置き換え時点でプログラムは停止します(URIスキームが空になる)。この挙動は破壊的な置き換えを見つけやすくするための"仕様です"。</value>
+  </data>
+  <data name="AboutRegex" xml:space="preserve">
+    <value>置き換えはRegEx(正規表現)によって行われます。正規表現は検索や置き換えのプログラムに使用される特殊な文字列のことで、長かったり多かったりする文字をちょっとした文字列で検索できます。詳しい情報は[マイクロソフトのドキュメント](https://docs.microsoft.com/dotnet/standard/base-types/regular-expressions)を参照してください。</value>
+  </data>
+</root>

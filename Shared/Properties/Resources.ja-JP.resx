@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutThisApp" xml:space="preserve">
+    <value>このアプリについて</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>追加</value>
+  </data>
+  <data name="AddRedirect" xml:space="preserve">
+    <value>リダイレクトの追加</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>RedirectToDefaultBrowser</value>
+  </data>
+  <data name="AppName_SP" xml:space="preserve">
+    <value>Redirect to Default Browser</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>コピーしました</value>
+  </data>
+  <data name="CopyToClipboard" xml:space="preserve">
+    <value>クリップボードにコピー</value>
+  </data>
+  <data name="CopyURL" xml:space="preserve">
+    <value>開こうとしたURLをクリップボードにコピーしますか?</value>
+  </data>
+  <data name="DontSave" xml:space="preserve">
+    <value>保存しない</value>
+  </data>
+  <data name="DragAndDropReorder" xml:space="preserve">
+    <value>ドラッグ&amp;ドロップで適用順の入れ替えができます</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>編集</value>
+  </data>
+  <data name="EditRedirect" xml:space="preserve">
+    <value>リダイレクトの編集</value>
+  </data>
+  <data name="ExceptionOccurred" xml:space="preserve">
+    <value>エラーが発生しました</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>履歴</value>
+  </data>
+  <data name="Input" xml:space="preserve">
+    <value>入力パターン</value>
+  </data>
+  <data name="LastURI" xml:space="preserve">
+    <value>前回起動時のURI</value>
+  </data>
+  <data name="LastURL" xml:space="preserve">
+    <value>前回起動時のURL</value>
+  </data>
+  <data name="NoticeCloseText" xml:space="preserve">
+    <value>編集や追加を保存せずにウィンドウを閉じた場合、設定の変更は破棄されます</value>
+  </data>
+  <data name="NoticeMove" xml:space="preserve">
+    <value>変更を破棄しますか?</value>
+  </data>
+  <data name="NoticeSave" xml:space="preserve">
+    <value>変更を保存しますか?</value>
+  </data>
+  <data name="NoticeSaveText" xml:space="preserve">
+    <value>このまま画面を移動した場合、設定に施した変更は破棄されます</value>
+  </data>
+  <data name="Off" xml:space="preserve">
+    <value>OFF</value>
+  </data>
+  <data name="On" xml:space="preserve">
+    <value>ON</value>
+  </data>
+  <data name="OpenWithDefaultBrowser" xml:space="preserve">
+    <value>デフォルトブラウザで開く</value>
+  </data>
+  <data name="OpenWithEdge" xml:space="preserve">
+    <value>Edgeで開く</value>
+  </data>
+  <data name="Output" xml:space="preserve">
+    <value>出力パターン</value>
+  </data>
+  <data name="RecognizedURL" xml:space="preserve">
+    <value>認識されたURL</value>
+  </data>
+  <data name="Redirect" xml:space="preserve">
+    <value>リダイレクト</value>
+  </data>
+  <data name="RedirectTest" xml:space="preserve">
+    <value>リダイレクトのテスト</value>
+  </data>
+  <data name="RegExExample" xml:space="preserve">
+    <value>リダイレクト設定の例</value>
+  </data>
+  <data name="RegExInfo" xml:space="preserve">
+    <value>正規表現の詳しい情報</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="Restore" xml:space="preserve">
+    <value>復元</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="SelectBrowser" xml:space="preserve">
+    <value>ブラウザを選択する</value>
+  </data>
+  <data name="SelectEdge" xml:space="preserve">
+    <value>Edgeを選択する</value>
+  </data>
+  <data name="Test" xml:space="preserve">
+    <value>テスト入力</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>タイトル</value>
+  </data>
+  <data name="TurnOff" xml:space="preserve">
+    <value>OFFに</value>
+  </data>
+  <data name="TurnOn" xml:space="preserve">
+    <value>ONに</value>
+  </data>
+  <data name="UrlRedirectSetting" xml:space="preserve">
+    <value>URLリダイレクトの設定</value>
+  </data>
+  <data name="UsedRegExesForRedirects" xml:space="preserve">
+    <value>リダイレクトに使用する正規表現</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>バージョン</value>
+  </data>
+  <data name="Credit" xml:space="preserve">
+    <value>Developed by Jukusui💤</value>
+  </data>
+  <data name="SomeProblem" xml:space="preserve">
+    <value>問題が起きた時は</value>
+  </data>
+  <data name="Tips" xml:space="preserve">
+    <value>ちょっとした情報</value>
+  </data>
+  <data name="AboutEdgeScheme" xml:space="preserve">
+    <value>「microsoft-edge」スキーム(プロトコル)について</value>
+  </data>
+  <data name="AboutRedirectSetting" xml:space="preserve">
+    <value>リダイレクトの設定について</value>
+  </data>
+  <data name="InputPlaceholder" xml:space="preserve">
+    <value>正規表現を用いた入力パターン</value>
+  </data>
+  <data name="OutputPlaceholder" xml:space="preserve">
+    <value>正規表現を用いた出力パターン</value>
+  </data>
+  <data name="TestInputPlaceholder" xml:space="preserve">
+    <value>置き換え対象になるhttpから始まるURL</value>
+  </data>
+  <data name="TestOutputPlaceholder" xml:space="preserve">
+    <value>置き換えされたhttpから始まるURL</value>
+  </data>
+  <data name="TitlePlaceholder" xml:space="preserve">
+    <value>判別用の自由な名前</value>
+  </data>
+  <data name="Feedback" xml:space="preserve">
+    <value>フィードバック</value>
+  </data>
+  <data name="Store" xml:space="preserve">
+    <value>ストア</value>
+  </data>
+  <data name="WebPage" xml:space="preserve">
+    <value>ウェブページ</value>
+  </data>
+</root>
