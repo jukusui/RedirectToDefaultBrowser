@@ -9,8 +9,11 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
     <NeutralLanguage>en</NeutralLanguage>
-    <AssemblyVersion>2.0.0.0</AssemblyVersion>
-    <Version>2.0.0</Version>
+    <AssemblyVersion>2.0.2.0</AssemblyVersion>
+    <Version>2.0.2</Version>
+    <Product>Redirect To Default Browser</Product>
+    <Copyright>Jukusui</Copyright>
+    <FileVersion>2.0.2.0</FileVersion>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.ResxResources.targets" Label="MultilingualAppToolkit" Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\v$(MultilingualAppToolkitVersion)\Microsoft.Multilingual.ResxResources.targets')" />
   <Target Name="MATPrerequisite" BeforeTargets="PrepareForBuild" Condition="!Exists('$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.ResxResources.targets')" Label="MultilingualAppToolkit">
