@@ -31,7 +31,7 @@ namespace UserInterface
             var type = typeof(Shared.Properties.Resources).Assembly.GetType($"Shared.Properties.{group}");
             var prop = type.GetProperty("ResourceManager");
             var getter = (Func<ResourceManager>)prop.GetMethod.CreateDelegate(typeof(Func<ResourceManager>));
-            _ResourceDict.Add(group,getter);
+            _ResourceDict.Add(group, getter);
             return getter();
         }
 
@@ -61,15 +61,22 @@ namespace UserInterface
     {
         protected override object GetResource(string resourceId, string objectType, string propertyName, string propertyType)
         {
-            if (resourceId.Contains("."))
+            try
             {
-                var names = resourceId.Split('.');
-                var group = names.First();
-                var name = string.Join(".", names.Skip(1));
-                return ResourceExtension.GetString(group, name);
+                if (resourceId.Contains("."))
+                {
+                    var names = resourceId.Split('.');
+                    var group = names.First();
+                    var name = string.Join(".", names.Skip(1));
+                    return ResourceExtension.GetString(group, name);
+                }
+                return
+                    ResourceExtension.GetString("Resources", resourceId);
             }
-            return
-                ResourceExtension.GetString("Resources", resourceId);
+            catch (Exception)
+            {
+                return resourceId;
+            }
         }
     }
 }

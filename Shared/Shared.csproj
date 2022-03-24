@@ -7,7 +7,7 @@
     <SuppressPseudoWarning Condition="'$(Configuration)' == 'Debug'">true</SuppressPseudoWarning>
   </PropertyGroup>
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net472</TargetFrameworks>
     <NeutralLanguage>en</NeutralLanguage>
     <AssemblyVersion>2.0.2.0</AssemblyVersion>
     <Version>2.0.2</Version>

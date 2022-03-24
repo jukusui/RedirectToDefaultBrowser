@@ -10,7 +10,7 @@
     Name="db3e92b8-f852-4043-aa66-e10103b9d3b0"
     Publisher="CN=zzz"
     Version="1.0.0.0" />-->
-  <Identity Name="14065Jukusui.RedirectToDefaultBrowser" Publisher="CN=CE542B20-F99F-4D41-B21D-24231B95EEA3" Version="2.0.2.0" />
+  <Identity Name="14065Jukusui.RedirectToDefaultBrowser" Publisher="CN=CE542B20-F99F-4D41-B21D-24231B95EEA3" Version="2.0.3.0" />
 
   <mp:PhoneIdentity PhoneProductId="db3e92b8-f852-4043-aa66-e10103b9d3b0" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
