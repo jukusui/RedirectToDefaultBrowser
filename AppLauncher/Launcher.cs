@@ -18,9 +18,10 @@ namespace AppLauncher
         [STAThread()]
         public static void Main(string[] args)
         {
-            //System.Globalization.CultureInfo.CurrentCulture =
-            //    System.Globalization.CultureInfo.CurrentUICulture =
-            //    new System.Globalization.CultureInfo("en-us");
+            // "/IFEO"
+            // C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe
+            // --single-argument
+            // microsoft-edge:///?url=https://example.com
             var showWin = true;
             try
             {

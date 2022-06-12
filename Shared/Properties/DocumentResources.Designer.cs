@@ -19,7 +19,7 @@ namespace Shared.Properties {
     // または Visual Studio のようなツールを使用して自動生成されました。
     // メンバーを追加または削除するには、.ResX ファイルを編集して、/str オプションと共に
     // ResGen を実行し直すか、または VS プロジェクトをビルドし直します。
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class DocumentResources {
@@ -61,7 +61,7 @@ namespace Shared.Properties {
         }
         
         /// <summary>
-        ///   On this app, two types of &quot;microsoft-edge&quot; scheme URIs are supported.  One is one URL is directly written type(eg:&quot;[microsoft-edge:http://example.com](*microsoft-edge:http://example.com)&quot;).  The other is URL parametered URI(eg:&quot;[microsoft-edge:?url=https%3A%2F%2Fexample.com](*microsoft-edge:?url=https%3A%2F%2Fexample.com)&quot;).  If you found other type of &quot;microsoft-edge&quot; scheme, please tell me! に類似しているローカライズされた文字列を検索します。
+        ///   On this app, two types of &quot;microsoft-edge&quot; scheme URIs are supported.  One is one URL is directly written type(eg:&quot;[microsoft-edge:http://example.com](*microsoft-edge:http://example.com)&quot;).  The other is URL parametered URI(eg:&quot;[microsoft-edge:?url=https%3A%2F%2Fexample.com](*microsoft-edge:?url=https%3A%2F%2Fexample.com)&quot;).  If you found other type of &quot;microsoft-edge&quot; scheme, please tell me. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string AboutEdgeScheme {
             get {

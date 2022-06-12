@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutEdgeScheme" xml:space="preserve">
-    <value>On this app, two types of "microsoft-edge" scheme URIs are supported.  One is one URL is directly written type(eg:"[microsoft-edge:http://example.com](*microsoft-edge:http://example.com)").  The other is URL parametered URI(eg:"[microsoft-edge:?url=https%3A%2F%2Fexample.com](*microsoft-edge:?url=https%3A%2F%2Fexample.com)").  If you found other type of "microsoft-edge" scheme, please tell me!</value>
+    <value>On this app, two types of "microsoft-edge" scheme URIs are supported.  One is one URL is directly written type(eg:"[microsoft-edge:http://example.com](*microsoft-edge:http://example.com)").  The other is URL parametered URI(eg:"[microsoft-edge:?url=https%3A%2F%2Fexample.com](*microsoft-edge:?url=https%3A%2F%2Fexample.com)").  If you found other type of "microsoft-edge" scheme, please tell me.</value>
   </data>
   <data name="AboutRedirectSetting" xml:space="preserve">
     <value>On redirect program, multiple replaces are applied by order(up-to-down), and URL format validation will be applied per redirect replace.  So, if you remove http[s] first("https?"→""), and insert https after the replace("^"→"https"), the result will valid URL but rejects the replace on the first replace(by empty scheme error).  This behavior is design for detecting such destructively replace.</value>

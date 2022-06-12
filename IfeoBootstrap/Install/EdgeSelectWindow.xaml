@@ -1,0 +1,86 @@
+﻿<Window x:Name="window" x:Class="IfeoBootstrap.Install.EdgeSelectWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IfeoBootstrap.Install"
+        xmlns:ifeo="clr-namespace:IfeoBootstrap"
+        mc:Ignorable="d"
+        Title="リダイレクト対象の選択" Height="300" Width="400"
+        Loaded="OnLoad">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Padding" Value="8,2"/>
+        </Style>
+        <local:OpenExplorer x:Key="OpenExplorer"/>
+        <BooleanToVisibilityConverter x:Key="VisibilityConverter"/>
+        <local:InvertConverter x:Key="InvertConverter"/>
+    </Window.Resources>
+    <Grid Margin="16">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="リダイレクトの対象にするEdgeを選択してください。" TextWrapping="Wrap" FontSize="16" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.ColumnSpan="2"/>
+        <ListBox x:Name="listBox" Margin="8" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding Apps, ElementName=window}"
+                 SelectionMode="Multiple"
+                 SelectionChanged="OnSelectionChanged">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="{x:Type ifeo:AppRegistry}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="8"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="8"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <CheckBox Grid.RowSpan="2" IsChecked="{Binding IsSelected, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}}" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="2" Grid.Row="0" Text="{Binding AppName}" FontSize="16"/>
+                        <TextBlock Grid.Column="2" Grid.Row="1" Text="{Binding ExePath}" ToolTip="{Binding ExePath}" TextTrimming="CharacterEllipsis" FontSize="10"/>
+                        <Button Grid.Column="4" Grid.RowSpan="2" VerticalAlignment="Center" Padding="4" Command="{StaticResource OpenExplorer}" CommandParameter="{Binding ExePath}">
+                            <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE8B7;"/>
+                        </Button>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+
+            <!--<local:EdgeSelectItem Name="Microsoft Edge" Path="C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"/>
+            <local:EdgeSelectItem Name="Microsoft Edge Beta" Path="C:\Program Files (x86)\Microsoft\Edge Beta\Application\msedge.exe" IsChecked="True"/>
+            <local:EdgeSelectItem Name="Microsoft Edge Canary" Path="C:\Program Files (x86)\Microsoft\Edge Canary\Application\msedge.exe"/>-->
+        </ListBox>
+        <TextBlock Grid.Row="2" VerticalAlignment="Bottom" TextWrapping="Wrap"
+                   Text="{Binding SelectedItems.Count, ElementName=listBox, StringFormat=\{0\}個の項目が選択されています}"
+                   Visibility="{Binding HasError,ElementName=window,Converter={StaticResource InvertConverter}}"/>
+        <TextBlock Grid.Row="2" VerticalAlignment="Bottom" TextWrapping="Wrap"
+                   Foreground="Red"
+                   Text="{Binding Message, ElementName=window}"
+                   Visibility="{Binding HasError,ElementName=window,Converter={StaticResource VisibilityConverter}}"/>
+        <Grid Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.IsSharedSizeScope="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" SharedSizeGroup="BTN"/>
+                <ColumnDefinition Width="8"/>
+                <ColumnDefinition Width="*" SharedSizeGroup="BTN"/>
+            </Grid.ColumnDefinitions>
+            <Button Content="OK" Grid.Column="0"
+                    IsEnabled="{Binding HasError,ElementName=window,Converter={StaticResource InvertConverter}}"
+                    Click="OnOkClick"/>
+            <Button Content="キャンセル" Grid.Column="2"
+                    Click="OnCancelClick"/>
+        </Grid>
+    </Grid>
+</Window>

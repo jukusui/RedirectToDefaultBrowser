@@ -170,11 +170,10 @@ namespace UserInterface
         private AsyncCommand OpenWithDefaultBrowser
         {
             get =>
-                _OpenWithDefaultBrowser ??
-                (_OpenWithDefaultBrowser =
+                _OpenWithDefaultBrowser ??=
                 new AsyncCommand(OnOpenWithDefaultBrowser,
                     (param) => !string.IsNullOrEmpty(param as string),
-                    LaunchKey));
+                    LaunchKey);
         }
 
         private async Task OnOpenWithDefaultBrowser(object param)
@@ -193,11 +192,10 @@ namespace UserInterface
         private AsyncCommand OpenWithSelectedEdge
         {
             get =>
-                _OpenWithSelectedEdge ??
-                (_OpenWithSelectedEdge =
+                _OpenWithSelectedEdge ??=
                 new AsyncCommand(OnOpenWithSelectedEdge,
                     (param) => !string.IsNullOrEmpty(param as string),
-                    LaunchKey));
+                    LaunchKey);
         }
 
         private async Task OnOpenWithSelectedEdge(object param)
@@ -219,11 +217,10 @@ namespace UserInterface
         public AsyncCommand LaunchWithDefaultBrowser
         {
             get =>
-                _LaunchWithDefaultBrowser ??
-                (_LaunchWithDefaultBrowser =
+                _LaunchWithDefaultBrowser ??=
                 new AsyncCommand(OnLaunchWithDefaultBrowser,
                     (param) => (param as UriWrapper)?.Uri != null,
-                    LaunchKey));
+                    LaunchKey);
         }
 
         private async Task OnLaunchWithDefaultBrowser(object param)
@@ -242,11 +239,10 @@ namespace UserInterface
         public AsyncCommand LaunchWithSelectedBrowser
         {
             get =>
-                _LaunchWithSelectedBrowser ??
-                (_LaunchWithSelectedBrowser =
+                _LaunchWithSelectedBrowser ??=
                 new AsyncCommand(OnLaunchWithSelectedBrowser,
                     (param) => (param as UriWrapper)?.Uri != null,
-                    LaunchKey));
+                    LaunchKey);
         }
 
         private async Task OnLaunchWithSelectedBrowser(object param)

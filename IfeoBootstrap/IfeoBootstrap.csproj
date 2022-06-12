@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net472</TargetFramework>
+		<ImplicitUsings>disable</ImplicitUsings>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<UseWPF>true</UseWPF>
+
+		<Authors>Jukusui</Authors>
+		<Company>Jukusui</Company>
+		<Product>RedirectToDefaultBrowser</Product>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Jukusui.Notify.Core" Version="1.0.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="System.Configuration.Install" />
+		<Reference Include="System.Windows.Forms" />
+	</ItemGroup>
+
+</Project>
