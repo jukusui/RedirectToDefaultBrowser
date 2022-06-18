@@ -17,26 +17,26 @@ public class RegistryInfo
 
     public void Update()
     {
-        var dict = ListAll(SCHEME_HTTP, SCHEME_MS_EDGE);
+        var dict = ListAll(_schemeHttp, _schemeEdge);
 
-        if (dict.TryGetValue(SCHEME_HTTP, out var https))
+        if (dict.TryGetValue(_schemeHttp, out var https))
             HttpApps = https.Distinct().Select(key => AppRegistry.TryCreate(key)!).Where(ar => ar != null).ToArray();
         else
             HttpApps = Array.Empty<AppRegistry>();
 
-        if (dict.TryGetValue(SCHEME_MS_EDGE, out var edges))
+        if (dict.TryGetValue(_schemeEdge, out var edges))
             MsEdgeApps = edges.Distinct().Select(key => AppRegistry.TryCreate(key)!).Where(ar => ar != null && ar.IsMatchRoot).ToArray();
         else
             MsEdgeApps = Array.Empty<AppRegistry>();
     }
 
 
-    private static readonly string SCHEME_HTTP = "http";
-    private static readonly string SCHEME_MS_EDGE = "microsoft-edge";
+    private static readonly string _schemeHttp = "http";
+    private static readonly string _schemeEdge = "microsoft-edge";
     //全ての何らかの拡張子かURIに紐づけられたプログラムの一覧
-    private static readonly string REGISTERED_APP = @"SOFTWARE\RegisteredApplications";
+    private static readonly string _registeredApp = @"SOFTWARE\RegisteredApplications";
     //アプリの情報内のURIスキームに関する情報
-    private static readonly string URL_ASSOC = @"URLAssociations";
+    private static readonly string _urlAssoc = @"URLAssociations";
 
     private static Dictionary<string, List<string>> ListAll(params string[] schemes)
     {
@@ -46,7 +46,7 @@ public class RegistryInfo
         {
             if (root == null)
                 continue;
-            using var regApp = root.OpenSubKey(REGISTERED_APP);
+            using var regApp = root.OpenSubKey(_registeredApp);
             if (regApp != null)
             {
                 foreach (var appName in regApp.GetValueNames())
@@ -56,7 +56,7 @@ public class RegistryInfo
                         var appValues = regApp.GetValue(appName);
                         if (appValues is not string appStorage)
                             continue;
-                        using var urlKey = root.OpenSubKey($@"{appStorage}\{URL_ASSOC}");
+                        using var urlKey = root.OpenSubKey($@"{appStorage}\{_urlAssoc}");
                         if (urlKey == null)
                             continue;
                         foreach (var urlName in urlKey.GetValueNames())

@@ -12,20 +12,20 @@ public class AppRegistry
 {
 
     //開くためのコマンドを既定の値として含むキー
-    private const string REG_KEY_SHELL_OPEN_COMMAND = @"shell\open\command";
+    private const string _regKeyShellOpenCommand = @"shell\open\command";
 
-    private const string REG_KEY_APP_INFO = "Application";
-    private const string REG_VAL_APP_NAME = "ApplicationName";
-    private const string REG_VAL_APP_ICON = "ApplicationIcon";
+    private const string _regKeyAppInfo = "Application";
+    private const string _regValAppName = "ApplicationName";
+    private const string _regValAppIcon = "ApplicationIcon";
 
-    private static readonly string USER_ROOT = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+    private static readonly string _userRoot = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
 
-    private static readonly IReadOnlyList<string> EDGE_INSTALL_ROOTS = new string[]
+    private static readonly IReadOnlyList<string> _edgeInstallRoots = new string[]
     {
         @"C:\Program Files\Microsoft\",
         @"C:\Program Files (x86)\Microsoft\",
         @"C:\Program Files (ARM)\Microsoft\",
-        @$"{USER_ROOT}\AppData\Local\Microsoft\",
+        @$"{_userRoot}\AppData\Local\Microsoft\",
     };
 
     public static AppRegistry? TryCreate(string appRegRoot)
@@ -58,7 +58,7 @@ public class AppRegistry
     {
         var cmd = TryGetRegistry(
             Registry.ClassesRoot,
-            $@"{AppRegRoot}\{REG_KEY_SHELL_OPEN_COMMAND}",
+            $@"{AppRegRoot}\{_regKeyShellOpenCommand}",
             "");
         if (cmd is string res)
             return res;
@@ -85,12 +85,12 @@ public class AppRegistry
 
     public bool IsMatchRoot
     {
-        get => EDGE_INSTALL_ROOTS.Any(root => ExePath?.StartsWith(root, StringComparison.OrdinalIgnoreCase) == true);
+        get => _edgeInstallRoots.Any(root => ExePath?.StartsWith(root, StringComparison.OrdinalIgnoreCase) == true);
     }
 
     public string? MatchedRoot
     {
-        get => EDGE_INSTALL_ROOTS.FirstOrDefault(root => ExePath?.StartsWith(root, StringComparison.Ordinal) == true);
+        get => _edgeInstallRoots.FirstOrDefault(root => ExePath?.StartsWith(root, StringComparison.Ordinal) == true);
     }
 
     public string? AppName
@@ -99,8 +99,8 @@ public class AppRegistry
         {
             var reg = TryGetRegistry(
                 Registry.ClassesRoot,
-                $@"{AppRegRoot}\{REG_KEY_APP_INFO}",
-                REG_VAL_APP_NAME);
+                $@"{AppRegRoot}\{_regKeyAppInfo}",
+                _regValAppName);
             if (reg is string res)
                 return res;
             return null;
@@ -113,8 +113,8 @@ public class AppRegistry
         {
             var reg = TryGetRegistry(
                 Registry.ClassesRoot,
-                $@"{AppRegRoot}\{REG_KEY_APP_INFO}",
-                REG_VAL_APP_ICON);
+                $@"{AppRegRoot}\{_regKeyAppInfo}",
+                _regValAppIcon);
             if (reg is string res)
                 return res;
             return null;

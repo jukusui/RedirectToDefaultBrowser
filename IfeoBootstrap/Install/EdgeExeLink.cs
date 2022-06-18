@@ -6,8 +6,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration.Install;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
@@ -28,37 +26,55 @@ public class EdgeExeLink : Installer
     }
 
 
-    private readonly Regex FirstDirRegex = new("^/?(.+?)/");
-    private readonly string APPS_REG_KEY = @"Software\Jukusui\R2DB\Apps\";
-    private readonly string DIR_EXT_NAME = "_R2DB";
+    internal static readonly Regex _firstDirRegex = new(@"^(\.\\)?(.+?)\\");
+    internal static readonly string _appsRegKey = @"Software\Jukusui\R2DB\Apps\";
+    internal static readonly string _dirExtName = "_R2DB";
 
-    private readonly string IFEO_NAME_HEADER = "Jukusui.R2DB_";
-    private readonly string DEBUGGER_NAME = "Debugger";
-    private readonly string FILTER_FULLPATH_NAME = "FilterFullPath";
-    private readonly string DEBUGGER_FORMAT = "{0} /IFEO";
-    private readonly string IFEO_REG_KEY = @"Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\msedge.exe\";
+    internal static readonly string _ifeoNameHeader = "Jukusui.R2DB_";
+    internal static readonly string _debuggerName = "Debugger";
+    internal static readonly string _filterFullPathName = "FilterFullPath";
+    internal static readonly string _debuggerFormat = "{0} --IFEO";
+    internal static readonly string _ifeoRegKey = @"Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\msedge.exe\";
 
     internal List<AppRegistry> CopiedApps { get; } = new List<AppRegistry>();
 
+    /// <summary>
+    /// UIを使用するため、STAでスレッドを作成する
+    /// </summary>
+    /// <param name="stateSaver"></param>
     public override void Install(IDictionary stateSaver)
     {
         try
         {
-            var thread = new Thread(InstallTask);
+            var taskCmp = new TaskCompletionSource<bool>();
+            var thread = new Thread(() =>
+            {
+                try
+                {
+                    InstallTask();
+                    taskCmp.SetResult(true);
+                }
+                catch (Exception ex)
+                {
+                    taskCmp.SetException(ex);
+                }
+            });
             thread.SetApartmentState(ApartmentState.STA);
             thread.Start();
-            thread.Join();
+            taskCmp.Task.Wait();
         }
-        catch (ThreadInterruptedException ex)
+        catch (Exception ex)
         {
-            throw ex.InnerException;
+            Dispose();
+            throw new InstallException(ex.ToString(), ex);
         }
-        base.Install(stateSaver);
     }
 
+    /// <summary>
+    /// STAで実行される実際のインストール処理
+    /// </summary>
     private void InstallTask()
     {
-
         var exePath = Context.Parameters["assemblypath"];
         if (exePath == null)
             throw new NullReferenceException();
@@ -72,9 +88,8 @@ public class EdgeExeLink : Installer
 
         if (dialogRes == true)
         {
-
-            using var appKey = Registry.LocalMachine.CreateSubKey(APPS_REG_KEY);
-            using var ifeoKey = Registry.LocalMachine.CreateSubKey(IFEO_REG_KEY);
+            using var appKey = RegistryRedirect.HKLM.CreateSubKey(_appsRegKey);
+            using var ifeoKey = RegistryRedirect.HKLM.CreateSubKey(_ifeoRegKey);
 
             foreach (var edge in selector.SelectedItems)
             {
@@ -82,23 +97,21 @@ public class EdgeExeLink : Installer
                 if (root == null || edge.ExePath == null)
                     throw new NullReferenceException("Root Directory is not Match");
 
-                var absUri = new Uri(edge.ExePath);
-                var rootUri = new Uri(root);
-                var relativeUri = rootUri.MakeRelativeUri(absUri).ToString();
-                var firstDirName = FirstDirRegex.Match(relativeUri).Result("$1");
-
+                var relative = PathAPI.GetRelativePath(edge.ExePath, root, true);
+                var groups = _firstDirRegex.Match(relative).Groups;
+                var firstDirName = groups[groups.Count - 1];
                 try
                 {
                     {
                         var appDir = root + firstDirName;
-                        SymbolicLink.CreateFolderSymbolicLink(appDir, appDir + DIR_EXT_NAME);
+                        SymbolicLink.CreateFolderSymbolicLink(appDir, appDir + _dirExtName);
 
                         appKey.SetValue(edge.AppRegRoot, appDir);
                     }
                     {
-                        using var ifeoSubKey = ifeoKey.CreateSubKey(IFEO_NAME_HEADER + edge.AppRegRoot);
-                        ifeoSubKey.SetValue(DEBUGGER_NAME, string.Format(DEBUGGER_FORMAT, exePath));
-                        ifeoSubKey.SetValue(FILTER_FULLPATH_NAME, edge.ExePath);
+                        using var ifeoSubKey = ifeoKey.CreateSubKey(_ifeoNameHeader + edge.AppRegRoot);
+                        ifeoSubKey.SetValue(_debuggerName, string.Format(_debuggerFormat, exePath));
+                        ifeoSubKey.SetValue(_filterFullPathName, edge.ExePath);
                     }
                 }
                 catch (Exception ex) when (ex is IOException | ex is Win32Exception)
@@ -120,12 +133,19 @@ public class EdgeExeLink : Installer
 
     private void RemoveLinks()
     {
-        using var appsKey = Registry.LocalMachine.OpenSubKey(APPS_REG_KEY);
-        foreach (var value in appsKey.GetValueNames())
+        if (_appsRegKey != null)
         {
-            if (appsKey.GetValue(value) is string valueStr)
+            using var appsKey = RegistryRedirect.HKLM?.OpenSubKey(_appsRegKey, true);
+            if (appsKey != null)
             {
-                Directory.Delete(valueStr + DIR_EXT_NAME);
+                foreach (var value in appsKey.GetValueNames())
+                {
+                    if (appsKey.GetValue(value) is string valueStr)
+                    {
+                        Directory.Delete(valueStr + _dirExtName);
+                    }
+                    appsKey.DeleteValue(value);
+                }
             }
         }
     }
@@ -136,12 +156,10 @@ public class EdgeExeLink : Installer
     public override void Rollback(IDictionary stateSaver)
     {
         RemoveLinks();
-        base.Rollback(stateSaver);
     }
 
     public override void Uninstall(IDictionary stateSaver)
     {
         RemoveLinks();
-        base.Rollback(stateSaver);
     }
 }

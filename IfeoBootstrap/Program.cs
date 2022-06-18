@@ -1,27 +1,65 @@
-﻿using System;
+﻿using IfeoBootstrap.Win32API;
+using Microsoft.Win32;
+using System;
 using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace IfeoBootstrap
 {
     public static class Program
     {
-        [STAThread]
+
+        private static readonly string _ifeo = "--IFEO";
+
         public static void Main(string[] args)
         {
-            var info = RegistryInfo.GetInfo();
-            var win = new Install.EdgeSelectWindow();
-            foreach (var edge in info.MsEdgeApps)
+            AppRegistry? appRegistry = null;
+            string? ifeo = null;
+            string? uri = null;
+            string? message = null;
+            switch (args.Length)
             {
-                win.Apps.Add(edge);
-                var arg = edge.LaunchCommand;
-                if (arg != null)
-                    Console.WriteLine(arg[0]);
-                else
-                    Console.WriteLine("null");
+                case int value when value <= 0:
+                    message = "No Arguments";
+                    break;
+                case 1:
+                    message = "Missing Arguments";
+                    break;
+                default:
+                    if (args[0] != _ifeo)
+                        message = "Unknown Arguments";
+                    else if (!File.Exists(args[1]))
+                        message = "Argument File not Found";
+                    else
+                    {
+                        using var apps = RegistryRedirect.HKLM.OpenSubKey(Install.EdgeExeLink._appsRegKey);
+                        foreach (var keyName in apps?.GetValueNames() ?? Enumerable.Empty<string>())
+                        {
+                            var reg = AppRegistry.TryCreate(keyName);
+                            if (reg != null && reg.ExePath != null)
+                            {
+                                if (string.Compare(reg.ExePath, args[1], true) == 0)
+                                {
+                                    appRegistry = reg;
+                                    ifeo = reg.ExePath;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    break;
             }
-            win.SelectAll();
-            Debug.WriteLine("RES:" + win.ShowDialog());
-            //Console.ReadKey(false);
+
+            if (message != null)
+            {
+                MessageBox.Show(message, "ERROR");
+            }
+            else
+            {
+                MessageBox.Show(string.Join("\n", args.Skip(2).ToArray()), ifeo);
+            }
         }
 
     }
