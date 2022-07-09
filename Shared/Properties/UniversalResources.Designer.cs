@@ -19,7 +19,7 @@ namespace Shared.Properties {
     // または Visual Studio のようなツールを使用して自動生成されました。
     // メンバーを追加または削除するには、.ResX ファイルを編集して、/str オプションと共に
     // ResGen を実行し直すか、または VS プロジェクトをビルドし直します。
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class UniversalResources {
@@ -151,7 +151,7 @@ namespace Shared.Properties {
         }
         
         /// <summary>
-        ///   https://jukusui.github.io/Product/R2DB/ に類似しているローカライズされた文字列を検索します。
+        ///   https://www.jukusui.net/Product/R2DB/ に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string R2DBUri {
             get {

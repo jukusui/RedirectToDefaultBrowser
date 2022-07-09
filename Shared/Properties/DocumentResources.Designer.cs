@@ -122,5 +122,14 @@ namespace Shared.Properties {
                 return ResourceManager.GetString("StoreApp", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   It has been confirmed that this application does not work properly after applying the Windows update patch released on 2021/12/14. The patch (administrator rights required) will be released at [here](https://www.jukusui.net/Product/R2DB_IFEO/). に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string VersionNotice {
+            get {
+                return ResourceManager.GetString("VersionNotice", resourceCulture);
+            }
+        }
     }
 }

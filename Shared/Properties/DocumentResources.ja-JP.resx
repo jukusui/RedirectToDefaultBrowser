@@ -33,4 +33,7 @@
   <data name="AboutRegex" xml:space="preserve">
     <value>置き換えはRegEx(正規表現)によって行われます。正規表現は検索や置き換えのプログラムに使用される特殊な文字列のことで、長かったり多かったりする文字をちょっとした文字列で検索できます。詳しい情報は[マイクロソフトのドキュメント](https://docs.microsoft.com/dotnet/standard/base-types/regular-expressions)を参照してください。</value>
   </data>
+  <data name="VersionNotice" xml:space="preserve">
+    <value>2021/12/14公開のWindowsアップデートパッチを適用すると本アプリケーションは正常に動作しないことが確認されています。修正プログラム(要管理者権限)は[こちら](https://www.jukusui.net/Product/R2DB_IFEO/)で公開予定です。</value>
+  </data>
 </root>

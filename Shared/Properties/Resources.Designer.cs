@@ -574,6 +574,15 @@ namespace Shared.Properties {
         }
         
         /// <summary>
+        ///   Notice に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string VersionNotice {
+            get {
+                return ResourceManager.GetString("VersionNotice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Web Page に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string WebPage {

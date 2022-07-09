@@ -37,6 +37,18 @@
             <StackPanel Margin="0,0,0,24">
                 <controls:GroupBox>
                     <controls:GroupBox.Header>
+                        <TextBlock Text="{local:Resource Name=VersionNotice}" Style="{ThemeResource TitleTextBlockStyle}"/>
+                    </controls:GroupBox.Header>
+                    <controls:GroupBox.Content>
+                        <RichTextBlock Margin="8,0,0,8" TextIndent="8" TextWrapping="Wrap" IsTextSelectionEnabled="False">
+                            <Paragraph>
+                                <Span parts:SimpleMarkdown.MarkdownProperty="{local:Resource Name=VersionNotice,GroupName=DocumentResources}"/>
+                            </Paragraph>
+                        </RichTextBlock>
+                    </controls:GroupBox.Content>
+                </controls:GroupBox>
+                <controls:GroupBox>
+                    <controls:GroupBox.Header>
                         <TextBlock Text="{local:Resource Name=History}" Style="{ThemeResource TitleTextBlockStyle}"/>
                     </controls:GroupBox.Header>
                     <controls:GroupBox.Content>
@@ -304,18 +316,17 @@
                                             </Hyperlink>
                                         </TextBlock>
                                         <TextBlock>
-                                            <Hyperlink ToolTipService.ToolTip="{local:Resource Name=Mastodon,GroupName=UniversalResources}"
-                                                       NavigateUri="{x:Bind prop:UniversalResources.MastodonUri,Mode=OneWay}">
-                                                <Run Text="M" FontFamily="Assets/Fonts/Icon.ttf#R2DB_IconSets"/>
-                                                <Run Text="{local:Resource Name=MastodonName,GroupName=UniversalResources}"/>
-                                            </Hyperlink>
-                                        </TextBlock>
-
-                                        <TextBlock>
                                             <Hyperlink ToolTipService.ToolTip="{local:Resource Name=TwitterName,GroupName=UniversalResources}"
                                                        NavigateUri="{x:Bind prop:UniversalResources.TwitterUri,Mode=OneWay}">
                                                 <Run Text="T" FontFamily="Assets/Fonts/Icon.ttf#R2DB_IconSets"/>
                                                 <Run Text="{local:Resource Name=TwitterName,GroupName=UniversalResources}"/>
+                                            </Hyperlink>
+                                        </TextBlock>
+                                        <TextBlock>
+                                            <Hyperlink ToolTipService.ToolTip="{local:Resource Name=Mastodon,GroupName=UniversalResources}"
+                                                       NavigateUri="{x:Bind prop:UniversalResources.MastodonUri,Mode=OneWay}">
+                                                <Run Text="M" FontFamily="Assets/Fonts/Icon.ttf#R2DB_IconSets"/>
+                                                <Run Text="{local:Resource Name=MastodonName,GroupName=UniversalResources}"/>
                                             </Hyperlink>
                                         </TextBlock>
                                     </controls:WrapPanel>

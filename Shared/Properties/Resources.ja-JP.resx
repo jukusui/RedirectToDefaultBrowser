@@ -186,4 +186,7 @@
   <data name="WebPage" xml:space="preserve">
     <value>ウェブページ</value>
   </data>
+  <data name="VersionNotice" xml:space="preserve">
+    <value>注意</value>
+  </data>
 </root>

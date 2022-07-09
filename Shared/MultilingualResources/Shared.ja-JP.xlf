@@ -15,8 +15,8 @@
           <target state="final">Jukusui💤</target>
         </trans-unit>
         <trans-unit id="R2DBUri" translate="yes" xml:space="preserve">
-          <source>https://jukusui.github.io/Product/R2DB/</source>
-          <target state="final">https://jukusui.github.io/Product/R2DB/</target>
+          <source>https://www.jukusui.net/Product/R2DB/</source>
+          <target state="final">https://www.jukusui.net/Product/R2DB/</target>
         </trans-unit>
         <trans-unit id="StoreUri" translate="yes" xml:space="preserve">
           <source>ms-windows-store://pdp/?ProductId=9N86NDB1C3MP</source>
@@ -165,7 +165,7 @@
           <target state="final">閉じる</target>
         </trans-unit>
         <trans-unit id="Copied" translate="yes" xml:space="preserve">
-          <source>Copied!</source>
+          <source>Copied</source>
           <target state="final">コピーしました</target>
         </trans-unit>
         <trans-unit id="CopyToClipboard" translate="yes" xml:space="preserve">
@@ -368,6 +368,10 @@
           <source>Web Page</source>
           <target state="final">ウェブページ</target>
         </trans-unit>
+        <trans-unit id="VersionNotice" translate="yes" xml:space="preserve">
+          <source>Notice</source>
+          <target state="final">注意</target>
+        </trans-unit>
       </group>
     </body>
   </file>
@@ -394,7 +398,7 @@
           <target state="final">問題点の報告はGitHubからどうぞ。基本はGitHubやFeedbackHubがありがたいですが、ストアやSNS経由でも問題ありません。それぞれ最下部のリンクから飛べます。</target>
         </trans-unit>
         <trans-unit id="AboutEdgeScheme" translate="yes" xml:space="preserve">
-          <source>On this app, two types of "microsoft-edge" scheme URIs are supported.  One is one URL is directly written type(eg:"[microsoft-edge:http://example.com](*microsoft-edge:http://example.com)").  The other is URL parametered URI(eg:"[microsoft-edge:?url=https%3A%2F%2Fexample.com](*microsoft-edge:?url=https%3A%2F%2Fexample.com)").  If you found other type of "microsoft-edge" scheme, please tell me!</source>
+          <source>On this app, two types of "microsoft-edge" scheme URIs are supported.  One is one URL is directly written type(eg:"[microsoft-edge:http://example.com](*microsoft-edge:http://example.com)").  The other is URL parametered URI(eg:"[microsoft-edge:?url=https%3A%2F%2Fexample.com](*microsoft-edge:?url=https%3A%2F%2Fexample.com)").  If you found other type of "microsoft-edge" scheme, please tell me.</source>
           <target state="final">このアプリでは二つの種類の「microsoft-edge」スキームURIをサポートしています。一つ目が、直接URLがURIに書かれているタイプ(例:"[microsoft-edge:http://example.com](*microsoft-edge:http://example.com)")。もうひとつがURIのパラメータにURLが書かれているタイプ(例:"[microsoft-edge:?url=https%3A%2F%2Fexample.com](*microsoft-edge:?url=https%3A%2F%2Fexample.com)")。もしも他の使われ方を見つけたらぜひお教えください。</target>
         </trans-unit>
         <trans-unit id="AboutRedirectSetting" translate="yes" xml:space="preserve">
@@ -404,6 +408,10 @@
         <trans-unit id="AboutRegex" translate="yes" xml:space="preserve">
           <source>The replace will be applied according to RegEx(Regular Expression).  RegEx is a string expression for search or replace multiple character or long character (and so on).  For more information, you can see [microsoft's documentation](https://docs.microsoft.com/dotnet/standard/base-types/regular-expressions).</source>
           <target state="final">置き換えはRegEx(正規表現)によって行われます。正規表現は検索や置き換えのプログラムに使用される特殊な文字列のことで、長かったり多かったりする文字をちょっとした文字列で検索できます。詳しい情報は[マイクロソフトのドキュメント](https://docs.microsoft.com/dotnet/standard/base-types/regular-expressions)を参照してください。</target>
+        </trans-unit>
+        <trans-unit id="VersionNotice" translate="yes" xml:space="preserve">
+          <source>It has been confirmed that this application does not work properly after applying the Windows update patch released on 2021/12/14. The patch (administrator rights required) will be released at [here](https://www.jukusui.net/Product/R2DB_IFEO/).</source>
+          <target state="final">2021/12/14公開のWindowsアップデートパッチを適用すると本アプリケーションは正常に動作しないことが確認されています。修正プログラム(要管理者権限)は[こちら](https://www.jukusui.net/Product/R2DB_IFEO/)で公開予定です。</target>
         </trans-unit>
       </group>
     </body>

@@ -20,14 +20,9 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SharedCode", "SharedCode\Sh
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "RedirectSetup", "RedirectSetup\RedirectSetup.vdproj", "{6A44EE0D-C92E-4163-8BDD-29D43193F1FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IfeoBootstrap", "IfeoBootstrap\IfeoBootstrap.csproj", "{07E217D8-A928-4E3D-9156-5E1E73CAFEDA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IfeoBootstrap", "IfeoBootstrap\IfeoBootstrap.csproj", "{07E217D8-A928-4E3D-9156-5E1E73CAFEDA}"
 EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		SharedCode\SharedCode.projitems*{5e54dae7-f4e2-4f54-9b15-f929fc17b932}*SharedItemsImports = 5
-		SharedCode\SharedCode.projitems*{a61b5dc4-6ea0-4908-86c4-072f8f926d55}*SharedItemsImports = 13
-		SharedCode\SharedCode.projitems*{dc64d822-5e06-4d0d-b57d-350c6ff066c5}*SharedItemsImports = 4
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|ARM = Debug|ARM
@@ -172,6 +167,12 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
+		RESX_TranslatorConfiguration = {"Azure":"{\"AutoDetectHtml\":true,\"MaxCharactersPerMinute\":33300,\"AuthenticationKey\":\"0af3f8fbf4d84597ad6ce7266c1b3b5c\",\"Region\":\"global\",\"IsEnabled\":true,\"SaveCredentials\":true,\"Ranking\":1.0}","Baidu":"{\"AppId\":null,\"SecretKey\":null,\"ApiUrl\":null,\"Domain\":null,\"IsEnabled\":true,\"SaveCredentials\":false,\"Ranking\":1.0}","DeepL":"{\"ApiKey\":null,\"ApiUrl\":null,\"IsEnabled\":true,\"SaveCredentials\":false,\"Ranking\":1.0}","Google":"{\"ApiKey\":null,\"IsEnabled\":true,\"SaveCredentials\":false,\"Ranking\":1.0}","MSTerm":"{\"IsEnabled\":true,\"SaveCredentials\":false,\"Ranking\":1.0}","MyMemory":"{\"Key\":null,\"Mail\":null,\"IsEnabled\":true,\"SaveCredentials\":false,\"Ranking\":1.0}"}
 		SolutionGuid = {A91FFC69-0542-41EE-BD47-AEDE241581F3}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		SharedCode\SharedCode.projitems*{5e54dae7-f4e2-4f54-9b15-f929fc17b932}*SharedItemsImports = 5
+		SharedCode\SharedCode.projitems*{a61b5dc4-6ea0-4908-86c4-072f8f926d55}*SharedItemsImports = 13
+		SharedCode\SharedCode.projitems*{dc64d822-5e06-4d0d-b57d-350c6ff066c5}*SharedItemsImports = 4
 	EndGlobalSection
 EndGlobal

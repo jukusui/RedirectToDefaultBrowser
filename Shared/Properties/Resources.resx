@@ -291,4 +291,7 @@
   <data name="WebPage" xml:space="preserve">
     <value>Web Page</value>
   </data>
+  <data name="VersionNotice" xml:space="preserve">
+    <value>Notice</value>
+  </data>
 </root>

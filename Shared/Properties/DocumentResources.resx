@@ -138,4 +138,7 @@
   <data name="StoreApp" xml:space="preserve">
     <value>[Open this app's Windows Store Page](ms-windows-store://pdp/?ProductId=9N86NDB1C3MP).</value>
   </data>
+  <data name="VersionNotice" xml:space="preserve">
+    <value>It has been confirmed that this application does not work properly after applying the Windows update patch released on 2021/12/14. The patch (administrator rights required) will be released at [here](https://www.jukusui.net/Product/R2DB_IFEO/).</value>
+  </data>
 </root>

@@ -1,0 +1,9 @@
+<Configuration>
+	<Networking>Disable</Networking>
+	<MappedFolders>
+		<MappedFolder>
+			<HostFolder>C:\Users\zzz\OneDrive\WorkSpace\VS\EdgeRedirect\RedirectSetup\Debug</HostFolder> 
+			<ReadOnly>true</ReadOnly>
+		</MappedFolder>
+	</MappedFolders>
+</Configuration>

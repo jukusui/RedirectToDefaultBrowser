@@ -62,6 +62,7 @@ public class EdgeExeLink : Installer
             thread.SetApartmentState(ApartmentState.STA);
             thread.Start();
             taskCmp.Task.Wait();
+            base.Install(stateSaver);
         }
         catch (Exception ex)
         {
@@ -156,10 +157,12 @@ public class EdgeExeLink : Installer
     public override void Rollback(IDictionary stateSaver)
     {
         RemoveLinks();
+        base.Rollback(stateSaver);
     }
 
     public override void Uninstall(IDictionary stateSaver)
     {
         RemoveLinks();
+        base.Uninstall(stateSaver);
     }
 }
