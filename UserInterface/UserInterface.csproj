@@ -19,7 +19,8 @@
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
     <UapAppxPackageBuildMode>StoreAndSideload</UapAppxPackageBuildMode>
-    <PackageCertificateThumbprint>3fd18a25ef70687b2541511985f4b507620b8325</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>A141F605BDB97CA2CBE06A339E271F614E3C945F</PackageCertificateThumbprint>
+    <PackageCertificateKeyFile>RedirectToDefaultBrowser_TemporaryKey.pfx</PackageCertificateKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -156,6 +157,7 @@
     <Content Include="Assets\Fonts\Icon.ttf" />
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="Properties\Default.rd.xml" />
+    <None Include="RedirectToDefaultBrowser_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

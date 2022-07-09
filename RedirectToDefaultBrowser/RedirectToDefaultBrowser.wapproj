@@ -64,9 +64,9 @@
     <GenerateTestArtifacts>True</GenerateTestArtifacts>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
     <EntryPointProjectUniqueName>..\AppLauncher\AppLauncher.csproj</EntryPointProjectUniqueName>
-    <PackageCertificateThumbprint>3fd18a25ef70687b2541511985f4b507620b8325</PackageCertificateThumbprint>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
     <AppxBundle>Always</AppxBundle>
+    <PackageCertificateKeyFile>RedirectToDefaultBrowser_TemporaryKey.pfx</PackageCertificateKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -237,9 +237,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Package.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="RedirectToDefaultBrowser_StoreKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AppLauncher\AppLauncher.csproj">
