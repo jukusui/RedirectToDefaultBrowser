@@ -4,6 +4,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace IfeoBootstrap
@@ -15,14 +16,18 @@ namespace IfeoBootstrap
 
         public static void Main(string[] args)
         {
-            var option = new Windows.System.LauncherOptions();
-            option.PreferredApplicationDisplayName = "14065Jukusui.RedirectToDefaultBrowser";
-            option.PreferredApplicationPackageFamilyName = "14065Jukusui.RedirectToDefaultBrowser_m5qwzdwnyj6rw";
+            try
+            {
+                MainTask(args).Wait();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "FATAL ERROR");
+            }
+        }
 
-
-            var task = Windows.System.Launcher.LaunchUriAsync(new Uri(Shared.Properties.UniversalResources.StoreUri)).AsTask();
-            task.Wait();
-
+        public static async Task MainTask(string[] args)
+        {
             AppRegistry? appRegistry = null;
             string? ifeo = null;
             string? message = null;
@@ -42,6 +47,7 @@ namespace IfeoBootstrap
                     message = "Argument File not Found";
                 else
                 {
+                    Console.Write("IFEO Source Check:");
                     string exePath = args[1];
                     using var apps = RegistryRedirect.HKLM.OpenSubKey(Install.EdgeExeLink._appsRegKey);
                     foreach (var keyName in apps?.GetValueNames() ?? Enumerable.Empty<string>())
@@ -54,10 +60,12 @@ namespace IfeoBootstrap
                             {
                                 appRegistry = reg;
                                 ifeo = reg.ExePath;
+                                Console.Write(keyName);
                                 break;
                             }
                         }
                     }
+                    Console.WriteLine();
 
                     if (ifeo == null || appRegistry == null)
                     {
@@ -71,7 +79,17 @@ namespace IfeoBootstrap
             }
             else
             {
-                MessageBox.Show(string.Join("\n", args.Skip(2).ToArray()), ifeo);
+
+                if (ifeo == null || appRegistry == null)
+                {
+                    message = "Unknown IFEO Source";
+                    MessageBox.Show(message, "ERROR");
+                }
+                else
+                {
+                    var argProcessor = new ArgProcessor(appRegistry, ifeo, args.Skip(2).ToArray());
+                    await argProcessor.Launch();
+                }
             }
         }
 

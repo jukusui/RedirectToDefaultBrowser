@@ -27,16 +27,14 @@ public class EdgeExeLink : Installer
 
 
     internal static readonly Regex _firstDirRegex = new(@"^(\.\\)?(.+?)\\");
-    internal static readonly string _appsRegKey = @"Software\Jukusui\R2DB\Apps\";
-    internal static readonly string _dirExtName = "_R2DB";
+    internal const string _appsRegKey = @"Software\Jukusui\R2DB\Apps\";
+    internal const string _dirExtName = "_R2DB";
 
-    internal static readonly string _ifeoNameHeader = "Jukusui.R2DB_";
-    internal static readonly string _debuggerName = "Debugger";
-    internal static readonly string _filterFullPathName = "FilterFullPath";
-    internal static readonly string _debuggerFormat = "{0} --IFEO";
-    internal static readonly string _ifeoRegKey = @"Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\msedge.exe\";
-
-    internal List<AppRegistry> CopiedApps { get; } = new List<AppRegistry>();
+    internal const string _ifeoNameHeader = "Jukusui.R2DB_";
+    internal const string _debuggerName = "Debugger";
+    internal const string _filterFullPathName = "FilterFullPath";
+    internal const string _debuggerFormat = "{0} --IFEO";
+    internal const string _ifeoRegKey = @"Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\msedge.exe\";
 
     /// <summary>
     /// UIを使用するため、STAでスレッドを作成する

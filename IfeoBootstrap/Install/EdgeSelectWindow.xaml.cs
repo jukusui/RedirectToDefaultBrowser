@@ -15,6 +15,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Media;
 
 namespace IfeoBootstrap.Install;
 /// <summary>
@@ -81,6 +82,8 @@ public partial class EdgeSelectWindow : Window
     {
         var helper = new System.Windows.Interop.WindowInteropHelper(this);
         Win32API.WindowApi.RemoveMenuItem(helper.Handle, Win32API.WindowApi.SystemCommand.CS_CLOSE, false);
+        Activate();
+        SystemSounds.Beep.Play();
     }
 
 }

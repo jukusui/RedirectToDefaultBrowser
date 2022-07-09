@@ -2,6 +2,7 @@
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security;
 using System.Text;
@@ -30,19 +31,19 @@ public class AppRegistry
 
     public static AppRegistry? TryCreate(string appRegRoot)
     {
-        var res = new AppRegistry(appRegRoot);
-        if (res.RawLaunchCommand != null)
-            return res;
-        return null;
+        var command = GetRawLaunchCommand(appRegRoot);
+        if (command == null)
+            return null;
+        return new AppRegistry(appRegRoot, command);
     }
 
-    private AppRegistry(string appRegRoot)
+    private AppRegistry(string appRegRoot, string command)
     {
         AppRegRoot = appRegRoot;
-        RawLaunchCommand = GetRawLaunchCommand();
+        RawLaunchCommand = command;
     }
 
-    private object? TryGetRegistry(RegistryKey root, string key, string value)
+    private static object? TryGetRegistry(RegistryKey root, string key, string value)
     {
         try
         {
@@ -52,35 +53,38 @@ public class AppRegistry
         catch (SecurityException) { return null; }
     }
 
-    public string AppRegRoot { get; }
-
-    private string? GetRawLaunchCommand()
+    private static string? GetRawLaunchCommand(string appRegRoot)
     {
         var cmd = TryGetRegistry(
             Registry.ClassesRoot,
-            $@"{AppRegRoot}\{_regKeyShellOpenCommand}",
+            $@"{appRegRoot}\{_regKeyShellOpenCommand}",
             "");
         if (cmd is string res)
             return res;
         return null;
     }
 
-    public string? RawLaunchCommand { get; }
-
-    public string[]? LaunchCommand
+    public string? GetLinkExe()
     {
-        get
-        {
-            var arg = RawLaunchCommand;
-            if (arg == null)
-                return null;
-            return CommandArg.CommandLineToArgv(arg);
-        }
+        using var apps = RegistryRedirect.HKLM.OpenSubKey(Install.EdgeExeLink._appsRegKey);
+        var edgeDirObj = apps?.GetValue(AppRegRoot);
+        if (edgeDirObj is not string edgeDir)
+            return null;
+        var linkDir = edgeDir + Install.EdgeExeLink._dirExtName;
+        var relative = PathAPI.GetRelativePath(ExePath, edgeDir, true);
+        return PathAPI.CombinePath(linkDir, relative);
     }
 
-    public string? ExePath
+    public string AppRegRoot { get; }
+
+
+    public string RawLaunchCommand { get; }
+
+    public string[] LaunchCommand => CommandArg.CommandLineToArgv(RawLaunchCommand);
+
+    public string ExePath
     {
-        get => LaunchCommand?[0];
+        get => LaunchCommand[0];
     }
 
     public bool IsMatchRoot

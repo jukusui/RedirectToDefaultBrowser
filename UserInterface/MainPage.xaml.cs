@@ -166,11 +166,11 @@ namespace UserInterface
 
         #region Open(edge scheme)
 
-        private AsyncCommand? _OpenWithDefaultBrowser;
+        private AsyncCommand? _openWithDefaultBrowser;
         private AsyncCommand OpenWithDefaultBrowser
         {
             get =>
-                _OpenWithDefaultBrowser ??=
+                _openWithDefaultBrowser ??=
                 new AsyncCommand(OnOpenWithDefaultBrowser,
                     (param) => !string.IsNullOrEmpty(param as string),
                     LaunchKey);
@@ -188,11 +188,11 @@ namespace UserInterface
             }
         }
 
-        private AsyncCommand? _OpenWithSelectedEdge;
+        private AsyncCommand? _openWithSelectedEdge;
         private AsyncCommand OpenWithSelectedEdge
         {
             get =>
-                _OpenWithSelectedEdge ??=
+                _openWithSelectedEdge ??=
                 new AsyncCommand(OnOpenWithSelectedEdge,
                     (param) => !string.IsNullOrEmpty(param as string),
                     LaunchKey);
@@ -213,11 +213,11 @@ namespace UserInterface
         #endregion
         #region Launch(http scheme)
 
-        private AsyncCommand? _LaunchWithDefaultBrowser;
+        private AsyncCommand? _launchWithDefaultBrowser;
         public AsyncCommand LaunchWithDefaultBrowser
         {
             get =>
-                _LaunchWithDefaultBrowser ??=
+                _launchWithDefaultBrowser ??=
                 new AsyncCommand(OnLaunchWithDefaultBrowser,
                     (param) => (param as UriWrapper)?.Uri != null,
                     LaunchKey);
@@ -235,11 +235,11 @@ namespace UserInterface
             }
         }
 
-        private AsyncCommand? _LaunchWithSelectedBrowser;
+        private AsyncCommand? _launchWithSelectedBrowser;
         public AsyncCommand LaunchWithSelectedBrowser
         {
             get =>
-                _LaunchWithSelectedBrowser ??=
+                _launchWithSelectedBrowser ??=
                 new AsyncCommand(OnLaunchWithSelectedBrowser,
                     (param) => (param as UriWrapper)?.Uri != null,
                     LaunchKey);
