@@ -27,7 +27,7 @@ public class ArgProcessor
 
     public async Task Launch()
     {
-        var newArg = TrySimpleArg() ?? TryConfiguredArg();
+        var newArg = TrySimpleArg();
         if (newArg != null)
         {
             //引数はURIでmicrosoft-edgeスキーム
@@ -41,7 +41,7 @@ public class ArgProcessor
                 using var process = Process.Start(info);
                 //process.Close();
             }
-            catch (Win32Exception ex) when (ex.HResult == ERROR_FILE_NOT_FOUND)
+            catch (Win32Exception ex) when (ex.NativeErrorCode == ERROR_FILE_NOT_FOUND)
             {
                 if (MessageBox.Show(
                     "Redirect App is not Exist\nWould you like to open Store Page?",
@@ -79,55 +79,14 @@ public class ArgProcessor
     /// <summary>
     /// hoge.exe microsoft-edge://の形式についてチェックする
     /// </summary>
-    /// <returns>一致した場合のみ、引数を設定して返す</returns>
+    /// <returns>最初に一致したもののみ、引数を設定して返す</returns>
     private string? TrySimpleArg()
     {
         //引数は一つのみ && 例のURI
-        if (InArgs.Length == 1 && CheckScheme(InArgs[0]))
+        foreach (var item in InArgs)
         {
-            Console.WriteLine($"{nameof(TrySimpleArg)}:{InArgs[0]}");
-            return InArgs[0];
-        }
-        else
-            return null;
-    }
-
-    /// <summary>
-    /// レジストリに指定された形式についてチェックする
-    /// </summary>
-    /// <returns>一致した場合のみ、引数を設定して返す</returns>
-
-    private string? TryConfiguredArg()
-    {
-        if (AppRegistry.LaunchCommand != null &&
-            InArgs.Length == AppRegistry.LaunchCommand.Length - 1)
-        {
-            string? result = null;
-            var len = InArgs.Length;
-            for (int i = 0; i < len; i++)
-            {
-                if (AppRegistry.LaunchCommand[i + 1] == "%1")
-                {
-                    if (CheckScheme(InArgs[i]))
-                    {
-                        result = InArgs[i];
-                        Console.WriteLine($"{nameof(TryConfiguredArg)}:{i}:{result}");
-                    }
-                    else
-                    {
-                        Console.WriteLine($"{nameof(TryConfiguredArg)}:{i}:Not_MS-EDGE");
-                        break;
-                    }
-                }
-                else if (AppRegistry.LaunchCommand[i + 1] != InArgs[i])
-                {
-                    Console.WriteLine($"{nameof(TryConfiguredArg)}:{i}:NotMatch");
-                    result = null;
-                    break;
-                }
-            }
-            Console.WriteLine($"{nameof(TryConfiguredArg)}:res:{result}");
-            return result;
+            if (CheckScheme(item))
+                return item;
         }
         return null;
     }
