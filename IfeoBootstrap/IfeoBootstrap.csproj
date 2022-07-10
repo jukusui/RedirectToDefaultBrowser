@@ -13,8 +13,10 @@
 		<PlatformTarget>x86</PlatformTarget>
 		<Version>0.9.0</Version>
 		<ApplicationIcon>Assets\IFEO.ico</ApplicationIcon>
+		<ApplicationManifest>app.manifest</ApplicationManifest>
+		<NeutralLanguage>en</NeutralLanguage>
 	</PropertyGroup>
-
+	
 	<ItemGroup>
 	  <None Remove="Assets\IFEO.ico" />
 	</ItemGroup>
@@ -39,6 +41,30 @@
 	<ItemGroup>
 		<Reference Include="System.Configuration.Install" />
 		<Reference Include="System.Windows.Forms" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Properties\ExResources.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>ExResources.resx</DependentUpon>
+	  </Compile>
+	  <Compile Update="Properties\Resources.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>Resources.resx</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Update="Properties\ExResources.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>ExResources.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Properties\Resources.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
 	</ItemGroup>
 
 </Project>

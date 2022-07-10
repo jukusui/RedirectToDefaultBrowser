@@ -1,4 +1,5 @@
-﻿using IfeoBootstrap.Win32API;
+﻿using IfeoBootstrap.Properties;
+using IfeoBootstrap.Win32API;
 using Microsoft.Win32;
 using System;
 using System.Diagnostics;
@@ -12,7 +13,8 @@ namespace IfeoBootstrap
     public static class Program
     {
 
-        private static readonly string _ifeo = "--IFEO";
+        private const string _ifeo = "--IFEO";
+        internal const string _caption = " - R2DB IFEO";
 
         public static void Main(string[] args)
         {
@@ -22,7 +24,7 @@ namespace IfeoBootstrap
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "FATAL ERROR");
+                MessageBox.Show(ex.ToString(), ExResources.UnhandledCaption + _caption);
             }
         }
 
@@ -33,21 +35,21 @@ namespace IfeoBootstrap
             string? message = null;
             if (args.Length <= 0)
             {
-                message = "No Arguments";
+                message = ExResources.NoArgs;
             }
             else if (args.Length == 1)
             {
-                message = "Missing Arguments";
+                message = ExResources.MissingArgs;
             }
             else
             {
                 if (args[0] != _ifeo)
-                    message = "Unknown Arguments";
+                    message = ExResources.UnknownArgs;
                 else if (!File.Exists(args[1]))
-                    message = "Argument File not Found";
+                    message = ExResources.ArgFileNotFound;
                 else
                 {
-                    Console.Write("IFEO Source Check:");
+                    Debug.Write("IFEO Source Check:");
                     string exePath = args[1];
                     using var apps = RegistryRedirect.HKLM.OpenSubKey(Install.EdgeExeLink._appsRegKey);
                     foreach (var keyName in apps?.GetValueNames() ?? Enumerable.Empty<string>())
@@ -60,30 +62,30 @@ namespace IfeoBootstrap
                             {
                                 appRegistry = reg;
                                 ifeo = reg.ExePath;
-                                Console.Write(keyName);
+                                Debug.Write(keyName);
                                 break;
                             }
                         }
                     }
-                    Console.WriteLine();
+                    Debug.WriteLine("");
 
                     if (ifeo == null || appRegistry == null)
                     {
-                        message = "Unknown IFEO Source";
+                        message = ExResources.UnknownIfeoSource;
                     }
                 }
             }
             if (message != null)
             {
-                MessageBox.Show(message, "ERROR");
+                MessageBox.Show(message, ExResources.ErrorCaption + _caption);
             }
             else
             {
 
                 if (ifeo == null || appRegistry == null)
                 {
-                    message = "Unknown IFEO Source";
-                    MessageBox.Show(message, "ERROR");
+                    message = ExResources.UnknownIfeoSource;
+                    MessageBox.Show(message, ExResources.ErrorCaption + _caption);
                 }
                 else
                 {

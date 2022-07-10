@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IfeoBootstrap.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -43,10 +44,10 @@ public class ArgProcessor
             }
             catch (Win32Exception ex) when (ex.NativeErrorCode == ERROR_FILE_NOT_FOUND)
             {
-                if (MessageBox.Show(
-                    "Redirect App is not Exist\nWould you like to open Store Page?",
-                    "ERROR", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show(ExResources.AppMissing, ExResources.ErrorCaption + Program._caption,
+                    MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
+
                     await Windows.System.Launcher.LaunchUriAsync(new Uri(Shared.Properties.UniversalResources.StoreUri));
 
                 }
@@ -65,13 +66,12 @@ public class ArgProcessor
                 }
                 catch (Win32Exception ex) when (ex.HResult == ERROR_FILE_NOT_FOUND)
                 {
-                    MessageBox.Show("Edge Symbol is not Exist\nPlease ReInstall IFEO", "ERROR");
+                    MessageBox.Show(ExResources.EdgeMissing, ExResources.ErrorCaption + Program._caption);
                 }
             }
             else
             {
-                MessageBox.Show(
-                    "Unknown Path", "ERROR");
+                MessageBox.Show(ExResources.EdgeMissing, ExResources.ErrorCaption + Program._caption);
             }
         }
     }
