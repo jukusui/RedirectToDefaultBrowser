@@ -12,7 +12,20 @@
 		<Product>RedirectToDefaultBrowser</Product>
 		<PlatformTarget>x86</PlatformTarget>
 		<Version>0.9.0</Version>
+		<ApplicationIcon>Assets\IFEO.ico</ApplicationIcon>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Remove="Assets\IFEO.ico" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="Assets\IFEO.ico" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="Assets\IFEO.ico" />
+	</ItemGroup>
 
 	<ItemGroup>
 	  <PackageReference Include="Jukusui.Notify.Core" Version="1.0.2" />
